@@ -1,24 +1,26 @@
 ---
 title: XPath for Dictionary Nerds
+lang: en
 date: 2019-08-26
+version: 1.1.2
 authors:
   - tasovac-toma
-categories:
-  - dariah
 tags:
   - lexicography
   - xpath
   - xml
-abstract: >-
-  XPath (XML Path Language) is a standard query language for selecting nodes from XML documents. In this step-by-step tutorial, you will learn how to write XPath expressions in order to navigate around our XML-encoded dictionaries and select only those bits of data that you are interested in.
-
-
+categories:
+  - dariah
+abstract: XPath (XML Path Language) is a standard query language for selecting
+  nodes from XML documents. In this step-by-step tutorial, you will learn how to
+  write XPath expressions in order to navigate around our XML-encoded
+  dictionaries and select only those bits of data that you are interested in.
 type: training-module
-version: 1.1.2
-toc: true
-uuid: XUDsnt3PCB0WTEr-6EM7w
+licence: ccby-4.0
 remote:
   date: ""
+toc: true
+uuid: XUDsnt3PCB0WTEr-6EM7w
 ---
 
 ## Introduction
@@ -38,11 +40,11 @@ You should already be familiar with the fundamentals of the XML tree structure:
 - The **root** element forms the basis of the XML tree and all other element nodes, attribute nodes and text nodes reach out like branches and leaves from this topmost element
 - Moreover, various relationships between elements exist. In the **child-parent relationship** one element (the child) is nested inside another element (the parent). In the following example, the element `<orth>` is nested in the element `<form>`. Consequently, `<orth>` is the child of `<form>` and `<form>` the parent of `<orth>`:
 
-```xml
-<form type="lemma">
-  <orth>lexicographer</lemma>
-</entry>
-```
+  ```xml
+  <form type="lemma">
+    <orth>lexicographer</lemma>
+  </entry>
+  ```
 
 - A **sibling** relationship means that elements (the siblings) have the same parent element. For instance, in the following example, the elements `<form>`, `<gramGrp>` and `<sense>` have the same parent element and are hence siblings to each other:
 
