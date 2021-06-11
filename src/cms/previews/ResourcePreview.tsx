@@ -1,4 +1,4 @@
-// import withSyntaxHighlighting from '@stefanprobst/rehype-shiki'
+import withSyntaxHighlighting from '@stefanprobst/rehype-shiki'
 import type { PreviewTemplateComponentProps } from 'netlify-cms-core'
 import { useState, useEffect } from 'react'
 import withHeadingIds from 'rehype-slug'
@@ -107,16 +107,15 @@ export function ResourcePreview(
           type,
         }
 
-        const { getHighlighter, setCDN, setOnigasmWASM, BUNDLED_LANGUAGES } =
-          await import(
-            /* @ts-expect-error Typescript knows nothing about .mjs files. */
-            'shiki/dist/index.browser.mjs'
-          )
-        setOnigasmWASM('https://unpkg.com/shiki/dist/onigasm.wasm')
-        setCDN('https://unpkg.com/shiki/')
-        // const highlighter = await getHighlighter({
-        //   theme: 'material-palenight',
-        // })
+        const { getHighlighter, setCDN, setOnigasmWASM } = await import(
+          /* @ts-expect-error Missing module declaration. */
+          'shiki/dist/index.browser.mjs'
+        )
+        setOnigasmWASM('https://unpkg.com/shiki@0.9.4/dist/onigasm.wasm')
+        setCDN('https://unpkg.com/shiki@0.9.4/')
+        const highlighter = await getHighlighter({
+          theme: 'material-palenight',
+        })
 
         const code = String(
           await compile(body, {
@@ -124,7 +123,7 @@ export function ResourcePreview(
             useDynamicImport: false,
             remarkPlugins: [withGitHubMarkdown, withFootnotes],
             rehypePlugins: [
-              // [withSyntaxHighlighting, { theme: 'material-palenight' }],
+              [withSyntaxHighlighting, { highlighter }],
               withHeadingIds,
               // withExtractedTableOfContents,
               withHeadingLinks,

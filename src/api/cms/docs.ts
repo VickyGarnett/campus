@@ -6,6 +6,7 @@ import withSyntaxHighlighting from '@stefanprobst/rehype-shiki'
 import withHeadingIds from 'rehype-slug'
 import withFootnotes from 'remark-footnotes'
 import withGitHubMarkdown from 'remark-gfm'
+import { getHighlighter } from 'shiki'
 import type { VFile } from 'vfile'
 
 import type { Locale } from '@/i18n/i18n.config'
@@ -172,12 +173,14 @@ async function getDocsMetadata(
 async function compileMdx(file: VFile): Promise<VFile> {
   const { compile } = await import('xdm')
 
+  const highlighter = await getHighlighter({ theme: 'material-palenight' })
+
   return compile(file, {
     outputFormat: 'function-body',
     useDynamicImport: false,
     remarkPlugins: [withGitHubMarkdown, withFootnotes],
     rehypePlugins: [
-      [withSyntaxHighlighting, { theme: 'material-palenight' }],
+      [withSyntaxHighlighting, { highlighter }],
       withHeadingIds,
       withExtractedTableOfContents,
       withHeadingLinks,

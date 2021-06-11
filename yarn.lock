@@ -2454,14 +2454,13 @@
     hast-util-to-string "^1.0.4"
     unist-util-visit "^2.0.3"
 
-"@stefanprobst/rehype-shiki@^0.1.2":
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/@stefanprobst/rehype-shiki/-/rehype-shiki-0.1.2.tgz#4f21cabeed892ad47f6302f1c44415f92463c207"
-  integrity sha512-KgawAVzjUzgcU7SnsHyr8tuN2KktDoSTvN59NOiXmLvniT6VCm/hjV7hk7vEJ3cTYcUkZAu92iQgDdSpZeMKfA==
+"@stefanprobst/rehype-shiki@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/@stefanprobst/rehype-shiki/-/rehype-shiki-1.0.0.tgz#e802c8385074313c3f029a1a6f1e9db9e1b3622c"
+  integrity sha512-/XrXESp5oFxZ7FIYQKuKj+bD3gf6bwbHVP3hbb5SjVrpJ/hjHmM9n0MG7L9/666cwE5IF3Dzn+kVYECZ7Tm5gw==
   dependencies:
     hast-util-raw "^6.1.0"
     hast-util-to-string "^1.0.4"
-    shiki "^0.9.3"
     unified "^9.2.1"
     unist-util-visit "^2.0.3"
 
@@ -12103,7 +12102,7 @@ shell-quote@1.7.2:
   resolved "https://registry.yarnpkg.com/shell-quote/-/shell-quote-1.7.2.tgz#67a7d02c76c9da24f99d20808fcaded0e0e04be2"
   integrity sha512-mRz/m/JVscCrkMyPqHc/bczi3OQHkLTqXHEFu0zDhK/qfv3UcOA4SVmRCLmos4bhjr9ekVQubj/R7waKapmiQg==
 
-shiki@0.9.4, shiki@^0.9.3, shiki@^0.9.4:
+shiki@0.9.4, shiki@^0.9.4:
   version "0.9.4"
   resolved "https://registry.npmjs.org/shiki/-/shiki-0.9.4.tgz#b9d59ad11770347216d356e402bfd48572c7ed40"
   integrity sha512-6ldV9wgwRyx1yIDC20SBNq9Kza1aPaERDGd+R3oJxsv7KLkAq+ltGrxWVg4faGCg7V23/q9fzKeeSwAALQhIrA==
