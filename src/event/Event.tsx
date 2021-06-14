@@ -1,4 +1,4 @@
-// import '@/event/styles/base.module.scss'
+// import '@/event/event.module.css'
 import '@reach/dialog/styles.css'
 
 import { DialogContent, DialogOverlay } from '@reach/dialog'
@@ -400,17 +400,87 @@ function EventSession(props: EventSessionProps) {
       id={`session-${index}`}
       className="session relative border-t-[3.125vw] border-[#0870ac]"
     >
-      <div className="session__heading flex justify-between">
-        <h1 className="text-6xl font-bold uppercase mb-12">{session.title}</h1>
+      <div className="session__heading flex items-baseline justify-between">
+        <h1 className="h1 text-6xl font-bold uppercase mb-12">
+          {session.title}
+        </h1>
         <a
           href={session.synthesis}
           download
-          className="link-download text-5xl flex-shrink-0 inline-flex items-center justify-center text-white w-[4.6875vw] h-[4.6875vw] bg-[#ed6f59] my-[1.5625vw] mx-[6.25vw] transition duration-[400ms] ease-out hover:bg-[#0870ac] hover:duration-150"
+          className="link-download text-5xl flex-shrink-0 inline-flex items-center justify-center text-white w-[4.6875vw] h-[4.6875vw] bg-[#ed6f59] mt-[1.5625vw] mr-[6.25vw] transition duration-[400ms] ease-out hover:bg-[#0870ac] hover:duration-150"
         >
           <FaFilePdf size="0.75em" />
           <span className="sr-only">Download the session synthesis</span>
         </a>
       </div>
+
+      <div className="session__core mx-[6.25vw] pb-[5em]">
+        <Mdx
+          code={session.body.code}
+          components={{
+            Download: function EventSessionDownload(props) {
+              return <div className="session__downloads"></div>
+            },
+            Link: function EventSessionLink(props) {
+              return <div></div>
+            },
+            Speakers: function EventSessionSpeakers(props) {
+              return <div className="session__speakers"></div>
+            },
+            Speaker: function EventSessionSpeaker(props) {
+              return <div></div>
+            },
+            h2: function Heading2(props) {
+              return (
+                <h2
+                  className="h2 h2--counter text-4xl font-bold mt-[2.5vw] mb-[1.5vw] pb-[1.5vw] border-b-2 border-[#0870ac]"
+                  {...props}
+                >
+                  {props.children}
+                </h2>
+              )
+            },
+            h3: function Heading3(props) {
+              return (
+                <h3
+                  className="h3 relative text-3xl mt-10 mb-8 font-bold"
+                  {...props}
+                >
+                  {props.children}
+                </h3>
+              )
+            },
+            p: function Paragraph(props) {
+              return (
+                <p
+                  className="text-3xl text-[#00396C] mb-[1em] leading-snug"
+                  {...props}
+                >
+                  {props.children}
+                </p>
+              )
+            },
+            a: function Anchor(props) {
+              return (
+                <a
+                  {...props}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="border-b-[0.15vw] border-[#1e396c] transition ease-out duration-[400ms] hover:text-[#ed6f59] hover:border-[#ed6f59] hover:duration-150"
+                >
+                  {props.children}
+                </a>
+              )
+            },
+          }}
+        />
+      </div>
+
+      {session.synthesis != null ? (
+        <div className="session__downloads">
+          <pre>{session.synthesis}</pre>
+        </div>
+      ) : null}
     </div>
   )
 }

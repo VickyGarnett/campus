@@ -105,7 +105,7 @@ export interface EventData {
   /** Metadata. */
   metadata: EventMetadata
   /** Table of contents. */
-  toc: Toc
+  // toc: Toc
 }
 
 export interface Event extends EventId {
@@ -165,7 +165,7 @@ export async function getEventById(id: ID, locale: Locale): Promise<Event> {
 
   const data = {
     metadata,
-    toc: (file.data as { toc: Toc }).toc,
+    // toc: (file.data as { toc: Toc }).toc ?? [],
   }
 
   return {
@@ -312,20 +312,20 @@ async function getEventFrontmatter(
 async function compileMdx(file: VFile): Promise<VFile> {
   const { compile } = await import('xdm')
 
-  const highlighter = await getHighlighter({ theme: 'material-palenight' })
+  // const highlighter = await getHighlighter({ theme: 'material-palenight' })
 
   return compile(file, {
     outputFormat: 'function-body',
     useDynamicImport: false,
     remarkPlugins: [withGitHubMarkdown, withFootnotes],
     rehypePlugins: [
-      [withSyntaxHighlighting, { highlighter }],
-      withHeadingIds,
-      withExtractedTableOfContents,
-      withHeadingLinks,
+      // [withSyntaxHighlighting, { highlighter }],
+      // withHeadingIds,
+      // withExtractedTableOfContents,
+      // withHeadingLinks,
       withNoReferrerLinks,
-      withLazyLoadingImages,
-      withImageCaptions,
+      // withLazyLoadingImages,
+      // withImageCaptions,
     ],
     // recmaPlugins: [minify], // FIXME:
   })
