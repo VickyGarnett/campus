@@ -4,6 +4,11 @@
   --page-header-height: 88px;
 }
 
+html {
+  scroll-snap-type: y mandatory;
+  scroll-padding-top: var(--page-header-height);
+}
+
 body {
   --tw-bg-opacity: 1;
   background-color: rgba(255, 255, 255, var(--tw-bg-opacity));

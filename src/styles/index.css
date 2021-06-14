@@ -4,6 +4,11 @@
   --page-header-height: 88px;
 }
 
+html {
+  scroll-snap-type: y mandatory;
+  scroll-padding-top: var(--page-header-height);
+}
+
 body {
   @apply font-sans text-neutral-900 antialiased bg-white;
 }

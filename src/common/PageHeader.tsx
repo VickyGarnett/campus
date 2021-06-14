@@ -25,7 +25,7 @@ export function PageHeader(): JSX.Element {
   return (
     <header
       className={cx(
-        'fixed inset-x-0 z-10 bg-white flex items-center',
+        'fixed inset-x-0 z-20 bg-white flex items-center',
         isShadowVisible && 'shadow',
       )}
       style={{ minHeight: 'var(--page-header-height)' }}

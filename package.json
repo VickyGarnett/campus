@@ -136,7 +136,8 @@
   "eslintConfig": {
     "extends": "@stefanprobst/eslint-config-next",
     "rules": {
-      "@next/next/no-document-import-in-page": "off"
+      "@next/next/no-document-import-in-page": "off",
+      "@next/next/no-img-element": "off"
     }
   },
   "lint-staged": {

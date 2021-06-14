@@ -47,6 +47,17 @@ const NetlifyCms = dynamic(
       {},
     )
 
+    /**
+     * Register preview styles.
+     *
+     * These are created in a `postbuild` script with `postcss-cli`.
+     */
+    Cms.registerPreviewStyle(
+      'https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap',
+    )
+    Cms.registerPreviewStyle('/assets/cms/tailwind.css')
+    Cms.registerPreviewStyle('/assets/cms/index.css')
+
     /** Register preview templates. */
     Cms.registerPreviewTemplate('resources', ResourcePreview)
     Cms.registerPreviewTemplate(

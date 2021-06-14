@@ -78,17 +78,17 @@ export interface EventSessionFrontmatter {
   synthesis?: FilePath
 }
 
-export interface EventMetadata
-  extends Omit<
-    EventFrontmatter,
-    'authors' | 'categories' | 'tags' | 'type' | 'about' | 'prep' | 'sessions'
-  > {
+export interface EventPreviewMetadata
+  extends Omit<EventFrontmatter, 'authors' | 'categories' | 'tags' | 'type'> {
   authors: Array<Person>
   categories: Array<Category>
   tags: Array<Tag>
   type: ContentType
-  sessions: Array<EventSessionMetadata>
+}
 
+export interface EventMetadata
+  extends Omit<EventPreviewMetadata, 'about' | 'prep' | 'sessions'> {
+  sessions: Array<EventSessionMetadata>
   about: { code: string }
   prep: { code: string } | null
 }
@@ -115,7 +115,7 @@ export interface Event extends EventId {
   code: string
 }
 
-export interface EventPreview extends EventId, EventMetadata {}
+export interface EventPreview extends EventId, EventPreviewMetadata {}
 
 /**
  * Returns all post ids (slugs).
@@ -131,8 +131,37 @@ export async function getEventIds(_locale: Locale): Promise<Array<string>> {
  */
 export async function getEventById(id: ID, locale: Locale): Promise<Event> {
   const file = await getEventFile(id, locale)
-  const metadata = await getEventMetadata(file, locale)
+  const matter = await getEventMetadata(file, locale)
   const code = String(await compileMdx(file))
+
+  const metadata = {
+    ...matter,
+    sessions: await Promise.all(
+      matter.sessions.map(async (session) => {
+        const speakers = await Promise.all(
+          session.speakers.map((id) => {
+            return getPersonById(id, locale)
+          }),
+        )
+
+        const code = String(await compileMdx(vfile({ contents: session.body })))
+
+        return {
+          ...session,
+          speakers,
+          body: { code },
+        }
+      }),
+    ),
+
+    about: {
+      code: String(await compileMdx(vfile({ contents: matter.about }))),
+    },
+    prep:
+      matter.prep != null
+        ? { code: String(await compileMdx(vfile({ contents: matter.prep }))) }
+        : null,
+  }
 
   const data = {
     metadata,
@@ -226,7 +255,7 @@ export function getEventFilePath(id: ID, _locale: Locale): FilePath {
 async function getEventMetadata(
   file: VFile,
   locale: Locale,
-): Promise<EventMetadata> {
+): Promise<EventPreviewMetadata> {
   const matter = await getEventFrontmatter(file, locale)
 
   const metadata = {
@@ -253,35 +282,6 @@ async function getEventMetadata(
         )
       : [],
     type: await getContentTypeById(matter.type, locale),
-    // FIXME: needs caching to build
-    // sessions: await Promise.all(
-    //   matter.sessions.map(async (session) => {
-    //     const speakers = await Promise.all(
-    //       session.speakers.map((id) => {
-    //         return getPersonById(id, locale)
-    //       }),
-    //     )
-
-    //     const code = String(await compileMdx(vfile({ contents: session.body })))
-
-    //     return {
-    //       ...session,
-    //       speakers,
-    //       body: { code },
-    //     }
-    //   }),
-    // ),
-
-    // about: {
-    //   code: String(await compileMdx(vfile({ contents: matter.about }))),
-    // },
-    // prep:
-    //   matter.prep != null
-    //     ? { code: String(await compileMdx(vfile({ contents: matter.prep }))) }
-    //     : null,
-    sessions: [],
-    about: { code: '' },
-    prep: null,
   }
 
   return metadata

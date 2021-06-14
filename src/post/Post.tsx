@@ -111,7 +111,7 @@ export function Post(props: PostProps): JSX.Element {
             ) : null}
             {tags.length > 0 ? (
               <div className="space-x-2">
-                <dt className="inline">Tags:</dt>
+                <dt className="inline">Topics:</dt>
                 <dd className="inline">
                   <ul className="inline">
                     {tags.map((tag, index) => {
