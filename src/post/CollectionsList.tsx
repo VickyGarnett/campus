@@ -35,7 +35,7 @@ function CollectionPreviewCard(props: CollectionPreviewCardProps) {
         </a>
       </Link>
       <p className="leading-7 text-neutral-500">{collection.abstract}</p>
-      <ol className="list-decimal pl-4 space-y-2">
+      {/* <ol className="list-decimal pl-4 space-y-2">
         {collection.resources.map((resource) => {
           return (
             <li key={resource.id}>
@@ -47,7 +47,7 @@ function CollectionPreviewCard(props: CollectionPreviewCardProps) {
             </li>
           )
         })}
-      </ol>
+      </ol> */}
     </article>
   )
 }

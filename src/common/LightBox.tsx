@@ -22,7 +22,7 @@ export function LightBox(props: LightBoxProps): JSX.Element {
     >
       <DialogContent
         aria-label="Media lightbox"
-        className="absolute inset-0 flex flex-col justify-between p-4 space-y-4 text-white bg-neutral-800"
+        className="absolute !inset-0 flex flex-col justify-between !p-4 !m-0 !w-full space-y-4 text-white !bg-neutral-800"
       >
         <header className="flex justify-end">
           <button onClick={props.close}>

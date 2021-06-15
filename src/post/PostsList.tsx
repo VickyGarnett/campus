@@ -75,7 +75,7 @@ function PostPreviewCard(props: PostPreviewCardProps): JSX.Element {
       <div className="flex flex-col px-10 py-10 space-y-5">
         <h2 className="text-2xl font-semibold">
           <Link href={href}>
-            <a className="transition hover:text-primary-600">
+            <a className="block transition hover:text-primary-600 focus:outline-none focus-visible:ring rounded focus-visible:ring-primary-600">
               <span className="inline-flex mr-2 text-primary-600">
                 <ContentTypeIcon type={post.type.id} className="w-5 h-5" />
               </span>
@@ -118,7 +118,9 @@ function PostPreviewCard(props: PostPreviewCardProps): JSX.Element {
           ) : null}
         </dl>
         <Link href={href}>
-          <a className="transition hover:text-primary-600">Read more &rarr;</a>
+          <a tabIndex={-1} className="transition hover:text-primary-600">
+            Read more &rarr;
+          </a>
         </Link>
       </footer>
     </article>

@@ -56,7 +56,7 @@ export function Post(props: PostProps): JSX.Element {
                               />
                             )}
                             <Link href={routes.author(author.id)}>
-                              <a className="transition hover:text-primary-600 focus:outline-none focus-visible:ring focus-visible:ring-primary-600">
+                              <a className="rounded transition hover:text-primary-600 focus:outline-none focus-visible:ring focus-visible:ring-primary-600">
                                 <span>{getFullName(author)}</span>
                               </a>
                             </Link>
@@ -91,7 +91,7 @@ export function Post(props: PostProps): JSX.Element {
                       return (
                         <li key={source.id} className="inline">
                           <Link href={routes.source(source.id)}>
-                            <a className="transition hover:text-primary-600 focus:outline-none focus-visible:ring focus-visible:ring-primary-600">
+                            <a className="rounded transition hover:text-primary-600 focus:outline-none focus-visible:ring focus-visible:ring-primary-600">
                               <span>{source.name}</span>
                             </a>
                           </Link>
@@ -112,7 +112,7 @@ export function Post(props: PostProps): JSX.Element {
                       return (
                         <li key={tag.id} className="inline">
                           <Link href={routes.tag(tag.id)}>
-                            <a className="transition hover:text-primary-600 focus:outline-none focus-visible:ring focus-visible:ring-primary-600">
+                            <a className="rounded transition hover:text-primary-600 focus:outline-none focus-visible:ring focus-visible:ring-primary-600">
                               <span
                                 className={index !== 0 ? 'ml-1' : undefined}
                               >
@@ -149,7 +149,7 @@ export function Post(props: PostProps): JSX.Element {
           <EditLink
             collection="resources"
             id={post.id}
-            className="text-sm flex justify-end items-center space-x-1.5 text-neutral-500"
+            className="transition text-sm flex justify-end items-center space-x-1.5 text-neutral-500 hover:text-primary-600 focus:outline-none focus-visible:ring focus-visible:ring-primary-600 rounded"
           >
             <Icon icon={PencilIcon} className="w-4 h-4" />
             <span className="text-right">Suggest changes to resource</span>

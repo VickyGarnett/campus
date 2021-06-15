@@ -88,7 +88,7 @@ export function Collection(props: CollectionProps): JSX.Element {
           <EditLink
             collection="resourceCollections"
             id={collection.id}
-            className="text-sm flex justify-end items-center space-x-1.5 text-neutral-500"
+            className="transition text-sm flex justify-end items-center space-x-1.5 hover:text-primary-600 text-neutral-500 focus:outline-none focus-visible:ring focus-visible:ring-primary-600 rounded"
           >
             <Icon icon={PencilIcon} className="w-4 h-4" />
             <span className="text-right">Suggest changes to curriculum</span>

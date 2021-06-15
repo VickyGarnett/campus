@@ -395,7 +395,7 @@ function ReUseConditions(props: ReUseConditionsProps) {
       <p>
         Resources hosted on DARIAH-Campus are subjects to the{' '}
         <Link href={routes.docs('reuse-charter')}>
-          <a className="transition text-primary-600 hover:text-primary-700">
+          <a className="transition text-primary-600 hover:text-primary-700 focus:outline-none focus-visible:ring focus-visible:ring-primary-600 rounded">
             DARIAH-Campus Training Materials Reuse Charter
           </a>
         </Link>

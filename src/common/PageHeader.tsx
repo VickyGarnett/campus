@@ -112,7 +112,7 @@ function NavigationMenu() {
     <Fragment>
       <button
         onClick={state.toggle}
-        className="flex items-center space-x-2 text-sm transition hover:text-primary-600 focus:outline-none focus-visible:ring focus-visible:ring-primary-600"
+        className="rounded flex items-center space-x-2 text-sm transition hover:text-primary-600 focus:outline-none focus-visible:ring focus-visible:ring-primary-600"
       >
         <span>Menu</span>
         <Icon icon={MenuIcon} className="w-5 h-5" />
@@ -124,7 +124,7 @@ function NavigationMenu() {
       >
         <DialogContent
           aria-label="Navigation menu"
-          className="absolute inset-y-0 right-0 flex flex-col justify-between p-4 space-y-4 text-neutral-400 bg-neutral-800"
+          className="absolute inset-y-0 !my-0 right-0 flex flex-col justify-between !p-4 space-y-4 text-neutral-400 !bg-neutral-800 min-w-[50vw]"
         >
           <button
             onClick={state.close}
