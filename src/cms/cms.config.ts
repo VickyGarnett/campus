@@ -882,7 +882,7 @@ export const config: CmsConfig = {
     },
   },
   publish_mode: 'editorial_workflow',
-  media_folder: 'public/assets/images/cms',
+  media_folder: '/public/assets/images/cms',
   public_folder: '/assets/images/cms',
   editor: { preview: false },
   collections: Object.values(collections),
