@@ -102,6 +102,17 @@ export default function AdminPage(): JSX.Element {
     <Fragment>
       <Metadata noindex nofollow title="CMS" />
       <div id="nc-root" />
+      <style jsx global>
+        {`
+          /* Temporary workaround to stop tailwind reset bleeding into richtext editor. */
+          #nc-root ul {
+            list-style: disc;
+          }
+          #nc-root ol {
+            list-style: decimal;
+          }
+        `}
+      </style>
       <NetlifyCms />
     </Fragment>
   )
