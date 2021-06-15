@@ -97,6 +97,13 @@ export function ResourcePreview(
             .toJS(),
         }
 
+        const licence = {
+          id: frontmatter.licence,
+          ...fieldsMetaData
+            .getIn(['licence', 'licences', frontmatter.licence])
+            .toJS(),
+        }
+
         const metadata = {
           ...frontmatter,
           authors,
@@ -105,6 +112,7 @@ export function ResourcePreview(
           categories,
           tags,
           type,
+          licence,
         }
 
         const { getHighlighter, setCDN, setOnigasmWASM } = await import(
