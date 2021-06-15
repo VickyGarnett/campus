@@ -196,6 +196,10 @@ function PostPage(props: PostPageProps) {
           <ReUseConditions />
         </aside>
         <Post post={post} lastUpdatedAt={lastUpdatedAt} />
+        <div className="2xl:hidden max-w-80ch mx-auto space-y-8">
+          <CiteAs id={post.id} metadata={metadata} />
+          <ReUseConditions />
+        </div>
         {metadata.toc === true && toc.length > 0 ? (
           <Fragment>
             <aside

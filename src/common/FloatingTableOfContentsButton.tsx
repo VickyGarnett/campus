@@ -1,10 +1,11 @@
 import '@reach/dialog/styles.css'
 
 import { DialogContent, DialogOverlay } from '@reach/dialog'
-import { Fragment } from 'react'
+import { useRouter } from 'next/router'
+import { Fragment, useEffect } from 'react'
 
 import { Svg as CloseIcon } from '@/assets/icons/close.svg'
-import { Svg as MenuIcon } from '@/assets/icons/menu.svg'
+import { Svg as TocIcon } from '@/assets/icons/toc.svg'
 import { Icon } from '@/common/Icon'
 import type { TableOfContentsProps } from '@/common/TableOfContents'
 import { TableOfContents } from '@/common/TableOfContents'
@@ -21,6 +22,15 @@ export function FloatingTableOfContentsButton(
   props: FloatingTableOfContentsButtonProps,
 ): JSX.Element {
   const state = useDialogState()
+  const router = useRouter()
+
+  useEffect(() => {
+    router.events.on('routeChangeStart', state.close)
+
+    return () => {
+      router.events.off('routeChangeStart', state.close)
+    }
+  }, [router, state.close])
 
   return (
     <Fragment>
@@ -28,13 +38,13 @@ export function FloatingTableOfContentsButton(
         onClick={state.toggle}
         className="fixed p-4 text-white transition rounded-full bottom-5 right-5 hover:bg-primary-700 bg-primary-600 2xl:hidden focus:outline-none focus-visible:ring focus-visible:ring-primary-600"
       >
-        <Icon icon={MenuIcon} className="w-5 h-5" />
+        <Icon icon={TocIcon} className="w-5 h-5" />
         <span className="sr-only">Table of contents</span>
       </button>
       <DialogOverlay
         isOpen={state.isOpen}
         onDismiss={state.close}
-        className="z-10"
+        className="z-30"
       >
         <DialogContent
           aria-label="Table of contents"

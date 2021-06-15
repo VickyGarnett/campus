@@ -43,6 +43,9 @@ const config = {
       ringOffsetWidth: {
         DEFAULT: '2px',
       },
+      screens: {
+        '2xl': '1440px',
+      },
       typography(/** @type {(key: string) => string} */ theme) {
         return {
           DEFAULT: {
