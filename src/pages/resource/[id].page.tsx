@@ -11,14 +11,18 @@ import type {
 import Link from 'next/link'
 import { Fragment } from 'react'
 
+import type { CollectionPreview } from '@/api/cms/collection'
 import type { Event as EventData } from '@/api/cms/event'
 import { getEventIds, getEventById } from '@/api/cms/event'
 import type { Person } from '@/api/cms/person'
 import type { Post as PostData, PostPreview } from '@/api/cms/post'
 import { getPostById, getPostFilePath, getPostIds } from '@/api/cms/post'
+import { getCollectionPreviewsByResourceId } from '@/api/cms/queries/collection'
 import { getPostPreviewsByTagId } from '@/api/cms/queries/post'
 import { getLastUpdatedTimestamp } from '@/api/github'
+import { Svg as CurriculumIcon } from '@/assets/icons/curriculum.svg'
 import { FloatingTableOfContentsButton } from '@/common/FloatingTableOfContentsButton'
+import { Icon } from '@/common/Icon'
 import { PageContent } from '@/common/PageContent'
 import { TableOfContents } from '@/common/TableOfContents'
 import { Event } from '@/event/Event'
@@ -29,10 +33,14 @@ import { Metadata } from '@/metadata/Metadata'
 import { useAlternateUrls } from '@/metadata/useAlternateUrls'
 import { useCanonicalUrl } from '@/metadata/useCanonicalUrl'
 import { routes } from '@/navigation/routes.config'
+import { ContentTypeIcon } from '@/post/ContentTypeIcon'
 import { Post } from '@/post/Post'
 import { getFullName } from '@/utils/getFullName'
+import { pickRandom } from '@/utils/pickRandom'
 import type { ISODateString } from '@/utils/ts/aliases'
 import { url as siteUrl } from '~/config/site.config'
+
+const RELATED_POSTS_COUNT = 4
 
 export interface ResourcePageParams extends ParsedUrlQuery {
   id: string
@@ -42,6 +50,7 @@ export interface ResourcePageProps {
   dictionary: Dictionary
   resource: PostData | EventData
   related: Array<PostPreview>
+  curricula: Array<CollectionPreview>
   lastUpdatedAt: ISODateString | null
 }
 
@@ -76,11 +85,6 @@ export async function getStaticPaths(
   }
 }
 
-function pickRandom<T>(items: Array<T>, count: number): Array<T> {
-  // TODO:;
-  return items.slice(0, count)
-}
-
 /**
  * Provides resource (post or event) content and metadata, and translations for resource (post or event) page.
  */
@@ -105,8 +109,10 @@ export async function getStaticProps(
    */
   let resource
   let related: Array<PostPreview> = []
+  let curricula: Array<CollectionPreview> = []
   try {
     resource = await getPostById(id, locale)
+
     related = pickRandom(
       (
         await Promise.all(
@@ -114,9 +120,13 @@ export async function getStaticProps(
             return getPostPreviewsByTagId(tag.id, locale)
           }),
         )
-      ).flat(),
-      4,
+      )
+        .flat()
+        .filter((resource) => resource.id !== id),
+      RELATED_POSTS_COUNT,
     )
+
+    curricula = await getCollectionPreviewsByResourceId(id, locale)
   } catch {
     resource = await getEventById(id, locale)
   }
@@ -129,8 +139,9 @@ export async function getStaticProps(
     props: {
       dictionary,
       resource,
-      lastUpdatedAt,
       related,
+      curricula,
+      lastUpdatedAt,
     },
   }
 }
@@ -186,7 +197,7 @@ type PostPageProps = Exclude<ResourcePageProps, 'resource'> & {
  * Post page.
  */
 function PostPage(props: PostPageProps) {
-  const { resource: post, lastUpdatedAt } = props
+  const { resource: post, related, curricula, lastUpdatedAt } = props
   const { metadata, toc } = post.data
 
   const canonicalUrl = useCanonicalUrl()
@@ -213,6 +224,7 @@ function PostPage(props: PostPageProps) {
           }}
         >
           <CiteAs id={post.id} metadata={metadata} />
+          <Curricula curricula={curricula} />
           <ReUseConditions />
         </aside>
         <div className="space-y-8">
@@ -223,13 +235,34 @@ function PostPage(props: PostPageProps) {
               metadata={metadata}
               className="text-sm text-neutral-500"
             />
+            <Curricula
+              curricula={curricula}
+              className="text-sm text-neutral-500"
+            />
             <ReUseConditions className="text-sm text-neutral-500" />
           </div>
-          <div className="2xl:hidden max-w-80ch w-full mx-auto space-y-8">
+          <div className="max-w-80ch w-full mx-auto space-y-8">
             <div className="space-y-1.5 mt-8 text-sm text-neutral-500">
               <h2 className="text-xs font-bold tracking-wide uppercase text-neutral-600">
                 Related resources
               </h2>
+              <ul>
+                {related.map((resource) => {
+                  return (
+                    <li key={resource.id}>
+                      <Link href={routes.resource(resource.id)}>
+                        <a className="flex items-center transition hover:text-primary-600 focus:outline-none focus-visible:ring focus-visible:ring-primary-600 rounded">
+                          <ContentTypeIcon
+                            type={resource.type.id}
+                            className="w-3 h-3 mr-1.5 text-primary-600"
+                          />
+                          <span>{resource.title}</span>
+                        </a>
+                      </Link>
+                    </li>
+                  )
+                })}
+              </ul>
             </div>
           </div>
         </div>
@@ -367,6 +400,42 @@ function ReUseConditions(props: ReUseConditionsProps) {
           </a>
         </Link>
       </p>
+    </div>
+  )
+}
+
+interface CurriculaProps {
+  curricula: Array<CollectionPreview>
+  className?: string
+}
+
+/**
+ * Curricula which include this resource.
+ */
+function Curricula(props: CurriculaProps) {
+  return (
+    <div className={cx('space-y-1.5', props.className)}>
+      <h2 className="text-xs font-bold tracking-wide uppercase text-neutral-600">
+        Curricula
+      </h2>
+      <p>This resource is part of these curricula:</p>
+      <ul>
+        {props.curricula.map((curriculum) => {
+          return (
+            <li key={curriculum.id}>
+              <Link href={routes.collection(curriculum.id)}>
+                <a className="flex items-center transition hover:text-primary-600 focus:outline-none focus-visible:ring focus-visible:ring-primary-600 rounded">
+                  <Icon
+                    icon={CurriculumIcon}
+                    className="w-4 h-4 text-primary-600 mr-1.5"
+                  />
+                  <span>{curriculum.title}</span>
+                </a>
+              </Link>
+            </li>
+          )
+        })}
+      </ul>
     </div>
   )
 }

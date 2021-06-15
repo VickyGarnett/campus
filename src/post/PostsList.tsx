@@ -1,36 +1,16 @@
 import Link from 'next/link'
-import type { FC, SVGProps } from 'react'
 
 import { useFakeMasonry } from './useFakeMasonry'
 
 import type { EventPreview } from '@/api/cms/event'
 import type { PostPreview } from '@/api/cms/post'
-import { Svg as AudioIcon } from '@/assets/icons/audio.svg'
 import { Svg as DefaultAvatar } from '@/assets/icons/avatar.svg'
-import { Svg as BookIcon } from '@/assets/icons/book.svg'
-import { Svg as EventIcon } from '@/assets/icons/event.svg'
-import { Svg as GlobeIcon } from '@/assets/icons/globe.svg'
-import { Svg as PathfinderIcon } from '@/assets/icons/pathfinder.svg'
-import { Svg as VideoIcon } from '@/assets/icons/video.svg'
 import { Icon } from '@/common/Icon'
 import { routes } from '@/navigation/routes.config'
+import { ContentTypeIcon } from '@/post/ContentTypeIcon'
 import { getFullName } from '@/utils/getFullName'
 
 const MAX_AUTHORS = 3
-
-const contentTypeIcons: Record<
-  PostPreview['type']['id'],
-  FC<SVGProps<SVGSVGElement> & { title?: string }>
-> = {
-  audio: AudioIcon,
-  event: EventIcon,
-  pathfinder: PathfinderIcon,
-  slides: BookIcon,
-  'training-module': BookIcon,
-  video: VideoIcon,
-  'webinar-recording': BookIcon,
-  website: GlobeIcon,
-}
 
 export interface PostsListProps {
   posts: Array<PostPreview | EventPreview>
@@ -89,7 +69,6 @@ function PostPreviewCard(props: PostPreviewCardProps): JSX.Element {
   const authors = 'authors' in post ? post.authors : undefined
 
   const href = routes.resource(post.id)
-  const icon = contentTypeIcons[post.type.id]
 
   return (
     <article className="flex flex-col overflow-hidden border rounded-xl hover:shadow-card-md shadow-card-sm border-neutral-150">
@@ -97,11 +76,9 @@ function PostPreviewCard(props: PostPreviewCardProps): JSX.Element {
         <h2 className="text-2xl font-semibold">
           <Link href={href}>
             <a className="transition hover:text-primary-600">
-              {icon !== undefined ? (
-                <span className="inline-flex mr-2 text-primary-600">
-                  <Icon icon={icon} className="w-5 h-5" />
-                </span>
-              ) : null}
+              <span className="inline-flex mr-2 text-primary-600">
+                <ContentTypeIcon type={post.type.id} className="w-5 h-5" />
+              </span>
               <span>{post.title}</span>
             </a>
           </Link>
