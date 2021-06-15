@@ -12,7 +12,7 @@ import type { FC, ReactNode } from 'react'
 import { Icon } from '@/common/Icon'
 import { capitalize } from '@/utils/capitalize'
 
-const types = ['danger', 'info', 'note', 'tip', 'warning'] as const
+export const types = ['danger', 'info', 'note', 'tip', 'warning'] as const
 
 export type SideNoteType = typeof types[number]
 

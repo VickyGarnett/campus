@@ -17,6 +17,8 @@ export function Logo(props: LogoProps): JSX.Element {
       aria-hidden={hidden}
       aria-label={props['aria-label']}
       className={props.className}
+      width="48"
+      height="48"
     />
   )
 }

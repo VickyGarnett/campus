@@ -22,6 +22,12 @@ const NetlifyCms = dynamic(
       '@/cms/previews/ResourceCollectionPreview'
     )
     const { EventPreview } = await import('@/cms/previews/EventPreview')
+    const { sideNoteEditorWidget } = await import('@/cms/widgets/SideNote')
+    const { youTubeEditorWidget } = await import('@/cms/widgets/YouTube')
+    const { videoCardEditorWidget } = await import('@/cms/widgets/VideoCard')
+    const { externalResourceEditorWidget } = await import(
+      '@/cms/widgets/ExternalResource'
+    )
 
     Cms.init({ config })
 
@@ -65,6 +71,12 @@ const NetlifyCms = dynamic(
       ResourceCollectionPreview,
     )
     Cms.registerPreviewTemplate('events', EventPreview)
+
+    /** Register richtext editor widgets. */
+    Cms.registerEditorComponent(sideNoteEditorWidget)
+    Cms.registerEditorComponent(youTubeEditorWidget)
+    Cms.registerEditorComponent(videoCardEditorWidget)
+    Cms.registerEditorComponent(externalResourceEditorWidget)
 
     return () => null
   },
@@ -110,9 +122,6 @@ export default function AdminPage(): JSX.Element {
           }
           #nc-root div[data-slate-editor='true'] ol {
             list-style: decimal;
-          }
-          #nc-root div[data-slate-editor='true'] * + * {
-            margin-bottom: 1rem;
           }
         `}
       </style>
