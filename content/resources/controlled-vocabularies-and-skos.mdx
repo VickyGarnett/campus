@@ -2,6 +2,7 @@
 abstract: >-
   Thesauri, taxonomies and other forms of controlled vocabularies represent a conceptual backbone of the research, playing an ever-increasing role in various aspects of the data management process.  These resources are indispensable to determine common understanding allowing to systematically categorize and enrich research data in a consistent manner, as well as foster the data interoperability and integration among projects and web applications.
 
+
 authors:
   - zaytseva-ksenia
 categories:
@@ -42,7 +43,7 @@ This screencast was recorded for the Spring School LiSeH 2021, and presents much
 <VideoCard
   title="Click to view"
   id="DUlfC8NL0Bs"
-  image="/assets/images/cms/posts/controlled-vocabularies-and-skos/cv_and_skos_title_image.JPG"
+  image="/assets/images/cms/resources/controlled-vocabularies-and-skos/cv_and_skos_title_image.JPG"
 />
 
 ## Introduction
@@ -66,7 +67,7 @@ There are many different types of controlled vocabularies, the most common among
 
 **Diagram 1.** below shows how controlled vocabularies are embedded in architecture of an information system (the example is derived from DEFC controlled vocabulary [^2]). In this example, the Archeological site is a Universal abstract class, whereas Athens is an instance of Archaeological site class and a Particular that represents the exact and real archaeological site studied and described in the system. Athens can be of one or many types that are defined in a controlled vocabulary, for example, it can be a type of ‘Hillside’.
 
-![Diagram 1. Controlled vocabularies in data architecture](/assets/images/cms/posts/controlled-vocabularies-and-skos/cv_and_skos_model_diagram_1.png)
+![Diagram 1. Controlled vocabularies in data architecture](/assets/images/cms/resources/controlled-vocabularies-and-skos/cv_and_skos_model_diagram_1.png)
 
 Controlled vocabularies (CVs) are prominently used in many domains of research and industry:
 
@@ -112,15 +113,15 @@ There are different approaches to how CVs can be reused or made interoperable wi
 
 **Diagram 2.** below shows how different projects use one controlled vocabulary to describe their data. Both projects' data can be queried with terms from this vocabulary. This is probably the best-case scenario that can happen because it ensures full data interoperability.
 
-![Diagram 2. Usage of a common controlled vocabulary for data description in different projects](/assets/images/cms/posts/controlled-vocabularies-and-skos/diagram_2.jpg)
+![Diagram 2. Usage of a common controlled vocabulary for data description in different projects](/assets/images/cms/resources/controlled-vocabularies-and-skos/diagram_2.jpg)
 
 Another approach on **Diagram 3.** shows how different projects use their own project-specific controlled vocabularies. The vocabularies are linked to each other through established relationships among concepts in both of them. Therefore we can refer to data in Project 1 using matching concepts from the controlled vocabulary of Project 2. The linking happens on a level of a concept description when the statement is encoded that the concept is exact/related/close match (etc.) to a concept from another CV or from a large semantic network, e.g. Dbpedia [^6].
 
-![Diagram 3. Interoperable controlled vocabularies](/assets/images/cms/posts/controlled-vocabularies-and-skos/diagram_3.jpg)
+![Diagram 3. Interoperable controlled vocabularies](/assets/images/cms/resources/controlled-vocabularies-and-skos/diagram_3.jpg)
 
 There are also meta-vocabularies developed with a primary goal to be a high-level overarching vocabulary for more domain-specific CVs. Therefore making it easier to connect local CVs and establish relationships among them through common meta-level concepts. Backbone Thesaurus [^7] is one of the examples in the DH domain that has as its purpose to allow interdisciplinary CVs development and integration.
 
-![BBT - Backbone Thesaurus in Vocabs repository](/assets/images/cms/posts/controlled-vocabularies-and-skos/bbt.png)
+![BBT - Backbone Thesaurus in Vocabs repository](/assets/images/cms/resources/controlled-vocabularies-and-skos/bbt.png)
 
 ## SKOS Standard
 
@@ -460,35 +461,35 @@ Controlled vocabularies provide data descriptors for future data retrieval. This
 
 Picture 1. Visualization of IAD Thesaurus [^13]
 
-![Picture 1. Visualization of IAD thesaurus](/assets/images/cms/posts/controlled-vocabularies-and-skos/iad_thesaurus_visualization.PNG)
+![Picture 1. Visualization of IAD thesaurus](/assets/images/cms/resources/controlled-vocabularies-and-skos/iad_thesaurus_visualization.PNG)
 
 - Database values: CVs are closed lists in the user interface represented as dropdown lists when creating or annotating a record.
 
 Picture 2. CV in data curation interface
 
-![Picture 2. Controlled vocabularies in IAD curation interface](/assets/images/cms/posts/controlled-vocabularies-and-skos/cv_in_curation_interface.PNG)
+![Picture 2. Controlled vocabularies in IAD curation interface](/assets/images/cms/resources/controlled-vocabularies-and-skos/cv_in_curation_interface.PNG)
 
 - Context information: when exploring data it is important to provide a user with an explanation of used terms in the interface.
 
 Picture 3. CV in user interface
 
-![Picture 3. Pop up with a vocabulary term definition and traslations in user interface](/assets/images/cms/posts/controlled-vocabularies-and-skos/cv_popup_in_userinterface.png)
+![Picture 3. Pop up with a vocabulary term definition and traslations in user interface](/assets/images/cms/resources/controlled-vocabularies-and-skos/cv_popup_in_userinterface.png)
 
 - Faceted search is based on CVs: dropdowns and autocompletes
 
 Picture 4. CV in faceted search interface
 
-![Picture 4. Controlled vocabularies in IAD search interface](/assets/images/cms/posts/controlled-vocabularies-and-skos/cv_in_search_interface_01.png)
+![Picture 4. Controlled vocabularies in IAD search interface](/assets/images/cms/resources/controlled-vocabularies-and-skos/cv_in_search_interface_01.png)
 
 Picture 5. CV in faceted search interface
 
-![Picture 5. Controlled vocabularies in IAD search interface](/assets/images/cms/posts/controlled-vocabularies-and-skos/cv_in_search_interface_02.PNG)
+![Picture 5. Controlled vocabularies in IAD search interface](/assets/images/cms/resources/controlled-vocabularies-and-skos/cv_in_search_interface_02.PNG)
 
 - CVs are building blocks of Linked Open Data and used for connecting distributed datasets via concepts persistent URIs. Each concept has a unique stable and resolvable URI that can be reused by other projects to refer to this concept. The reference can be done by using directly URI or by retrieving a URI using the API of a vocabulary repository.
 
 Picture 6. IAD Thesaurus in Vocabs repository
 
-![Picture 6. IAD - Iron-Age-Danube Thesaurus in Vocabs repository](/assets/images/cms/posts/controlled-vocabularies-and-skos/vocabs_iad.JPG)
+![Picture 6. IAD - Iron-Age-Danube Thesaurus in Vocabs repository](/assets/images/cms/resources/controlled-vocabularies-and-skos/vocabs_iad.JPG)
 
 ## Open source tools for vocabulary management
 

@@ -1147,11 +1147,6 @@ video {
   margin-bottom: 1.5vw;
 }
 
-.my-\[1\.5625vw\] {
-  margin-top: 1.5625vw;
-  margin-bottom: 1.5625vw;
-}
-
 .my-6 {
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
@@ -1199,6 +1194,34 @@ video {
 
 .mb-12 {
   margin-bottom: 3rem;
+}
+
+.mt-\[1\.5625vw\] {
+  margin-top: 1.5625vw;
+}
+
+.mr-\[6\.25vw\] {
+  margin-right: 6.25vw;
+}
+
+.mt-\[2\.5vw\] {
+  margin-top: 2.5vw;
+}
+
+.mb-\[1\.5vw\] {
+  margin-bottom: 1.5vw;
+}
+
+.mt-10 {
+  margin-top: 2.5rem;
+}
+
+.mb-8 {
+  margin-bottom: 2rem;
+}
+
+.mb-\[1em\] {
+  margin-bottom: 1em;
 }
 
 .mb-2 {
@@ -1506,6 +1529,10 @@ video {
   align-items: center;
 }
 
+.items-baseline {
+  align-items: baseline;
+}
+
 .justify-between {
   justify-content: space-between;
 }
@@ -1672,6 +1699,14 @@ video {
   border-top-width: 3.125vw;
 }
 
+.border-b-2 {
+  border-bottom-width: 2px;
+}
+
+.border-b-\[0\.15vw\] {
+  border-bottom-width: 0.15vw;
+}
+
 .border-l-4 {
   border-left-width: 4px;
 }
@@ -1689,6 +1724,11 @@ video {
 .border-\[\#0870ac\] {
   --tw-border-opacity: 1;
   border-color: rgba(8, 112, 172, var(--tw-border-opacity));
+}
+
+.border-\[\#1e396c\] {
+  --tw-border-opacity: 1;
+  border-color: rgba(30, 57, 108, var(--tw-border-opacity));
 }
 
 .border-neutral-100 {
@@ -2050,6 +2090,14 @@ video {
   padding-top: 1.75vw;
 }
 
+.pb-\[5em\] {
+  padding-bottom: 5em;
+}
+
+.pb-\[1\.5vw\] {
+  padding-bottom: 1.5vw;
+}
+
 .pl-4 {
   padding-left: 1rem;
 }
@@ -2110,14 +2158,14 @@ video {
   line-height: 1.5rem;
 }
 
-.text-lg {
-  font-size: 1.125rem;
-  line-height: 1.75rem;
-}
-
 .text-3xl {
   font-size: 1.875rem;
   line-height: 2.25rem;
+}
+
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
 }
 
 .text-4\.5xl {
@@ -2227,6 +2275,11 @@ video {
   color: rgba(237, 111, 89, var(--tw-text-opacity));
 }
 
+.text-\[\#00396C\] {
+  --tw-text-opacity: 1;
+  color: rgba(0, 57, 108, var(--tw-text-opacity));
+}
+
 .\!text-white {
   --tw-text-opacity: 1 !important;
   color: rgba(255, 255, 255, var(--tw-text-opacity)) !important;
@@ -2326,6 +2379,11 @@ video {
 
 .ease-out {
   transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+
+.hover\:border-\[\#ed6f59\]:hover {
+  --tw-border-opacity: 1;
+  border-color: rgba(237, 111, 89, var(--tw-border-opacity));
 }
 
 .hover\:bg-primary-700:hover {

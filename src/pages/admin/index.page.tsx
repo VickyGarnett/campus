@@ -55,8 +55,8 @@ const NetlifyCms = dynamic(
     Cms.registerPreviewStyle(
       'https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap',
     )
-    Cms.registerPreviewStyle('/assets/cms/tailwind.css')
-    Cms.registerPreviewStyle('/assets/cms/index.css')
+    Cms.registerPreviewStyle('/assets/css/tailwind.css')
+    Cms.registerPreviewStyle('/assets/css/index.css')
 
     /** Register preview templates. */
     Cms.registerPreviewTemplate('resources', ResourcePreview)
@@ -105,11 +105,14 @@ export default function AdminPage(): JSX.Element {
       <style jsx global>
         {`
           /* Temporary workaround to stop tailwind reset bleeding into richtext editor. */
-          #nc-root ul {
+          #nc-root div[data-slate-editor='true'] ul {
             list-style: disc;
           }
-          #nc-root ol {
+          #nc-root div[data-slate-editor='true'] ol {
             list-style: decimal;
+          }
+          #nc-root div[data-slate-editor='true'] * + * {
+            margin-bottom: 1rem;
           }
         `}
       </style>

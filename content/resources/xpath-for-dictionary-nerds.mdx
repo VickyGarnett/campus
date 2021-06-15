@@ -2,6 +2,7 @@
 abstract: >-
   XPath (XML Path Language) is a standard query language for selecting nodes from XML documents. In this step-by-step tutorial, you will learn how to write XPath expressions in order to navigate around our XML-encoded dictionaries and select only those bits of data that you are interested in.
 
+
 authors:
   - tasovac-toma
 categories:
@@ -75,23 +76,23 @@ To best understand the tree structure, you should find a way to visualize it tha
 
 Tree-structures resemble trees, but in a world turned upside-down: the root of the tree is at the top, and the branches are at the bottom. The root element has one or more children. Children with the same parent (there can be only one parent in XML) are siblings etc.
 
-![](/assets/images/cms/posts/xpath-for-dictionary-nerds/tree.png)
+![](/assets/images/cms/resources/xpath-for-dictionary-nerds/tree.png)
 
 ##### 2. Little boxes made of ticky-tacky
 
 A different way of imagining the tree structure is to think of a series of boxes of different sizes. There is one giant box at the top, which contains a number of smaller boxes. Each of these can have one or more boxes inside. The boxes that live in the same bigger box are siblings etc.
 
-![](/assets/images/cms/posts/xpath-for-dictionary-nerds/boxes.png)
+![](/assets/images/cms/resources/xpath-for-dictionary-nerds/boxes.png)
 
 ##### 3. A folder, a folder, my kingdom for a folder!
 
 Yet another way is to think of the tree structure as a bunch of folders on your computer. The root folder contains all the other folders. The folders that live inside the same folder are siblings to each other etc.
 
-![](/assets/images/cms/posts/xpath-for-dictionary-nerds/folders.png)
+![](/assets/images/cms/resources/xpath-for-dictionary-nerds/folders.png)
 
 #### Types of nodes in XML
 
-You should already be familiar with the basics of XML notation: ![](/assets/images/cms/posts/xpath-for-dictionary-nerds/xml-notation.png) and different types of nodes in XML:
+You should already be familiar with the basics of XML notation: ![](/assets/images/cms/resources/xpath-for-dictionary-nerds/xml-notation.png) and different types of nodes in XML:
 
 - **element**
 - **attribute**
@@ -145,13 +146,13 @@ Before learning the basics of XPath, let's make sure we know how to use oXygen f
 
 Open the downloaded file in oXygen and look for the XPath input field in the upper left corner of the window.
 
-![](/assets/images/cms/posts/xpath-for-dictionary-nerds/oxygen-input-01.png)
+![](/assets/images/cms/resources/xpath-for-dictionary-nerds/oxygen-input-01.png)
 
 Now, type `//entry` into the XPath input field and press return on your keyboard.
 
 You should be seeing something like this:
 
-![](/assets/images/cms/posts/xpath-for-dictionary-nerds/oxygen-input-02.png)
+![](/assets/images/cms/resources/xpath-for-dictionary-nerds/oxygen-input-02.png)
 
 1. In the lower part of the oXygen window, you will see the beginning of a list containing all the results that correspond to your query. Clicking on individual rows will select the corresponding result (in this case a dictionary entry) in the main window. _Try it yourself._
 2. On the right-hand side of the main window, you will also see a navigation bar containing visual clues (purple rectangles), each of which represents one match of your XPath query. _Try clicking on different rectangles to see what happens._
@@ -170,15 +171,15 @@ To launch the XPath Builder:
 2. click the Switch to XPath Builder view button which looks like this `//★` and is positioned in the right-hand corner of the XPath input, or
 3. in the newer versions of oXygen, click on the icon next to the XPath input field and select the "Switch to XPath Builder View" from the dropdown menu, like this:
 
-![](/assets/images/cms/posts/xpath-for-dictionary-nerds/oxygen-builder-01.png)
+![](/assets/images/cms/resources/xpath-for-dictionary-nerds/oxygen-builder-01.png)
 
 Once you launch the XPath Builder View, you should be seeing something like this:
 
-![](/assets/images/cms/posts/xpath-for-dictionary-nerds/oxygen-builder-02.png)
+![](/assets/images/cms/resources/xpath-for-dictionary-nerds/oxygen-builder-02.png)
 
 If your screen doesn't look exactly like this, feel free to close some of the smaller window panes, since you won't be needing them. You should probably leave the Outline pane (on the left-hand side as shown above) so that you can easily study the structure of your XML document.
 
-![](/assets/images/cms/posts/xpath-for-dictionary-nerds/oxygen-builder-03.png)
+![](/assets/images/cms/resources/xpath-for-dictionary-nerds/oxygen-builder-03.png)
 
 #### Executing XPath from the Builder
 
@@ -229,20 +230,20 @@ What does that mean concretely when applied to our dictionary file? Try all of t
 
 Double-slash is your friend. `//entry` will select all entry nodes no matter where in the dictionary hierarchy they are. As you can see in the document outline pane, most entries in this document are children of `/body` but some are also children of `superEntry`.
 
-![](/assets/images/cms/posts/xpath-for-dictionary-nerds/oxygen-nodes-01.png)
+![](/assets/images/cms/resources/xpath-for-dictionary-nerds/oxygen-nodes-01.png)
 
 | Expression    | Selects                                  |
 | ------------- | ---------------------------------------- |
 | `//form/orth` | all orth nodes that are children of form |
 
-![](/assets/images/cms/posts/xpath-for-dictionary-nerds/oxygen-nodes-02.png)
+![](/assets/images/cms/resources/xpath-for-dictionary-nerds/oxygen-nodes-02.png)
 
 | Expression  | Selects                                               |
 | ----------- | ----------------------------------------------------- |
 | `//pron`    | all pron nodes no matter where they area              |
 | `//pron/..` | parents of all pron elements no matter where they are |
 
-![](/assets/images/cms/posts/xpath-for-dictionary-nerds/oxygen-nodes-03.png)
+![](/assets/images/cms/resources/xpath-for-dictionary-nerds/oxygen-nodes-03.png)
 
 | Expression | Selects                              |
 | ---------- | ------------------------------------ |
@@ -308,7 +309,7 @@ To select more than one path, we use the or operator (`|`). For instance:
 | `//form/pron` | selects all prons |  |
 | `//form/orths \| //form/pron` | selects all orths and all prons (by selecting either orths or prons) |  |
 
-![](/assets/images/cms/posts/xpath-for-dictionary-nerds/oxygen-exercise-01.png)
+![](/assets/images/cms/resources/xpath-for-dictionary-nerds/oxygen-exercise-01.png)
 
 #### XPath Axes
 
@@ -344,7 +345,7 @@ So, what does mean in practice? Let's see one example in three individual steps:
 
 Now, the interesting thing about the last expression is that it will also select this particular case:
 
-![](/assets/images/cms/posts/xpath-for-dictionary-nerds/oxygen-axes-01.png)
+![](/assets/images/cms/resources/xpath-for-dictionary-nerds/oxygen-axes-01.png)
 
 As we learned above, `*` selects any element node, and if you look for `//orth/following-sibling::*` you will also match orths that follow orth. If this is not what you want, you could rewrite the expression in such a way to select any element node which follows orth but which is itself _not_ orth. That would look like this:
 
@@ -352,7 +353,7 @@ As we learned above, `*` selects any element node, and if you look for `//orth/f
 | --- | --- |
 | `//orth/following-sibling::*[not(self::orth)]` | non-orth elements that follow orth |
 
-![](/assets/images/cms/posts/xpath-for-dictionary-nerds/oxygen-axes-02.png)
+![](/assets/images/cms/resources/xpath-for-dictionary-nerds/oxygen-axes-02.png)
 
 TODO: Add more examples, especially explaining the difference between the first occurrence of a sibling and the immediate sibling.
 
