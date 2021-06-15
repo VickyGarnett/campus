@@ -413,6 +413,8 @@ interface CurriculaProps {
  * Curricula which include this resource.
  */
 function Curricula(props: CurriculaProps) {
+  if (props.curricula.length === 0) return null
+
   return (
     <div className={cx('space-y-1.5', props.className)}>
       <h2 className="text-xs font-bold tracking-wide uppercase text-neutral-600">

@@ -8,6 +8,7 @@ import { useI18n } from '@/i18n/useI18n'
 import { Mdx as PostContent } from '@/mdx/Mdx'
 import { routes } from '@/navigation/routes.config'
 import { EditLink } from '@/post/EditLink'
+import { getDate } from '@/utils/getDate'
 import { getFullName } from '@/utils/getFullName'
 import type { ISODateString } from '@/utils/ts/aliases'
 
@@ -23,6 +24,8 @@ export function Post(props: PostProps): JSX.Element {
   const { title, date, authors, tags = [], categories: sources = [] } = metadata
 
   const { formatDate } = useI18n()
+
+  const publishDate = getDate(date)
 
   return (
     <article className="w-full mx-auto space-y-16 max-w-80ch">
@@ -67,16 +70,12 @@ export function Post(props: PostProps): JSX.Element {
             ) : null}
           </div>
           <div className="space-y-1 text-right">
-            {date != null &&
-            (typeof date === 'string'
-              ? date.length > 0
-              : /* @ts-expect-error CMS preview template provides `Date`. */
-                date instanceof Date) ? (
+            {publishDate != null ? (
               <div>
                 <dt className="sr-only">Publish date</dt>
                 <dd>
                   <time dateTime={date}>
-                    {formatDate(new Date(date), undefined, {
+                    {formatDate(publishDate, undefined, {
                       dateStyle: 'medium',
                     })}
                   </time>

@@ -7,6 +7,7 @@ import { useI18n } from '@/i18n/useI18n'
 import { Mdx as CollectionContent } from '@/mdx/Mdx'
 import { routes } from '@/navigation/routes.config'
 import { EditLink } from '@/post/EditLink'
+import { getDate } from '@/utils/getDate'
 import type { ISODateString } from '@/utils/ts/aliases'
 
 export interface CollectionProps {
@@ -25,18 +26,20 @@ export function Collection(props: CollectionProps): JSX.Element {
 
   const { formatDate } = useI18n()
 
+  const publishDate = getDate(date)
+
   return (
     <article className="space-y-16 max-w-80ch w-full mx-auto">
       <header className="space-y-10">
         <h1 className="font-bold text-4.5xl text-center">{title}</h1>
         <dl className="grid grid-cols-2 text-sm text-neutral-500">
           <div className="space-y-1">
-            {date != null ? (
+            {publishDate != null ? (
               <div>
                 <dt className="sr-only">Publish date</dt>
                 <dd>
                   <time dateTime={date}>
-                    {formatDate(new Date(date), undefined, {
+                    {formatDate(publishDate, undefined, {
                       dateStyle: 'medium',
                     })}
                   </time>
