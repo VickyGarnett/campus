@@ -135,7 +135,7 @@ type EventPageProps = Exclude<ResourcePageProps, 'resource'> & {
  */
 function EventPage(props: EventPageProps) {
   const { resource: event, lastUpdatedAt } = props
-  const { metadata, toc } = event.data
+  const { metadata } = event.data
 
   const canonicalUrl = useCanonicalUrl()
   const languageAlternates = useAlternateUrls()
