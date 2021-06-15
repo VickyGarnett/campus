@@ -28,6 +28,12 @@ export function ResourcePreview(
   const [post, setPost] = useState<PostData | null | undefined>(undefined)
 
   useEffect(() => {
+    function resolveRelation(path: Array<string>, id: string) {
+      const metadata = fieldsMetaData.getIn(path)
+      if (metadata == null) return null
+      return { id, ...metadata.toJS() }
+    }
+
     let wasCanceled = false
 
     async function compileMdx() {
@@ -40,30 +46,21 @@ export function ResourcePreview(
         const authors = Array.isArray(frontmatter.authors)
           ? frontmatter.authors
               .map((id) => {
-                const metadata = fieldsMetaData
-                  .getIn(['authors', 'people', id])
-                  .toJS()
-                return { id, ...metadata }
+                return resolveRelation(['authors', 'people'], id)
               })
               .filter(Boolean)
           : []
         const contributors = Array.isArray(frontmatter.contributors)
           ? frontmatter.contributors
               .map((id) => {
-                const metadata = fieldsMetaData
-                  .getIn(['contributors', 'people', id])
-                  .toJS()
-                return { id, ...metadata }
+                return resolveRelation(['contributors', 'people'], id)
               })
               .filter(Boolean)
           : []
         const editors = Array.isArray(frontmatter.editors)
           ? frontmatter.editors
               .map((id) => {
-                const metadata = fieldsMetaData
-                  .getIn(['editors', 'people', id])
-                  .toJS()
-                return { id, ...metadata }
+                return resolveRelation(['editors', 'people'], id)
               })
               .filter(Boolean)
           : []
@@ -71,10 +68,7 @@ export function ResourcePreview(
         const categories = Array.isArray(frontmatter.categories)
           ? frontmatter.categories
               .map((id) => {
-                const metadata = fieldsMetaData
-                  .getIn(['categories', 'categories', id])
-                  .toJS()
-                return { id, ...metadata }
+                return resolveRelation(['categories', 'categories'], id)
               })
               .filter(Boolean)
           : []
@@ -82,27 +76,20 @@ export function ResourcePreview(
         const tags = Array.isArray(frontmatter.tags)
           ? frontmatter.tags
               .map((id) => {
-                const metadata = fieldsMetaData
-                  .getIn(['tags', 'tags', id])
-                  .toJS()
-                return { id, ...metadata }
+                return resolveRelation(['tags', 'tags'], id)
               })
               .filter(Boolean)
           : []
 
-        const type = {
-          id: frontmatter.type,
-          ...fieldsMetaData
-            .getIn(['type', 'content-types', frontmatter.type])
-            .toJS(),
-        }
+        const type =
+          frontmatter.type != null
+            ? resolveRelation(['type', 'content-types'], frontmatter.type)
+            : null
 
-        const licence = {
-          id: frontmatter.licence,
-          ...fieldsMetaData
-            .getIn(['licence', 'licences', frontmatter.licence])
-            .toJS(),
-        }
+        const licence =
+          frontmatter.licence != null
+            ? resolveRelation(['licence', 'licences'], frontmatter.licence)
+            : null
 
         const metadata = {
           ...frontmatter,
@@ -154,7 +141,8 @@ export function ResourcePreview(
         if (!wasCanceled) {
           setPost(post)
         }
-      } catch {
+      } catch (error) {
+        console.error(error)
         setPost(null)
       }
 

@@ -12,7 +12,7 @@ export const videoCardEditorWidget: EditorComponentOptions = {
     { name: 'subtitle', label: 'Subtitle', widget: 'string' },
     { name: 'image', label: 'Image', widget: 'image' },
   ],
-  pattern: /^<VideoCard(.*)\/>$/,
+  pattern: /^<VideoCard([^]*)\/>$/,
   fromBlock(match) {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const attrs = match[1]!

@@ -20,6 +20,12 @@ export function EventPreview(
   const [event, setEvent] = useState<EventData | null | undefined>(undefined)
 
   useEffect(() => {
+    function resolveRelation(path: Array<string>, id: string) {
+      const metadata = fieldsMetaData.getIn(path)
+      if (metadata == null) return null
+      return { id, ...metadata.toJS() }
+    }
+
     let wasCanceled = false
 
     async function compileMdx() {
@@ -32,10 +38,7 @@ export function EventPreview(
         const authors = Array.isArray(frontmatter.authors)
           ? frontmatter.authors
               .map((id) => {
-                const metadata = fieldsMetaData
-                  .getIn(['authors', 'people', id])
-                  .toJS()
-                return { id, ...metadata }
+                return resolveRelation(['authors', 'people'], id)
               })
               .filter(Boolean)
           : []
@@ -43,10 +46,7 @@ export function EventPreview(
         const categories = Array.isArray(frontmatter.categories)
           ? frontmatter.categories
               .map((id) => {
-                const metadata = fieldsMetaData
-                  .getIn(['categories', 'categories', id])
-                  .toJS()
-                return { id, ...metadata }
+                return resolveRelation(['categories', 'categories'], id)
               })
               .filter(Boolean)
           : []
@@ -54,20 +54,15 @@ export function EventPreview(
         const tags = Array.isArray(frontmatter.tags)
           ? frontmatter.tags
               .map((id) => {
-                const metadata = fieldsMetaData
-                  .getIn(['tags', 'tags', id])
-                  .toJS()
-                return { id, ...metadata }
+                return resolveRelation(['tags', 'tags'], id)
               })
               .filter(Boolean)
           : []
 
-        const type = {
-          id: frontmatter.type,
-          ...fieldsMetaData
-            .getIn(['type', 'content-types', frontmatter.type])
-            .toJS(),
-        }
+        const type =
+          frontmatter.type != null
+            ? resolveRelation(['type', 'content-types'], frontmatter.type)
+            : null
 
         const about =
           frontmatter.about != null

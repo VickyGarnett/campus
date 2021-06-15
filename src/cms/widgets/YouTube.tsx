@@ -7,7 +7,7 @@ export const youTubeEditorWidget: EditorComponentOptions = {
   id: 'YouTube',
   label: 'YouTube',
   fields: [{ name: 'id', label: 'YouTube ID', widget: 'string' }],
-  pattern: /^<YouTube(.*)\/>$/,
+  pattern: /^<YouTube([^]*)\/>$/,
   fromBlock(match) {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const attrs = match[1]!

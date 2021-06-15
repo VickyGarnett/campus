@@ -23,6 +23,12 @@ export function ResourceCollectionPreview(
   const [collection, setCollection] = useState<CollectionData | null>(null)
 
   useEffect(() => {
+    function resolveRelation(path: Array<string>, id: string) {
+      const metadata = fieldsMetaData.getIn(path)
+      if (metadata == null) return null
+      return { id, ...metadata.toJS() }
+    }
+
     let wasCanceled = false
 
     async function compileMdx() {
@@ -35,10 +41,7 @@ export function ResourceCollectionPreview(
         const resources = Array.isArray(frontmatter.resources)
           ? frontmatter.resources
               .map((id) => {
-                const metadata = fieldsMetaData
-                  .getIn(['resources', 'post', 'resources', id])
-                  .toJS()
-                return { id, ...metadata }
+                return resolveRelation(['resources', 'post', 'resources'], id)
               })
               .filter(Boolean)
           : []
