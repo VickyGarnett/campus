@@ -54,12 +54,7 @@ export function Post(props: PostProps): JSX.Element {
                             )}
                             <Link href={routes.author(author.id)}>
                               <a className="transition hover:text-primary-600 focus:outline-none focus-visible:ring focus-visible:ring-primary-600">
-                                <span>
-                                  {getFullName(
-                                    author.firstName,
-                                    author.lastName,
-                                  )}
-                                </span>
+                                <span>{getFullName(author)}</span>
                               </a>
                             </Link>
                           </div>
@@ -161,6 +156,57 @@ export function Post(props: PostProps): JSX.Element {
             <span className="text-right">Suggest changes to resource</span>
           </EditLink>
         ) : null}
+        <div className="space-y-1.5 mt-8 text-sm text-neutral-500">
+          <h2 className="text-xs font-bold tracking-wide uppercase text-neutral-600">
+            Full metadata
+          </h2>
+          <dl>
+            <div className="flex space-x-1">
+              <dt>Title:</dt>
+              <dd>{title}</dd>
+            </div>
+            <div className="flex space-x-1">
+              <dt>Authors:</dt>
+              <dd>{authors.map(getFullName).join(', ')}</dd>
+            </div>
+            <div className="flex space-x-1">
+              <dt>Domain:</dt>
+              <dd>{metadata.domain}</dd>
+            </div>
+            <div className="flex space-x-1">
+              <dt>Language:</dt>
+              <dd>{metadata.lang}</dd>
+            </div>
+            <div className="flex space-x-1">
+              <dt>Published:</dt>
+              <dd>{metadata.date}</dd>
+            </div>
+            <div className="flex space-x-1">
+              <dt>Licence:</dt>
+              <dd>{metadata.licence.name}</dd>
+            </div>
+            <div className="flex space-x-1">
+              <dt>Content type:</dt>
+              <dd>{metadata.type.name}</dd>
+            </div>
+            <div className="flex space-x-1">
+              <dt>Sources:</dt>
+              <dd>
+                {metadata.categories
+                  .map((category) => category.name)
+                  .join(', ')}
+              </dd>
+            </div>
+            <div className="flex space-x-1">
+              <dt>Topics:</dt>
+              <dd>{metadata.tags.map((tag) => tag.name).join(', ')}</dd>
+            </div>
+            <div className="flex space-x-1">
+              <dt>Version:</dt>
+              <dd>{metadata.version}</dd>
+            </div>
+          </dl>
+        </div>
       </footer>
     </article>
   )

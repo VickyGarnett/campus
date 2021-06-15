@@ -9,10 +9,13 @@ import withGitHubMarkdown from 'remark-gfm'
 import { getHighlighter } from 'shiki'
 import type { VFile } from 'vfile'
 
+import { getLicenceById } from './licence'
+
 import type { Category, CategoryId } from '@/api/cms/category'
 import { getCategoryById } from '@/api/cms/category'
 import type { ContentType } from '@/api/cms/contentType'
 import { getContentTypeById } from '@/api/cms/contentType'
+import type { Licence } from '@/api/cms/licence'
 import type { Person, PersonId } from '@/api/cms/person'
 import { getPersonById } from '@/api/cms/person'
 import type { Tag, TagId } from '@/api/cms/tag'
@@ -79,7 +82,13 @@ export interface PostFrontmatter {
 export interface PostMetadata
   extends Omit<
     PostFrontmatter,
-    'authors' | 'editors' | 'contributors' | 'tags' | 'categories' | 'type'
+    | 'authors'
+    | 'editors'
+    | 'contributors'
+    | 'tags'
+    | 'categories'
+    | 'type'
+    | 'licence'
   > {
   authors: Array<Person>
   contributors?: Array<Person>
@@ -87,6 +96,7 @@ export interface PostMetadata
   tags: Array<Tag>
   categories: Array<Category>
   type: ContentType
+  licence: Licence
 }
 
 export interface PostData {
@@ -255,6 +265,7 @@ async function getPostMetadata(
         )
       : [],
     type: await getContentTypeById(matter.type, locale),
+    licence: await getLicenceById(matter.licence, locale),
   }
 
   return metadata

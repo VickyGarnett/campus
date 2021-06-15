@@ -111,7 +111,7 @@ function Match(props: MatchProps) {
               (author) =>
                 // FIXME: author.name exists in legacy algolia index.
                 // @ts-expect-error Needs updated algolia index.
-                author.name ?? getFullName(author.firstName, author.lastName),
+                author.name ?? getFullName(author),
             )
             .join(', ')}
         </dd>

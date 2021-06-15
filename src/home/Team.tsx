@@ -27,9 +27,7 @@ export function Team(props: TeamProps): JSX.Element {
                 loading="lazy"
                 className="w-24 h-24 mb-2 rounded-full object-cover"
               />
-              <h3 className="font-bold">
-                {getFullName(person.firstName, person.lastName)}
-              </h3>
+              <h3 className="font-bold">{getFullName(person)}</h3>
               <p className="text-sm text-neutral-500">{person.title}</p>
             </li>
           )

@@ -118,9 +118,7 @@ function PostPreviewCard(props: PostPreviewCardProps): JSX.Element {
                   {authors.slice(0, MAX_AUTHORS).map((author) => {
                     return (
                       <li key={author.id}>
-                        <span className="sr-only">
-                          {getFullName(author.firstName, author.lastName)}
-                        </span>
+                        <span className="sr-only">{getFullName(author)}</span>
                         {author.avatar !== undefined ? (
                           <img
                             src={author.avatar}

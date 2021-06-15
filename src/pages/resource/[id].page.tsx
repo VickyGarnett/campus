@@ -1,6 +1,7 @@
 import type { ParsedUrlQuery } from 'querystring'
 
 import { JsonLd } from '@stefanprobst/next-page-metadata'
+import cx from 'clsx'
 import type {
   GetStaticPathsContext,
   GetStaticPathsResult,
@@ -13,8 +14,9 @@ import { Fragment } from 'react'
 import type { Event as EventData } from '@/api/cms/event'
 import { getEventIds, getEventById } from '@/api/cms/event'
 import type { Person } from '@/api/cms/person'
-import type { Post as PostData } from '@/api/cms/post'
+import type { Post as PostData, PostPreview } from '@/api/cms/post'
 import { getPostById, getPostFilePath, getPostIds } from '@/api/cms/post'
+import { getPostPreviewsByTagId } from '@/api/cms/queries/post'
 import { getLastUpdatedTimestamp } from '@/api/github'
 import { FloatingTableOfContentsButton } from '@/common/FloatingTableOfContentsButton'
 import { PageContent } from '@/common/PageContent'
@@ -39,6 +41,7 @@ export interface ResourcePageParams extends ParsedUrlQuery {
 export interface ResourcePageProps {
   dictionary: Dictionary
   resource: PostData | EventData
+  related: Array<PostPreview>
   lastUpdatedAt: ISODateString | null
 }
 
@@ -73,6 +76,11 @@ export async function getStaticPaths(
   }
 }
 
+function pickRandom<T>(items: Array<T>, count: number): Array<T> {
+  // TODO:;
+  return items.slice(0, count)
+}
+
 /**
  * Provides resource (post or event) content and metadata, and translations for resource (post or event) page.
  */
@@ -96,8 +104,19 @@ export async function getStaticProps(
    * where "events" fit into the data-model (currently they are both content-type and category/source).
    */
   let resource
+  let related: Array<PostPreview> = []
   try {
     resource = await getPostById(id, locale)
+    related = pickRandom(
+      (
+        await Promise.all(
+          resource.data.metadata.tags.map((tag) => {
+            return getPostPreviewsByTagId(tag.id, locale)
+          }),
+        )
+      ).flat(),
+      4,
+    )
   } catch {
     resource = await getEventById(id, locale)
   }
@@ -111,6 +130,7 @@ export async function getStaticProps(
       dictionary,
       resource,
       lastUpdatedAt,
+      related,
     },
   }
 }
@@ -195,10 +215,23 @@ function PostPage(props: PostPageProps) {
           <CiteAs id={post.id} metadata={metadata} />
           <ReUseConditions />
         </aside>
-        <Post post={post} lastUpdatedAt={lastUpdatedAt} />
-        <div className="2xl:hidden max-w-80ch mx-auto space-y-8">
-          <CiteAs id={post.id} metadata={metadata} />
-          <ReUseConditions />
+        <div className="space-y-8">
+          <Post post={post} lastUpdatedAt={lastUpdatedAt} />
+          <div className="2xl:hidden max-w-80ch w-full mx-auto space-y-8">
+            <CiteAs
+              id={post.id}
+              metadata={metadata}
+              className="text-sm text-neutral-500"
+            />
+            <ReUseConditions className="text-sm text-neutral-500" />
+          </div>
+          <div className="2xl:hidden max-w-80ch w-full mx-auto space-y-8">
+            <div className="space-y-1.5 mt-8 text-sm text-neutral-500">
+              <h2 className="text-xs font-bold tracking-wide uppercase text-neutral-600">
+                Related resources
+              </h2>
+            </div>
+          </div>
         </div>
         {metadata.toc === true && toc.length > 0 ? (
           <Fragment>
@@ -226,6 +259,7 @@ function PostPage(props: PostPageProps) {
 interface CiteAsProps {
   id: PostData['id']
   metadata: PostData['data']['metadata']
+  className?: string
 }
 
 /**
@@ -239,7 +273,7 @@ function CiteAs(props: CiteAsProps) {
   }
 
   return (
-    <div className="space-y-1.5">
+    <div className={cx('space-y-1.5', props.className)}>
       <h2 className="text-xs font-bold tracking-wide uppercase text-neutral-600">
         Cite as
       </h2>
@@ -263,7 +297,7 @@ function getCitation(
 ) {
   function createNameList(persons: Array<Person>) {
     return persons
-      .map((person) => getFullName(person.firstName, person.lastName))
+      .map((person) => getFullName(person))
       .join(', ')
       .replace(/,(?!.*,)/gim, ' and')
   }
@@ -312,12 +346,16 @@ function getCitation(
   return citation
 }
 
+interface ReUseConditionsProps {
+  className?: string
+}
+
 /**
  * Reuse conditions.
  */
-function ReUseConditions() {
+function ReUseConditions(props: ReUseConditionsProps) {
   return (
-    <div className="space-y-1.5">
+    <div className={cx('space-y-1.5', props.className)}>
       <h2 className="text-xs font-bold tracking-wide uppercase text-neutral-600">
         Reuse conditions
       </h2>

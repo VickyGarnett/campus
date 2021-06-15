@@ -40,7 +40,7 @@ async function main() {
         abstract,
         authors: authors.map((author) => {
           return {
-            name: getFullName(author.firstName, author.lastName),
+            name: getFullName(author),
             id: author.id,
           }
         }),

@@ -113,7 +113,7 @@ export default function AuthorPage(props: AuthorPageProps): JSX.Element {
   const canonicalUrl = useCanonicalUrl()
   const languageAlternates = useAlternateUrls()
 
-  const fullName = getFullName(author.firstName, author.lastName)
+  const fullName = getFullName(author)
 
   return (
     <Fragment>
