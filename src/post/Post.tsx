@@ -168,10 +168,12 @@ export function Post(props: PostProps): JSX.Element {
               <dt>Authors:</dt>
               <dd>{authors.map(getFullName).join(', ')}</dd>
             </div>
-            <div className="flex space-x-1">
-              <dt>Domain:</dt>
-              <dd>{metadata.domain}</dd>
-            </div>
+            {metadata.domain != null ? (
+              <div className="flex space-x-1">
+                <dt>Domain:</dt>
+                <dd>{metadata.domain}</dd>
+              </div>
+            ) : null}
             <div className="flex space-x-1">
               <dt>Language:</dt>
               <dd>{metadata.lang}</dd>
@@ -182,7 +184,8 @@ export function Post(props: PostProps): JSX.Element {
             </div>
             <div className="flex space-x-1">
               <dt>Licence:</dt>
-              <dd>{metadata.licence.name}</dd>
+              {/* eslint-disable-next-line @typescript-eslint/no-unnecessary-condition */}
+              <dd>{metadata.licence?.name}</dd>
             </div>
             <div className="flex space-x-1">
               <dt>Content type:</dt>

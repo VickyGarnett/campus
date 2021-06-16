@@ -9,12 +9,11 @@ import withGitHubMarkdown from 'remark-gfm'
 import { getHighlighter } from 'shiki'
 import type { VFile } from 'vfile'
 
-import { getLicenceById } from './licence'
-
 import type { Category, CategoryId } from '@/api/cms/category'
 import { getCategoryById } from '@/api/cms/category'
 import type { ContentType } from '@/api/cms/contentType'
 import { getContentTypeById } from '@/api/cms/contentType'
+import { getLicenceById } from '@/api/cms/licence'
 import type { Licence } from '@/api/cms/licence'
 import type { Person, PersonId } from '@/api/cms/person'
 import { getPersonById } from '@/api/cms/person'

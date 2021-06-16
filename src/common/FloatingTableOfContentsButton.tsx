@@ -25,10 +25,10 @@ export function FloatingTableOfContentsButton(
   const router = useRouter()
 
   useEffect(() => {
-    router.events.on('routeChangeStart', state.close)
+    router.events.on('hashChangeStart', state.close)
 
     return () => {
-      router.events.off('routeChangeStart', state.close)
+      router.events.off('hashChangeStart', state.close)
     }
   }, [router, state.close])
 

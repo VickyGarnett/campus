@@ -29,7 +29,7 @@ export function ResourcePreview(
 
   useEffect(() => {
     function resolveRelation(path: Array<string>, id: string) {
-      const metadata = fieldsMetaData.getIn(path)
+      const metadata = fieldsMetaData.getIn([...path, id])
       if (metadata == null) return null
       return { id, ...metadata.toJS() }
     }
