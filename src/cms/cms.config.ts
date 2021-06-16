@@ -19,7 +19,7 @@ export const collections: Record<string, CmsCollection> = {
     media_folder: '{{media_folder}}/resources/{{slug}}',
     public_folder: '{{public_folder}}/resources/{{slug}}',
     slug: '{{slug}}',
-    preview_path: 'resources/{{slug}}',
+    preview_path: 'resource/{{slug}}',
     editor: { preview: true },
     sortable_fields: ['commit_date', 'date', 'title', 'commit_author'],
     view_groups: [
@@ -149,7 +149,7 @@ export const collections: Record<string, CmsCollection> = {
         name: 'body',
         label: 'Content',
         widget: 'markdown',
-        hint: 'You can use `<ExternalResource />`, `<Grid />`, `<Quiz />`,  `<SideNote />`, `<VideoCard />`, `<YouTube />` components. When writing plaing markdown, be aware that `<` characters must be HTML-escaped to `&lt;`.',
+        hint: '',
       },
       {
         name: 'domain',

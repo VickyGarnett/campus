@@ -157,7 +157,11 @@ export function ResourcePreview(
   return (
     <Preview {...props}>
       {post == null ? (
-        post === undefined ? null : (
+        post === undefined ? (
+          <div>
+            <p>Trying to render preview...</p>
+          </div>
+        ) : (
           <div>
             <p>Failed to render preview.</p>
             <p>

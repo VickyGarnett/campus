@@ -140,7 +140,11 @@ export function EventPreview(
   return (
     <Preview {...props}>
       {event == null ? (
-        event === undefined ? null : (
+        event === undefined ? (
+          <div>
+            <p>Trying to render preview...</p>
+          </div>
+        ) : (
           <div>
             <p>Failed to render preview.</p>
             <p>

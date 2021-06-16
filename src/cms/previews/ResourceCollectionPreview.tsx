@@ -20,7 +20,8 @@ export function ResourceCollectionPreview(
 ): JSX.Element {
   const entry = useDebouncedState(props.entry, 250)
   const fieldsMetaData = useDebouncedState(props.fieldsMetaData, 250)
-  const [collection, setCollection] = useState<CollectionData | null>(null)
+  const [collection, setCollection] =
+    useState<CollectionData | null | undefined>(undefined)
 
   useEffect(() => {
     function resolveRelation(path: Array<string>, id: string) {
@@ -84,7 +85,20 @@ export function ResourceCollectionPreview(
 
   return (
     <Preview {...props}>
-      {collection === null ? null : (
+      {collection == null ? (
+        collection === undefined ? (
+          <div>
+            <p>Trying to render preview...</p>
+          </div>
+        ) : (
+          <div>
+            <p>Failed to render preview.</p>
+            <p>
+              This usually indicates a syntax error in the Markdown content.
+            </p>
+          </div>
+        )
+      ) : (
         <Collection collection={collection} lastUpdatedAt={null} isPreview />
       )}
     </Preview>

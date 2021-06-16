@@ -117,11 +117,20 @@ export default function AdminPage(): JSX.Element {
       <style jsx global>
         {`
           /* Temporary workaround to stop tailwind reset bleeding into richtext editor. */
+          /* Should be fixed upstream: Netlify CMS richtext editor should explicitly set styles.
+             and not rely on browser defaults. */
           #nc-root div[data-slate-editor='true'] ul {
             list-style: disc;
           }
           #nc-root div[data-slate-editor='true'] ol {
             list-style: decimal;
+          }
+          #nc-root div[data-slate-editor='true'] h1,
+          #nc-root div[data-slate-editor='true'] h2,
+          #nc-root div[data-slate-editor='true'] h3,
+          #nc-root div[data-slate-editor='true'] h4,
+          #nc-root div[data-slate-editor='true'] h5 {
+            margin-bottom: 1rem;
           }
         `}
       </style>
