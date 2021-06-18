@@ -23,7 +23,10 @@
   ],
   "typescript.tsdk": "node_modules/typescript/lib",
   "workbench.startupEditor": "readme",
-  "[markdown,mdx]": {
-    "editor.wordWrap": true
+  "[markdown]": {
+    "editor.wordWrap": "on"
+  },
+  "[markdownreact]": {
+    "editor.wordWrap": "on"
   }
 }

@@ -27,9 +27,14 @@ export function VideoCard(props: VideoCardProps): JSX.Element {
     <Fragment>
       <button
         onClick={lightbox.open}
-        className="w-full flex flex-col items-center p-12 space-y-4 transition rounded shadow-lg text-neutral-800 hover:shadow-xl focus:outline-none focus-visible:ring focus-visible:ring-primary-600"
+        className="flex flex-col items-center w-full p-12 space-y-4 transition rounded shadow-lg text-neutral-800 hover:shadow-xl focus:outline-none focus-visible:ring focus-visible:ring-primary-600"
       >
-        <img src={props.image} alt="" loading="lazy" />
+        <img
+          src={props.image}
+          alt=""
+          loading="lazy"
+          className="object-cover w-full"
+        />
         <Icon icon={PlayIcon} className="w-16 h-16 text-primary-600" />
         <strong className="text-2xl font-bold">{props.title}</strong>
         <p className="text-neutral-500">{props.subtitle}</p>

@@ -140,3 +140,8 @@ export default function AdminPage(): JSX.Element {
 }
 
 AdminPage.Layout = Fragment
+
+/**
+ * Random export to diable fast refresh.
+ */
+export const diableFastRefresh = true

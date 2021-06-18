@@ -47,16 +47,16 @@ export function Post(props: PostProps): JSX.Element {
                                 src={author.avatar}
                                 alt=""
                                 loading="lazy"
-                                className="w-8 h-8 rounded-full object-cover"
+                                className="object-cover w-8 h-8 rounded-full"
                               />
                             ) : (
                               <Icon
                                 icon={AvatarIcon}
-                                className="w-8 h-8 rounded-full text-primary-600 object-cover"
+                                className="object-cover w-8 h-8 rounded-full text-primary-600"
                               />
                             )}
                             <Link href={routes.author(author.id)}>
-                              <a className="rounded transition hover:text-primary-600 focus:outline-none focus-visible:ring focus-visible:ring-primary-600">
+                              <a className="transition rounded hover:text-primary-600 focus:outline-none focus-visible:ring focus-visible:ring-primary-600">
                                 <span>{getFullName(author)}</span>
                               </a>
                             </Link>
@@ -91,7 +91,7 @@ export function Post(props: PostProps): JSX.Element {
                       return (
                         <li key={source.id} className="inline">
                           <Link href={routes.source(source.id)}>
-                            <a className="rounded transition hover:text-primary-600 focus:outline-none focus-visible:ring focus-visible:ring-primary-600">
+                            <a className="transition rounded hover:text-primary-600 focus:outline-none focus-visible:ring focus-visible:ring-primary-600">
                               <span>{source.name}</span>
                             </a>
                           </Link>
@@ -112,7 +112,7 @@ export function Post(props: PostProps): JSX.Element {
                       return (
                         <li key={tag.id} className="inline">
                           <Link href={routes.tag(tag.id)}>
-                            <a className="rounded transition hover:text-primary-600 focus:outline-none focus-visible:ring focus-visible:ring-primary-600">
+                            <a className="transition rounded hover:text-primary-600 focus:outline-none focus-visible:ring focus-visible:ring-primary-600">
                               <span
                                 className={index !== 0 ? 'ml-1' : undefined}
                               >
@@ -166,7 +166,8 @@ export function Post(props: PostProps): JSX.Element {
             </div>
             <div className="flex space-x-1">
               <dt>Authors:</dt>
-              <dd>{authors.map(getFullName).join(', ')}</dd>
+              {/* eslint-disable-next-line @typescript-eslint/no-unnecessary-condition */}
+              <dd>{authors?.map(getFullName).join(', ')}</dd>
             </div>
             {metadata.domain != null ? (
               <div className="flex space-x-1">
@@ -189,19 +190,22 @@ export function Post(props: PostProps): JSX.Element {
             </div>
             <div className="flex space-x-1">
               <dt>Content type:</dt>
-              <dd>{metadata.type.name}</dd>
+              {/* eslint-disable-next-line @typescript-eslint/no-unnecessary-condition */}
+              <dd>{metadata.type?.name}</dd>
             </div>
             <div className="flex space-x-1">
               <dt>Sources:</dt>
               <dd>
                 {metadata.categories
-                  .map((category) => category.name)
+                  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+                  ?.map((category) => category.name)
                   .join(', ')}
               </dd>
             </div>
             <div className="flex space-x-1">
               <dt>Topics:</dt>
-              <dd>{metadata.tags.map((tag) => tag.name).join(', ')}</dd>
+              {/* eslint-disable-next-line @typescript-eslint/no-unnecessary-condition */}
+              <dd>{metadata.tags?.map((tag) => tag.name).join(', ')}</dd>
             </div>
             <div className="flex space-x-1">
               <dt>Version:</dt>

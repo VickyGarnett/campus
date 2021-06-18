@@ -17,7 +17,7 @@ export const externalResourceEditorWidget: EditorComponentOptions = {
       // pattern: ['^[a-zA-Z][a-zA-Z\\d+\\-.]*:', 'Must be a valid URL'],
     },
   ],
-  pattern: /^<ExternalResource([^]]*)\/>$/,
+  pattern: /^<ExternalResource([^]*)\/>$/,
   fromBlock(match) {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const attrs = match[1]!
