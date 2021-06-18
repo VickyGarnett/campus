@@ -20,8 +20,9 @@ export function ResourceCollectionPreview(
 ): JSX.Element {
   const entry = useDebouncedState(props.entry, 250)
   const fieldsMetaData = useDebouncedState(props.fieldsMetaData, 250)
-  const [collection, setCollection] =
-    useState<CollectionData | null | undefined>(undefined)
+  const [collection, setCollection] = useState<
+    CollectionData | null | undefined
+  >(undefined)
 
   useEffect(() => {
     function resolveRelation(path: Array<string>, id: string) {
