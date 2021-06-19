@@ -176,8 +176,9 @@ export const quizEditorWidget: EditorComponentOptions = {
       ],
     },
   ],
-  pattern: /^<Quiz>\n([^]*)\n<\/Quiz>$/,
+  pattern: /^<Quiz>\n([^]*)\n<\/Quiz>/, // NOTE: Intentionally not ending with `$`
   fromBlock(match) {
+    console.log(match)
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const children = match[1]!
 
@@ -213,8 +214,8 @@ export const quizEditorWidget: EditorComponentOptions = {
                       type: 'mdxJsxFlowElement',
                       name: 'Quiz.Question',
                       children: [
-                        { type: 'text', value: card.question?.trim() },
-                        // processor.parse(card.question),
+                        // { type: 'text', value: card.question?.trim() },
+                        processor.parse(card.question),
                       ],
                     },
                     ...(card.options?.map((option: any) => {
@@ -222,8 +223,8 @@ export const quizEditorWidget: EditorComponentOptions = {
                         type: 'mdxJsxFlowElement',
                         name: 'Quiz.MultipleChoice.Option',
                         children: [
-                          { type: 'text', value: option.option?.trim() },
-                          // processor.parse(option.option),
+                          // { type: 'text', value: option.option?.trim() },
+                          processor.parse(option.option),
                         ],
                         attributes:
                           option.isCorrect === true
@@ -276,8 +277,8 @@ export const quizEditorWidget: EditorComponentOptions = {
                       type: 'mdxJsxFlowElement',
                       name: 'Quiz.Question',
                       children: [
-                        { type: 'text', value: card.question?.trim() },
-                        // processor.parse(card.question),
+                        // { type: 'text', value: card.question?.trim() },
+                        processor.parse(card.question),
                       ],
                     },
                   ],
@@ -297,9 +298,12 @@ export const quizEditorWidget: EditorComponentOptions = {
       ],
     }
 
-    console.log({ to: ast })
-
     return String(processor.stringify(ast))
+    // Netlify CMS editor messes things up when serializing richtext=>markdown, because it seems to
+    // treat 4-space-indented lines as code blocks (before matching shortcodes) (???)
+    // .split('\n')
+    // .map((line) => line.trim())
+    // .join('\n')
   },
   /**
    * This is only used in `getWidgetFor` (which we don't use).

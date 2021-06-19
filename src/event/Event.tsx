@@ -75,16 +75,13 @@ function EventOverview(props: EventOverviewProps) {
   const prepDialog = useDialogState()
 
   return (
-    <section
-      id="body"
-      className="home min-h-screen flex flex-col relative px-[6.25vw] bg-[#0d1930]"
-    >
+    <section className="home min-h-screen flex flex-col relative px-[6.25vw] bg-[#0d1930]">
       {featuredImage != null ? (
         <div className="absolute inset-0">
           <img
             src={featuredImage}
             alt=""
-            className="w-full h-full object-cover"
+            className="object-cover w-full h-full"
             loading="lazy"
           />
           <div className="bg-gradient-to-b from-transparent via-transparent to-[rgba(0,0,0,0.65)] absolute inset-0" />
@@ -94,8 +91,8 @@ function EventOverview(props: EventOverviewProps) {
       {/* TODO: Missing home__wrapper-1::after for 1px right-border */}
       <div className="home__wrapper-1 flex-1 flex flex-col border-r border-[#d5d8dc] border-opacity-50 relative mr-[3.125vw]">
         <div className="home__wrapper-2 flex-1 flex flex-col justify-center px-[6.25vw] py-[1.5625vw] pr-[3.125vw]">
-          <div className="home__wrapper-3 flex justify-between">
-            <div className="home__main relative w-2/3">
+          <div className="flex justify-between home__wrapper-3">
+            <div className="relative w-2/3 home__main">
               {logo != null ? (
                 <div className="absolute bottom-full left-[-3.125vw] w-32">
                   <img src={logo} alt="" className="" loading="lazy" />
@@ -121,7 +118,7 @@ function EventOverview(props: EventOverviewProps) {
               <EventToc sessions={sessions} />
             </div>
 
-            <aside className="home__aside w-1/3 flex flex-col justify-between">
+            <aside className="flex flex-col justify-between w-1/3 home__aside">
               <EventSocialLinks social={social} />
               <EventNav
                 hasAboutOverlay={Boolean(metadata.about)}
@@ -177,7 +174,7 @@ function EventOverlay(props: EventOverlayProps) {
           <div className="popin-core bg-white px-[6.25vw] py-[3.125vw]">
             <h1
               id="about"
-              className="h1 relative text-6xl uppercase mb-20 font-bold"
+              className="relative mb-20 text-6xl font-bold uppercase h1"
             >
               {/* TODO: before + after squares */}
               About
@@ -208,7 +205,7 @@ function EventToc(props: EventTocProps) {
   const { sessions } = props
 
   return (
-    <ul className="home__index relative">
+    <ul className="relative home__index">
       {/* TODO: should be in ::before */}
       <div className="absolute bg-[#ed6f59] w-[6.25vw] h-[6.25vw] left-0 top-0 transform -translate-x-1/2 -translate-y-1/2" />
       {sessions.map((session, index) => (
@@ -251,7 +248,7 @@ function EventSocialLinks(props: EventSocialLinksProps) {
             className="home__share__twitter bg-[#55acee] inline-flex w-[3.125vw] h-[3.125vw] text-white items-center justify-center text-2xl"
             aria-label="Share on Twitter"
           >
-            <div className="flex items-center justify-center h-full relative">
+            <div className="relative flex items-center justify-center h-full">
               <FaTwitter />
             </div>
           </a>
@@ -260,7 +257,7 @@ function EventSocialLinks(props: EventSocialLinksProps) {
       {social.website != null ? (
         <li className="mr-2.5 mb-[1.5625vw] bg-[#ed6f59] inline-flex w-[3.125vw] h-[3.125vw] text-white items-center justify-center text-2xl">
           <a href={social.website} aria-label="Visit website">
-            <div className="flex items-center justify-center h-full relative">
+            <div className="relative flex items-center justify-center h-full">
               <FaGlobe />
             </div>
           </a>
@@ -269,7 +266,7 @@ function EventSocialLinks(props: EventSocialLinksProps) {
       {social.email != null ? (
         <li className="mr-2.5 mb-[1.5625vw] bg-[#ed6f59] inline-flex w-[3.125vw] h-[3.125vw] text-white items-center justify-center text-2xl">
           <a href={`mailto:${social.email}`} aria-label="Contact">
-            <div className="flex items-center justify-center h-full relative">
+            <div className="relative flex items-center justify-center h-full">
               <FaEnvelope />
             </div>
           </a>
@@ -302,8 +299,8 @@ function EventNav(props: EventNavProps) {
   } = props
 
   return (
-    <div className="text-right text-2xl text-white">
-      <ul className="home__links flex flex-col">
+    <div className="text-2xl text-right text-white">
+      <ul className="flex flex-col home__links">
         {hasAboutOverlay ? (
           <li>
             <button
@@ -400,8 +397,8 @@ function EventSession(props: EventSessionProps) {
       id={`session-${index}`}
       className="session relative border-t-[3.125vw] border-[#0870ac]"
     >
-      <div className="session__heading flex items-baseline justify-between">
-        <h1 className="h1 text-6xl font-bold uppercase mb-12">
+      <div className="flex items-baseline justify-between session__heading">
+        <h1 className="mb-12 text-6xl font-bold uppercase h1">
           {session.title}
         </h1>
         <a
@@ -443,7 +440,7 @@ function EventSession(props: EventSessionProps) {
             h3: function Heading3(props) {
               return (
                 <h3
-                  className="h3 relative text-3xl mt-10 mb-8 font-bold"
+                  className="relative mt-10 mb-8 text-3xl font-bold h3"
                   {...props}
                 >
                   {props.children}

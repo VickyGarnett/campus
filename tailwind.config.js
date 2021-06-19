@@ -24,6 +24,16 @@ const config = {
         secondary: {
           800: '#2c3547',
         },
+        event: {
+          violet1: '#1e396c',
+          violet2: '#0870ac',
+          orange: '#ed6f59',
+          pink1: '#d5d8dc',
+          pink2: '#eaecee',
+          gray: '#f8f9f9',
+          darkgray: '#2c3547',
+          red: '#de1f4e',
+        },
       },
       fontFamily: {
         sans: '"Roboto", system-ui, sans-serif',
