@@ -33,7 +33,7 @@ export function VideoCard(props: VideoCardProps): JSX.Element {
           src={props.image}
           alt=""
           loading="lazy"
-          className="object-cover w-full"
+          className="object-cover w-full !my-0"
         />
         <Icon icon={PlayIcon} className="w-16 h-16 text-primary-600" />
         <strong className="text-2xl font-bold">{props.title}</strong>

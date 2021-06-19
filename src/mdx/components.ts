@@ -7,14 +7,17 @@ import { ExternalResource } from '@/post/ExternalResource'
 import { Grid } from '@/post/Grid'
 import { SideNote } from '@/post/SideNote'
 import { VideoCard } from '@/post/VideoCard'
+import { Quiz } from '@/post/quiz/Quiz'
 
 /**
- * Lazy-load Quit component, since it won't be used on most pages.
+ * Lazy-load Quiz component, since it won't be used on most pages.
+ *
+ * FIXME: We seem to lose Quiz.Card etc. when importing like this.
  */
-const Quiz = dynamic(async () => {
-  const { Quiz } = await import('@/post/quiz/Quiz')
-  return Quiz
-})
+// const Quiz = dynamic(async () => {
+//   const { Quiz } = await import('@/post/quiz/Quiz')
+//   return Quiz
+// })
 
 // export type ComponentType =
 //   /** Layout wrapper. */

@@ -22,8 +22,7 @@ export const sideNoteEditorWidget: EditorComponentOptions = {
       name: 'children',
       label: 'Content',
       widget: 'markdown',
-      // FIXME: cannot focus richtext editor when this includes
-      // SideNote comopnent (widget inception)
+      // FIXME: https://github.com/netlify/netlify-cms/issues/5514
       // @ts-expect-error Missing in upstream types.
       editor_components: ['code-block', 'image'],
       // modes: ['raw'],
