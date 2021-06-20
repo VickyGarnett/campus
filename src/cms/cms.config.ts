@@ -576,15 +576,14 @@ export const collections: Record<string, CmsCollection> = {
         ],
       },
       {
-        // TODO: rename this
         name: 'synthesis',
         label: 'Synthesis',
         hint: '',
         required: false,
         widget: 'file',
         // FIXME:
-        // media_folder: '/public/assets/documents/cms/events/{{slug}}',
-        // public_folder: '/assets/documents/cms/events/{{slug}}',
+        media_folder: '../../{{media_folder}}/events/{{slug}}',
+        public_folder: '{{public_folder}}/events/{{slug}}',
       },
       {
         name: 'sessions',
@@ -623,15 +622,14 @@ export const collections: Record<string, CmsCollection> = {
             widget: 'markdown',
           },
           {
-            // TODO: rename this
             name: 'synthesis',
             label: 'Synthesis',
             hint: '',
             required: false,
             widget: 'file',
             // FIXME:
-            // media_folder: '/public/assets/documents/cms/events/{{slug}}',
-            // public_folder: '/assets/documents/cms/events/{{slug}}',
+            media_folder: '../../{{media_folder}}/events/{{slug}}',
+            public_folder: '{{public_folder}}/events/{{slug}}',
           },
         ],
       },

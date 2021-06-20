@@ -24,17 +24,17 @@ export const sideNoteEditorWidget: EditorComponentOptions = {
       widget: 'markdown',
       // FIXME: https://github.com/netlify/netlify-cms/issues/5514
       // @ts-expect-error Missing in upstream types.
-      editor_components: ['code-block', 'image'],
+      editor_components: ['image', 'code-block'],
       // modes: ['raw'],
     },
   ],
-  pattern: /^<SideNote(.*)>\n([^]*)\n<\/SideNote>$/,
+  pattern: /^<SideNote(.*?)>\n([^]*?)\n<\/SideNote>$/,
   fromBlock(match) {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const attrs = match[1]!
 
-    const type = /type="(.*)"/.exec(attrs)
-    const title = /title="(.*)"/.exec(attrs)
+    const type = /type="([^"]*)"/.exec(attrs)
+    const title = /title="([^"]*)"/.exec(attrs)
 
     return {
       type: type ? type[1] : undefined,

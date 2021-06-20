@@ -7,17 +7,44 @@ import { ExternalResource } from '@/post/ExternalResource'
 import { Grid } from '@/post/Grid'
 import { SideNote } from '@/post/SideNote'
 import { VideoCard } from '@/post/VideoCard'
-import { Quiz } from '@/post/quiz/Quiz'
 
 /**
  * Lazy-load Quiz component, since it won't be used on most pages.
  *
- * FIXME: We seem to lose Quiz.Card etc. when importing like this.
+ * We lose function properties when importing with `next/dynamic`,
+ * so we need to import each component manually.
+ *
+ * @see https://github.com/vercel/next.js/issues/26381
  */
-// const Quiz = dynamic(async () => {
-//   const { Quiz } = await import('@/post/quiz/Quiz')
-//   return Quiz
-// })
+const Quiz = dynamic(async () => {
+  const { Quiz } = await import('@/post/quiz/Quiz')
+  return Quiz
+})
+const QuizCard = dynamic(async () => {
+  const { QuizCard } = await import('@/post/quiz/QuizCard')
+  return QuizCard
+})
+const QuizQuestion = dynamic(async () => {
+  const { QuizQuestion } = await import('@/post/quiz/QuizQuestion')
+  return QuizQuestion
+})
+const MultipleChoice = dynamic(async () => {
+  const { MultipleChoice } = await import('@/post/quiz/MultipleChoice')
+  return MultipleChoice
+})
+const XmlCodeEditor = dynamic(async () => {
+  const { XmlCodeEditor } = await import('@/post/quiz/XmlCodeEditor')
+  return XmlCodeEditor
+})
+
+// @ts-expect-error Function prop.
+Quiz.Card = QuizCard
+// @ts-expect-error Function prop.
+Quiz.Question = QuizQuestion
+// @ts-expect-error Function prop.
+Quiz.MultipleChoice = MultipleChoice
+// @ts-expect-error Function prop.
+Quiz.XmlCodeEditor = XmlCodeEditor
 
 // export type ComponentType =
 //   /** Layout wrapper. */

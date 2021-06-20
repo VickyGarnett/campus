@@ -12,15 +12,15 @@ export const videoCardEditorWidget: EditorComponentOptions = {
     { name: 'subtitle', label: 'Subtitle', widget: 'string' },
     { name: 'image', label: 'Image', widget: 'image' },
   ],
-  pattern: /^<VideoCard([^]*)\/>$/,
+  pattern: /^<VideoCard([^]*?)\/>$/,
   fromBlock(match) {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const attrs = match[1]!
 
-    const id = /id="(.*)"/.exec(attrs)
-    const title = /title="(.*)"/.exec(attrs)
-    const subtitle = /subtitle="(.*)"/.exec(attrs)
-    const image = /image="(.*)"/.exec(attrs)
+    const id = /id="([^"]*)"/.exec(attrs)
+    const title = /title="([^"]*)"/.exec(attrs)
+    const subtitle = /subtitle="([^"]*)"/.exec(attrs)
+    const image = /image="([^"]*)"/.exec(attrs)
 
     return {
       id: id ? id[1] : undefined,

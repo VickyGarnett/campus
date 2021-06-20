@@ -17,14 +17,14 @@ export const externalResourceEditorWidget: EditorComponentOptions = {
       // pattern: ['^[a-zA-Z][a-zA-Z\\d+\\-.]*:', 'Must be a valid URL'],
     },
   ],
-  pattern: /^<ExternalResource([^]*)\/>$/,
+  pattern: /^<ExternalResource([^]*?)\/>$/,
   fromBlock(match) {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const attrs = match[1]!
 
-    const title = /title="(.*)"/.exec(attrs)
-    const subtitle = /subtitle="(.*)"/.exec(attrs)
-    const url = /url="(.*)"/.exec(attrs)
+    const title = /title="([^"]*)"/.exec(attrs)
+    const subtitle = /subtitle="([^"]*)"/.exec(attrs)
+    const url = /url="([^"]*)"/.exec(attrs)
 
     return {
       title: title ? title[1] : undefined,

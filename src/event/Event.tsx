@@ -2,15 +2,13 @@
 import '@reach/dialog/styles.css'
 
 import { DialogContent, DialogOverlay } from '@reach/dialog'
-import cx from 'clsx'
-import type { ReactNode } from 'react'
-import { Fragment } from 'react'
 import {
   FaEnvelope,
   FaGlobe,
   FaTwitter,
   FaFlickr,
   FaFilePdf,
+  FaCloud,
 } from 'react-icons/fa'
 
 import type { Event as EventData } from '@/api/cms/event'
@@ -20,6 +18,7 @@ import { PageContent } from '@/common/PageContent'
 import type { DialogState } from '@/common/useDialogState'
 import { useDialogState } from '@/common/useDialogState'
 import { Mdx as EventContent, Mdx } from '@/mdx/Mdx'
+import { getFullName } from '@/utils/getFullName'
 import type { ISODateString } from '@/utils/ts/aliases'
 
 export interface EventProps {
@@ -38,14 +37,14 @@ export function Event(props: EventProps): JSX.Element {
   return (
     <PageContent>
       <EventOverview event={event} />
-      <div className="body__borders relative mx-[6.25vw] bg-[#f8f9f9]">
+      <div className="relative body__borders">
         <EventSessions
           sessions={metadata.sessions}
           //  downloads={downloads}
         />
         {/* <EventSideNav sessions={sessions} /> */}
       </div>
-      {/* <EventFooter event={event} /> */}
+      <EventFooter event={event} />
     </PageContent>
   )
 }
@@ -75,7 +74,7 @@ function EventOverview(props: EventOverviewProps) {
   const prepDialog = useDialogState()
 
   return (
-    <section className="home min-h-screen flex flex-col relative px-[6.25vw] bg-[#0d1930]">
+    <section className="!h-screen !min-h-screen home">
       {featuredImage != null ? (
         <div className="absolute inset-0">
           <img
@@ -88,27 +87,24 @@ function EventOverview(props: EventOverviewProps) {
         </div>
       ) : null}
 
-      {/* TODO: Missing home__wrapper-1::after for 1px right-border */}
-      <div className="home__wrapper-1 flex-1 flex flex-col border-r border-[#d5d8dc] border-opacity-50 relative mr-[3.125vw]">
-        <div className="home__wrapper-2 flex-1 flex flex-col justify-center px-[6.25vw] py-[1.5625vw] pr-[3.125vw]">
-          <div className="flex justify-between home__wrapper-3">
-            <div className="relative w-2/3 home__main">
+      <div className="home__wrapper-1">
+        <div className="home__wrapper-2">
+          <div className="home__wrapper-3">
+            <div className="relative home__main">
               {logo != null ? (
                 <div className="absolute bottom-full left-[-3.125vw] w-32">
                   <img src={logo} alt="" className="" loading="lazy" />
                 </div>
               ) : null}
 
-              <h1 className="text-[#ed6f59] mb-3 text-5xl font-bold">
-                {eventType}
+              <h1 className="font-bold h1">
+                <span>{eventType}</span>
               </h1>
-              <h2 className="leading-[1.15] py-[0.5vw] px-[0.75vw] uppercase text-white relative bg-[#1e396c] text-2xl font-bold">
-                {/* TODO: should be in ::before */}
-                <div className="absolute bg-[#ed6f59] w-[3.125vw] h-[3.125vw] right-0 top-0 transform translate-x-1/2 -translate-y-1/2" />
-                {title}
+              <h2 className="h2">
+                <span>{title}</span>
               </h2>
 
-              <div className="home__intro bg-[rgba(0,0,0,0.75)] px-[0.75em] py-[0.5em] text-white leading-snug z-10 relative">
+              <div className="home__intro">
                 <EventContent
                   {...event}
                   // TODO: components={{ a: Link, h1: EventTitle, h2: EventSubtitle, p: EventIntro }}
@@ -118,7 +114,7 @@ function EventOverview(props: EventOverviewProps) {
               <EventToc sessions={sessions} />
             </div>
 
-            <aside className="flex flex-col justify-between w-1/3 home__aside">
+            <aside className="home__aside">
               <EventSocialLinks social={social} />
               <EventNav
                 hasAboutOverlay={Boolean(metadata.about)}
@@ -205,21 +201,14 @@ function EventToc(props: EventTocProps) {
   const { sessions } = props
 
   return (
-    <ul className="relative home__index">
-      {/* TODO: should be in ::before */}
-      <div className="absolute bg-[#ed6f59] w-[6.25vw] h-[6.25vw] left-0 top-0 transform -translate-x-1/2 -translate-y-1/2" />
+    <ul className="home__index">
       {sessions.map((session, index) => (
-        <li key={index} className="block mt-[0.5em]">
-          <a
-            href={`#session-${index + 1}`}
-            className="relative text-white leading-[1.15] block"
-          >
-            <small className="font-bold text-center uppercase bg-[#1e396c] mr-[0.5vw] px-[0.5em] py-[0.25em] inline-block w-[6.5vw] text-base leading-none">
+        <li key={index}>
+          <a href={`#session-${index + 1}`}>
+            <small>
               <span>Session {index + 1}</span>
             </small>
-            <strong className="text-2xl font-normal transition duration-[400ms] hover:duration-150 ease-out hover:text-[#ed6f59]">
-              {session.title}
-            </strong>
+            <strong>{session.title}</strong>
           </a>
         </li>
       ))}
@@ -240,33 +229,33 @@ function EventSocialLinks(props: EventSocialLinksProps) {
   if (social == null) return null
 
   return (
-    <ul className="home__share relative text-right right-[-8.0625vw] top-[3.125vw]">
+    <ul className="home__share">
       {social.twitter != null ? (
-        <li className="mr-2.5 mb-[1.5625vw]">
+        <li className="mr-2.5">
           <a
             href={String(new URL(social.twitter, 'https://twitter.com'))}
-            className="home__share__twitter bg-[#55acee] inline-flex w-[3.125vw] h-[3.125vw] text-white items-center justify-center text-2xl"
+            className="home__share__twitter"
             aria-label="Share on Twitter"
           >
-            <div className="relative flex items-center justify-center h-full">
+            <div className="flex items-center justify-center h-full">
               <FaTwitter />
             </div>
           </a>
         </li>
       ) : null}
       {social.website != null ? (
-        <li className="mr-2.5 mb-[1.5625vw] bg-[#ed6f59] inline-flex w-[3.125vw] h-[3.125vw] text-white items-center justify-center text-2xl">
+        <li className="mr-2.5">
           <a href={social.website} aria-label="Visit website">
-            <div className="relative flex items-center justify-center h-full">
+            <div className="flex items-center justify-center h-full">
               <FaGlobe />
             </div>
           </a>
         </li>
       ) : null}
       {social.email != null ? (
-        <li className="mr-2.5 mb-[1.5625vw] bg-[#ed6f59] inline-flex w-[3.125vw] h-[3.125vw] text-white items-center justify-center text-2xl">
+        <li className="mr-2.5">
           <a href={`mailto:${social.email}`} aria-label="Contact">
-            <div className="relative flex items-center justify-center h-full">
+            <div className="flex items-center justify-center h-full">
               <FaEnvelope />
             </div>
           </a>
@@ -299,70 +288,39 @@ function EventNav(props: EventNavProps) {
   } = props
 
   return (
-    <div className="text-2xl text-right text-white">
-      <ul className="flex flex-col home__links">
+    <div>
+      <ul className="text-white transition-opacity opacity-50 home__links ">
         {hasAboutOverlay ? (
           <li>
-            <button
-              onClick={aboutDialog.open}
-              className="inline-flex items-center link-popin opacity-50 transition ease-out duration-[400ms] hover:opacity-100 hover:duration-150"
-            >
+            <button onClick={aboutDialog.open} className="link-popin">
               <span>About</span>
             </button>
           </li>
         ) : null}
         {hasPrepOverlay ? (
           <li>
-            <button
-              onClick={prepDialog.open}
-              className="inline-flex items-center link-popin opacity-50 transition ease-out duration-[400ms] hover:opacity-100 hover:duration-150"
-            >
+            <button onClick={prepDialog.open} className="link-popin">
               <span>How to prepare</span>
             </button>
           </li>
         ) : null}
         {social?.flickr != null ? (
           <li>
-            <a
-              href={social.flickr}
-              className="inline-flex items-center opacity-50 transition ease-out duration-[400ms] hover:opacity-100 hover:duration-150"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href={social.flickr} target="_blank" rel="noopener noreferrer">
               <FaFlickr size="0.75em" className="mr-2.5" />
               <span>See the photos</span>
             </a>
           </li>
         ) : null}
         {synthesis != null ? (
-          <Fragment>
-            <hr className="w-[1.5vw] h-[0.15vw] opacity-50 my-[1.5vw] self-end bg-white" />
-            <li className="download">
-              <a
-                href={synthesis}
-                className="inline-flex items-center opacity-50 transition ease-out duration-[400ms] hover:opacity-100 hover:duration-150"
-                download
-              >
-                <FaFilePdf size="0.75em" className="mr-2.5" />
-                <span>Download the full synthesis</span>
-              </a>
-            </li>
-          </Fragment>
+          <li className="download">
+            <a href={synthesis} download>
+              <FaFilePdf size="0.75em" className="mr-2.5" />
+              <span>Download the full synthesis</span>
+            </a>
+          </li>
         ) : null}
       </ul>
-
-      <p className="home__more opacity-50 text-base pt-[1.75vw]">
-        You can annotate and discuss all the material here with the{' '}
-        <a
-          href="https://hypothes.is/"
-          className="underline hover:no-underline"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          hypothes.is
-        </a>{' '}
-        plugin.
-      </p>
     </div>
   )
 }
@@ -393,56 +351,119 @@ function EventSession(props: EventSessionProps) {
 
   return (
     // TODO: session before+after
-    <div
-      id={`session-${index}`}
-      className="session relative border-t-[3.125vw] border-[#0870ac]"
-    >
-      <div className="flex items-baseline justify-between session__heading">
-        <h1 className="mb-12 text-6xl font-bold uppercase h1">
-          {session.title}
+    <div id={`session-${index}`} className="session">
+      <div className="session__heading">
+        <h1 className="h1">
+          <span className="square" />
+          <strong>{session.title}</strong>
         </h1>
         <a
           href={session.synthesis}
           download
-          className="link-download text-5xl flex-shrink-0 inline-flex items-center justify-center text-white w-[4.6875vw] h-[4.6875vw] bg-[#ed6f59] mt-[1.5625vw] mr-[6.25vw] transition duration-[400ms] ease-out hover:bg-[#0870ac] hover:duration-150"
+          className="inline-flex items-center justify-center text-white link-download"
         >
           <FaFilePdf size="0.75em" />
           <span className="sr-only">Download the session synthesis</span>
         </a>
       </div>
 
-      <div className="session__core mx-[6.25vw] pb-[5em]">
+      <div className="session__core">
         <Mdx
           code={session.body.code}
           components={{
             Download: function EventSessionDownload(props) {
-              return <div className="session__downloads"></div>
+              return (
+                <div className="session__downloads">
+                  <a href={props.download} download className="link-download">
+                    <span>
+                      <FaFilePdf />
+                    </span>
+                    <strong>
+                      Download the slides
+                      <br />
+                      <span>PDF</span>
+                    </strong>
+                  </a>
+                </div>
+              )
             },
             Link: function EventSessionLink(props) {
-              return <div></div>
+              return (
+                <div className="session__downloads">
+                  <a href={props.link} className="link-download">
+                    <span>
+                      <FaCloud />
+                    </span>
+                    <strong>{props.link}</strong>
+                  </a>
+                </div>
+              )
             },
             Speakers: function EventSessionSpeakers(props) {
-              return <div className="session__speakers"></div>
+              return <div className="session__speakers">{props.children}</div>
             },
             Speaker: function EventSessionSpeaker(props) {
-              return <div></div>
+              const speaker = session.speakers.find(
+                (speaker) => speaker.id === props.speaker,
+              )
+
+              if (speaker == null) return null
+
+              return (
+                <div>
+                  <h3 className="h2">
+                    <strong>Speaker</strong>
+                    <span>for this session</span>
+                  </h3>
+                  <ul className="list-speakers">
+                    <li>
+                      <div>
+                        <img
+                          src={speaker.avatar}
+                          alt=""
+                          loading="lazy"
+                          className=""
+                        />
+                      </div>
+                      <div className="list-speakers__bio">
+                        <h3 className="font-bold h3">{getFullName(speaker)}</h3>
+                        <div className="leading-snug text-[#1e396c]">
+                          {props.children ?? speaker.description}
+                        </div>
+                        <ul className="list-speakers__links">
+                          {speaker.twitter != null ? (
+                            <li>
+                              <a
+                                href={String(
+                                  new URL(
+                                    speaker.twitter,
+                                    'https://twitter.com',
+                                  ),
+                                )}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                {speaker.twitter}
+                              </a>
+                            </li>
+                          ) : null}
+                        </ul>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              )
             },
             h2: function Heading2(props) {
               return (
-                <h2
-                  className="h2 h2--counter text-4xl font-bold mt-[2.5vw] mb-[1.5vw] pb-[1.5vw] border-b-2 border-[#0870ac]"
-                  {...props}
-                >
+                <h2 className="font-bold h2 h2--counter" {...props}>
                   {props.children}
                 </h2>
               )
             },
             h3: function Heading3(props) {
               return (
-                <h3
-                  className="relative mt-10 mb-8 text-3xl font-bold h3"
-                  {...props}
-                >
+                <h3 className="font-bold h3" {...props}>
                   {props.children}
                 </h3>
               )
@@ -450,7 +471,7 @@ function EventSession(props: EventSessionProps) {
             p: function Paragraph(props) {
               return (
                 <p
-                  className="text-3xl text-[#00396C] mb-[1em] leading-snug"
+                  className="text-[1.7vw] text-[#00396C] mb-[1em] leading-snug"
                   {...props}
                 >
                   {props.children}
@@ -459,12 +480,7 @@ function EventSession(props: EventSessionProps) {
             },
             a: function Anchor(props) {
               return (
-                <a
-                  {...props}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="border-b-[0.15vw] border-[#1e396c] transition ease-out duration-[400ms] hover:text-[#ed6f59] hover:border-[#ed6f59] hover:duration-150"
-                >
+                <a {...props} target="_blank" rel="noopener noreferrer">
                   {props.children}
                 </a>
               )
@@ -475,7 +491,14 @@ function EventSession(props: EventSessionProps) {
 
       {session.synthesis != null ? (
         <div className="session__downloads">
-          <pre>{session.synthesis}</pre>
+          <a href={session.synthesis} className="link-download">
+            <span></span>
+            <strong>
+              Download the complete session synthesis
+              <br />
+              <span>PDF</span>
+            </strong>
+          </a>
         </div>
       ) : null}
     </div>
@@ -492,5 +515,45 @@ interface EventFooterProps {
 function EventFooter(props: EventFooterProps) {
   const { event } = props
 
-  return <footer></footer>
+  const { licence, social, synthesis } = event.data.metadata
+
+  return (
+    <div id="footer">
+      <div className="px-[6.25vw]">
+        {/* eslint-disable-next-line @typescript-eslint/no-unnecessary-condition */}
+        <div className="footer__credits">{licence?.name}</div>
+        <ul className="footer__links">
+          <li>
+            <button className="link-popin">About</button>
+          </li>
+          {social?.flickr != null ? (
+            <li>
+              <a href={social.flickr} target="_blank" rel="noopener noreferrer">
+                See the photos
+              </a>
+            </li>
+          ) : null}
+          {synthesis != null ? (
+            <li className="download">
+              <a href={synthesis} target="_blank" rel="noopener noreferrer">
+                Download the full synthesis
+              </a>
+            </li>
+          ) : null}
+        </ul>
+        <h3 className="h3">Organisation</h3>
+        <ul className="footer__partners">
+          {event.data.metadata.partners.map((partner) => {
+            return (
+              <li key={partner.id} className="items-center flex-1 h-12">
+                <a href={partner.url} target="_blank" rel="noopener noreferrer">
+                  {partner.name}
+                </a>
+              </li>
+            )
+          })}
+        </ul>
+      </div>
+    </div>
+  )
 }

@@ -110,6 +110,7 @@ export const quizEditorWidget: EditorComponentOptions = {
               name: 'question',
               label: 'Question',
               widget: 'markdown',
+              editor_components: ['image', 'code-block'],
               modes: ['raw'],
             },
             {
@@ -123,6 +124,7 @@ export const quizEditorWidget: EditorComponentOptions = {
                   name: 'option',
                   label: 'Option',
                   widget: 'markdown',
+                  editor_components: ['image', 'code-block'],
                   modes: ['raw'],
                 },
                 {
@@ -144,6 +146,7 @@ export const quizEditorWidget: EditorComponentOptions = {
               name: 'question',
               label: 'Question',
               widget: 'markdown',
+              editor_components: ['image', 'code-block'],
               modes: ['raw'],
             },
             {
@@ -176,7 +179,7 @@ export const quizEditorWidget: EditorComponentOptions = {
       ],
     },
   ],
-  pattern: /^<Quiz>\n([^]*)\n<\/Quiz>/, // NOTE: Intentionally not ending with `$`
+  pattern: /^<Quiz>\n([^]*?)\n<\/Quiz>/, // NOTE: Intentionally not ending with `$`
   fromBlock(match) {
     console.log(match)
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion

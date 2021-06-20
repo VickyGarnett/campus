@@ -10,6 +10,11 @@ import { getHighlighter } from 'shiki'
 import type { VFile } from 'vfile'
 import vfile from 'vfile'
 
+import type { Licence } from './licence'
+import { getLicenceById } from './licence'
+import type { Organisation, OrganisationId } from './organisation'
+import { getOrganisationById } from './organisation'
+
 import type { Category } from '@/api/cms/category'
 import { getCategoryById } from '@/api/cms/category'
 import type { ContentType } from '@/api/cms/contentType'
@@ -59,7 +64,7 @@ export interface EventFrontmatter {
   about: string
   prep?: string
 
-  partners?: Array<{ name: string; logo?: FilePath; url?: URLString }>
+  partners?: Array<OrganisationId['id']>
   social?: {
     website?: URLString
     email?: string
@@ -79,11 +84,16 @@ export interface EventSessionFrontmatter {
 }
 
 export interface EventPreviewMetadata
-  extends Omit<EventFrontmatter, 'authors' | 'categories' | 'tags' | 'type'> {
+  extends Omit<
+    EventFrontmatter,
+    'authors' | 'categories' | 'tags' | 'type' | 'licence' | 'partners'
+  > {
   authors: Array<Person>
   categories: Array<Category>
   tags: Array<Tag>
   type: ContentType
+  licence: Licence
+  partners: Array<Organisation>
 }
 
 export interface EventMetadata
@@ -282,6 +292,14 @@ async function getEventMetadata(
         )
       : [],
     type: await getContentTypeById(matter.type, locale),
+    licence: await getLicenceById(matter.licence, locale),
+    partners: Array.isArray(matter.partners)
+      ? await Promise.all(
+          matter.partners.map((id) => {
+            return getOrganisationById(id, locale)
+          }),
+        )
+      : [],
   }
 
   return metadata
