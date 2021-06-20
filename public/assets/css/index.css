@@ -1,4 +1,5 @@
 @import './algolia.css';
+@import './event.css';
 
 :root {
   --page-header-height: 88px;

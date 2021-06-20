@@ -59,9 +59,22 @@ export function EventPreview(
               .filter(Boolean)
           : []
 
+        const partners = Array.isArray(frontmatter.partners)
+          ? frontmatter.partners
+              .map((id) => {
+                return resolveRelation(['partners', 'organisations'], id)
+              })
+              .filter(Boolean)
+          : []
+
         const type =
           frontmatter.type != null
             ? resolveRelation(['type', 'content-types'], frontmatter.type)
+            : null
+
+        const licence =
+          frontmatter.licence != null
+            ? resolveRelation(['licence', 'licences'], frontmatter.licence)
             : null
 
         const about =
@@ -100,6 +113,8 @@ export function EventPreview(
           categories,
           tags,
           type,
+          licence,
+          partners,
           sessions,
           about: { code: about },
           prep: null, // TODO:
