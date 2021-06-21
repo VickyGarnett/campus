@@ -356,9 +356,6 @@
   padding: 1.5625vw 6.25vw;
 }
 .home .home__wrapper-1 .home__wrapper-2 .home__wrapper-3 {
-  width: 74vw;
-}
-.home .home__wrapper-1 .home__wrapper-2 .home__wrapper-3 {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;

@@ -1157,6 +1157,10 @@ video {
   top: 6rem;
 }
 
+.z-40 {
+  z-index: 40;
+}
+
 .z-30 {
   z-index: 30;
 }
@@ -1183,19 +1187,19 @@ video {
   margin-bottom: 0.25rem;
 }
 
-.mx-auto {
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .\!my-0 {
   margin-top: 0px !important;
   margin-bottom: 0px !important;
 }
 
-.my-12 {
-  margin-top: 3rem;
-  margin-bottom: 3rem;
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.my-16 {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
 }
 
 .\!my-\[3\.125vw\] {
@@ -1206,6 +1210,16 @@ video {
 .my-4 {
   margin-top: 1rem;
   margin-bottom: 1rem;
+}
+
+.my-12 {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.my-8 {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 .my-6 {
@@ -1309,6 +1323,10 @@ video {
   height: 1.25rem;
 }
 
+.\!h-full {
+  height: 100% !important;
+}
+
 .h-6 {
   height: 1.5rem;
 }
@@ -1377,16 +1395,20 @@ video {
   min-height: 100vh !important;
 }
 
+.min-h-\[calc\(100vh-var\(--page-header-height\)\)\] {
+  min-height: calc(100vh - var(--page-header-height));
+}
+
 .w-5 {
   width: 1.25rem;
 }
 
-.w-6 {
-  width: 1.5rem;
-}
-
 .\!w-full {
   width: 100% !important;
+}
+
+.w-6 {
+  width: 1.5rem;
 }
 
 .w-10 {
@@ -1785,6 +1807,11 @@ video {
 .bg-blue-100 {
   --tw-bg-opacity: 1;
   background-color: rgba(219, 234, 254, var(--tw-bg-opacity));
+}
+
+.bg-red-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgba(220, 38, 38, var(--tw-bg-opacity));
 }
 
 .\!bg-neutral-800 {
@@ -2295,6 +2322,11 @@ video {
   transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
 }
 
+.before\:\!hidden::before {
+  content: '';
+  display: none !important;
+}
+
 .hover\:bg-primary-700:hover {
   --tw-bg-opacity: 1;
   background-color: rgba(0, 85, 128, var(--tw-bg-opacity));
@@ -2315,6 +2347,11 @@ video {
   background-color: rgba(191, 219, 254, var(--tw-bg-opacity));
 }
 
+.hover\:bg-red-700:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgba(185, 28, 28, var(--tw-bg-opacity));
+}
+
 .hover\:bg-neutral-100:hover {
   --tw-bg-opacity: 1;
   background-color: rgba(245, 245, 245, var(--tw-bg-opacity));
@@ -2330,14 +2367,14 @@ video {
   background-color: rgba(0, 102, 153, var(--tw-bg-opacity));
 }
 
-.hover\:text-primary-600:hover {
-  --tw-text-opacity: 1;
-  color: rgba(0, 102, 153, var(--tw-text-opacity));
-}
-
 .hover\:text-white:hover {
   --tw-text-opacity: 1;
   color: rgba(255, 255, 255, var(--tw-text-opacity));
+}
+
+.hover\:text-primary-600:hover {
+  --tw-text-opacity: 1;
+  color: rgba(0, 102, 153, var(--tw-text-opacity));
 }
 
 .hover\:text-event-violet2:hover {
@@ -2377,6 +2414,20 @@ video {
     var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
+.hover\:ring:hover {
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0
+    var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0
+    calc(3px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow),
+    var(--tw-shadow, 0 0 #0000);
+}
+
+.hover\:ring-primary-600:hover {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgba(0, 102, 153, var(--tw-ring-opacity));
+}
+
 .hover\:duration-150:hover {
   transition-duration: 150ms;
 }
@@ -2413,6 +2464,11 @@ video {
   --tw-ring-color: rgba(0, 102, 153, var(--tw-ring-opacity));
 }
 
+.focus-visible\:ring-red-600:focus-visible {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgba(220, 38, 38, var(--tw-ring-opacity));
+}
+
 .focus-visible\:ring-neutral-400:focus-visible {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgba(163, 163, 163, var(--tw-ring-opacity));
@@ -2423,6 +2479,11 @@ video {
 }
 
 @media (min-width: 768px) {
+  .md\:\!my-16 {
+    margin-top: 4rem !important;
+    margin-bottom: 4rem !important;
+  }
+
   .md\:block {
     display: block;
   }
@@ -2433,6 +2494,14 @@ video {
 
   .md\:hidden {
     display: none;
+  }
+
+  .md\:\!h-auto {
+    height: auto !important;
+  }
+
+  .md\:\!w-1\/2 {
+    width: 50% !important;
   }
 
   .md\:flex-1 {
@@ -2479,10 +2548,6 @@ video {
 @media (min-width: 1024px) {
   .lg\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .lg\:gap-8 {
-    gap: 2rem;
   }
 }
 

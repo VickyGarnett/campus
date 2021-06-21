@@ -14,7 +14,7 @@ export function PageContent(props: PageContentProps): JSX.Element {
     <main
       id="main"
       tabIndex={-1}
-      className={cx('flex-1 mt-24', props.className)}
+      className={cx('flex-1 mt-[var(--page-header-height)]', props.className)}
     >
       {props.children}
     </main>
