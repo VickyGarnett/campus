@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { createElement } from 'react'
 
 import type { Post as PostData } from '@/api/cms/post'
 import { Svg as AvatarIcon } from '@/assets/icons/avatar.svg'
@@ -6,11 +7,31 @@ import { Svg as PencilIcon } from '@/assets/icons/pencil.svg'
 import { Icon } from '@/common/Icon'
 import { useI18n } from '@/i18n/useI18n'
 import { Mdx as PostContent } from '@/mdx/Mdx'
+import type { ComponentMap } from '@/mdx/components'
 import { routes } from '@/navigation/routes.config'
 import { EditLink } from '@/post/EditLink'
+import { ExternalResource } from '@/post/ExternalResource'
+import { SideNote } from '@/post/SideNote'
+import { VideoCard } from '@/post/VideoCard'
+import { Quiz } from '@/post/quiz/Quiz'
 import { getDate } from '@/utils/getDate'
 import { getFullName } from '@/utils/getFullName'
 import type { ISODateString } from '@/utils/ts/aliases'
+
+const legacyComponents: ComponentMap = {
+  CTA: ExternalResource,
+  Panel: function Panel(props) {
+    return createElement(SideNote, { type: 'info', ...props })
+  },
+}
+
+const components: ComponentMap = {
+  ...legacyComponents,
+  ExternalResource,
+  SideNote,
+  Quiz,
+  VideoCard,
+}
 
 export interface PostProps {
   post: PostData
@@ -132,7 +153,7 @@ export function Post(props: PostProps): JSX.Element {
         </dl>
       </header>
       <div className="prose max-w-none">
-        <PostContent {...post} />
+        <PostContent {...post} components={components} />
       </div>
       <footer>
         {lastUpdatedAt != null ? (

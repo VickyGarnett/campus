@@ -25,11 +25,17 @@ import type { Dictionary } from '@/i18n/loadDictionary'
 import { loadDictionary } from '@/i18n/loadDictionary'
 import { useI18n } from '@/i18n/useI18n'
 import { Mdx as DocsContent } from '@/mdx/Mdx'
+import type { ComponentMap } from '@/mdx/components'
 import { Metadata } from '@/metadata/Metadata'
 import { useAlternateUrls } from '@/metadata/useAlternateUrls'
 import { useCanonicalUrl } from '@/metadata/useCanonicalUrl'
 import { routes } from '@/navigation/routes.config'
+import { SideNote } from '@/post/SideNote'
 import type { ISODateString } from '@/utils/ts/aliases'
+
+const components: ComponentMap = {
+  SideNote,
+}
 
 export interface DocsPageParams extends ParsedUrlQuery {
   id: string
@@ -115,15 +121,15 @@ export default function DocsPage(props: DocsPageProps): JSX.Element {
         canonicalUrl={canonicalUrl}
         languageAlternates={languageAlternates}
       />
-      <PageContent className="max-w-screen-lg px-6 py-24 mx-auto space-y-24 w-full grid 2xl:grid-cols-content 2xl:space-y-0 2xl:gap-x-10 2xl:max-w-none">
-        <aside className="space-y-2 text-sm text-neutral-500 max-w-xs w-full hidden 2xl:block 2xl:justify-self-end">
+      <PageContent className="grid w-full max-w-screen-lg px-6 py-24 mx-auto space-y-24 2xl:grid-cols-content 2xl:space-y-0 2xl:gap-x-10 2xl:max-w-none">
+        <aside className="hidden w-full max-w-xs space-y-2 text-sm text-neutral-500 2xl:block 2xl:justify-self-end">
           <DocsNav nav={nav} />
         </aside>
         <Docs docs={docs} lastUpdatedAt={lastUpdatedAt} nav={nav} />
         {toc.length > 0 ? (
           <Fragment>
             <aside
-              className="max-w-xs sticky hidden max-h-screen px-10 overflow-y-auto text-sm top-24 2xl:block text-neutral-500"
+              className="sticky hidden max-w-xs max-h-screen px-10 overflow-y-auto text-sm top-24 2xl:block text-neutral-500"
               style={{
                 maxHeight: 'calc(100vh - 12px - var(--page-header-height))',
               }}
@@ -157,19 +163,19 @@ function Docs(props: DocsProps) {
   const { formatDate } = useI18n()
 
   return (
-    <article className="space-y-16 max-w-80ch w-full mx-auto">
+    <article className="w-full mx-auto space-y-16 max-w-80ch">
       <header className="space-y-10">
         <h1 className="font-bold text-4.5xl text-center">{metadata.title}</h1>
-        <div className="2xl:hidden text-neutral-500 border-l-4 border-neutral-500 pl-4">
+        <div className="pl-4 border-l-4 2xl:hidden text-neutral-500 border-neutral-500">
           <DocsNav nav={nav} />
         </div>
       </header>
       <div className="prose max-w-none">
-        <DocsContent code={docs.code} />
+        <DocsContent code={docs.code} components={components} />
       </div>
       <footer>
         {lastUpdatedAt != null ? (
-          <p className="text-right text-neutral-500 text-sm">
+          <p className="text-sm text-right text-neutral-500">
             <span>Last updated: </span>
             <time dateTime={lastUpdatedAt}>
               {formatDate(new Date(lastUpdatedAt), undefined, {
@@ -197,7 +203,7 @@ function DocsNav(props: DocsNavProps) {
             <li key={page.id}>
               <NavLink
                 href={routes.docs(page.id)}
-                className="hover:text-primary-600 flex transition focus:outline-none focus-visible:ring focus-visible:ring-primary-600 rounded"
+                className="flex transition rounded hover:text-primary-600 focus:outline-none focus-visible:ring focus-visible:ring-primary-600"
                 activeClassName="font-bold pointer-events-none"
               >
                 {page.title}

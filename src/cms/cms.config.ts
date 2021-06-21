@@ -148,8 +148,18 @@ export const collections: Record<string, CmsCollection> = {
       {
         name: 'body',
         label: 'Content',
-        widget: 'markdown',
         hint: '',
+        widget: 'markdown',
+        editor_components: [
+          'image',
+          'code-block',
+          'Grid',
+          'YouTube',
+          'VideoCard',
+          'SideNote',
+          'ExternalResource',
+          'Quiz',
+        ],
       },
       {
         name: 'domain',
@@ -332,6 +342,7 @@ export const collections: Record<string, CmsCollection> = {
         label: 'Content',
         hint: 'Description of the collection',
         widget: 'markdown',
+        editor_components: ['image', 'code-block', 'YouTube'],
       },
     ],
   },
@@ -463,18 +474,21 @@ export const collections: Record<string, CmsCollection> = {
         name: 'body',
         label: 'Short description',
         widget: 'markdown',
+        editor_components: ['image', 'code-block', 'YouTube'],
         hint: '',
       },
       {
         name: 'about',
         label: 'About',
         widget: 'markdown',
+        editor_components: ['image'],
         hint: '',
       },
       {
         name: 'prep',
         label: 'Preparation notes',
         widget: 'markdown',
+        editor_components: ['image', 'code-block'],
         hint: '',
         required: false,
       },
@@ -581,9 +595,8 @@ export const collections: Record<string, CmsCollection> = {
         hint: '',
         required: false,
         widget: 'file',
-        // FIXME:
-        media_folder: '../../{{media_folder}}/events/{{slug}}',
-        public_folder: '{{public_folder}}/events/{{slug}}',
+        media_folder: '../../{{media_folder}}/../../documents/events/{{slug}}',
+        public_folder: '{{public_folder}}/../../documents/events/{{slug}}',
       },
       {
         name: 'sessions',
@@ -620,6 +633,7 @@ export const collections: Record<string, CmsCollection> = {
             label: 'Content',
             hint: '',
             widget: 'markdown',
+            editor_components: ['image', 'code_block', 'YouTube'],
           },
           {
             name: 'synthesis',
@@ -627,9 +641,9 @@ export const collections: Record<string, CmsCollection> = {
             hint: '',
             required: false,
             widget: 'file',
-            // FIXME:
-            media_folder: '../../{{media_folder}}/events/{{slug}}',
-            public_folder: '{{public_folder}}/events/{{slug}}',
+            media_folder:
+              '../../{{media_folder}}/../../documents/events/{{slug}}',
+            public_folder: '{{public_folder}}/../../documents/events/{{slug}}',
           },
         ],
       },
