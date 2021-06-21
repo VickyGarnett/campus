@@ -3,6 +3,7 @@ import type { PreviewTemplateComponentProps } from 'netlify-cms-core'
 import type { ReactNode } from 'react'
 
 import { I18nProvider } from '@/i18n/I18n.context'
+import { SiteMetadataProvider } from '@/metadata/SiteMetadata.context'
 
 export interface PreviewProps extends PreviewTemplateComponentProps {
   children?: ReactNode
@@ -31,11 +32,11 @@ function ErrorFallback() {
 
   return (
     <div className="grid place-items-center h-96">
-      <div className="text-center space-y-2">
+      <div className="space-y-2 text-center">
         <p>An unexpected error has occurred: {error.message}.</p>
         <button
           onClick={onReset}
-          className="rounded bg-primary-600 text-white text-sm font-medium px-6 py-2 transition hover:bg-primary-700 focus:outline-none focus-visible:ring focus-visible:ring-primary-600"
+          className="px-6 py-2 text-sm font-medium text-white transition rounded bg-primary-600 hover:bg-primary-700 focus:outline-none focus-visible:ring focus-visible:ring-primary-600"
         >
           Clear errors.
         </button>

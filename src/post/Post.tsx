@@ -160,7 +160,7 @@ export function Post(props: PostProps): JSX.Element {
         <PostContent {...post} components={components} />
       </div>
       <footer>
-        <SocialShareLinks post={post} />
+        {isPreview === true ? null : <SocialShareLinks post={post} />}
         {lastUpdatedAt != null ? (
           <p className="text-sm text-right text-neutral-500">
             <span>Last updated: </span>
@@ -303,10 +303,7 @@ function SocialShareLinks(props: SocialShareLinks) {
           }),
         )}
       >
-        <a
-          a
-          className="transition rounded-full hover:text-primary-600 focus:outline-none focus-visible:ring focus-visible:ring-primary-600"
-        >
+        <a className="transition rounded-full hover:text-primary-600 focus:outline-none focus-visible:ring focus-visible:ring-primary-600">
           <Icon icon={FacebookIcon} />
           <span className="sr-only">Share link on Facebook</span>
         </a>
