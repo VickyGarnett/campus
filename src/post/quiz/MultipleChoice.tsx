@@ -62,7 +62,7 @@ export function MultipleChoice(props: MultipleChoiceProps): JSX.Element {
     <ul className="flex flex-col space-y-4">
       {options.map((option, index) => {
         return (
-          <li key={index} className="!p-0 !m-0 !before:hidden">
+          <li key={index} className="!p-0 !m-0 before:!hidden">
             <label className="flex items-center space-x-4">
               <input
                 type={type}
