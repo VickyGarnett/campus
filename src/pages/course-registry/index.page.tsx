@@ -50,13 +50,12 @@ export default function CourseRegistryPage(
       />
       <PageContent className="grid">
         <h1 className="sr-only">DH Course Registry</h1>
-        <div className="relative flex flex-col h-full">
+        <div className="relative flex flex-col h-full min-h-[calc(100vh-var(--page-header-height))]">
           <iframe
             src="https://dhcr.clarin-dariah.eu?parent_domain=dariah.eu"
             title="DH Course Registry"
             loading="lazy"
-            sandbox="true"
-            className="h-full w-full"
+            className="w-full h-full"
           />
         </div>
       </PageContent>

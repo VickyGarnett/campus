@@ -18,7 +18,7 @@ export function Pagination(props: PaginationProps): JSX.Element {
   const hasNextPage = page < pages
 
   return (
-    <nav aria-label={label} className="flex items-center justify-between my-12">
+    <nav aria-label={label} className="flex items-center justify-between my-16">
       <div>
         {hasPrevPage ? (
           <Link href={href(page - 1)}>

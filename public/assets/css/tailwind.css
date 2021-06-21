@@ -1137,6 +1137,18 @@ video {
   top: 1.5625vw;
 }
 
+.left-0 {
+  left: 0px;
+}
+
+.bottom-0 {
+  bottom: 0px;
+}
+
+.top-40 {
+  top: 10rem;
+}
+
 .top-0 {
   top: 0px;
 }
@@ -1151,6 +1163,10 @@ video {
 
 .z-20 {
   z-index: 20;
+}
+
+.\!z-10 {
+  z-index: 10 !important;
 }
 
 .\!m-0 {
@@ -1185,6 +1201,11 @@ video {
 .\!my-\[3\.125vw\] {
   margin-top: 3.125vw !important;
   margin-bottom: 3.125vw !important;
+}
+
+.my-4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .my-6 {
@@ -1256,6 +1277,10 @@ video {
   display: flex;
 }
 
+.\!flex {
+  display: flex !important;
+}
+
 .inline-flex {
   display: inline-flex;
 }
@@ -1306,6 +1331,14 @@ video {
 
 .\!h-screen {
   height: 100vh !important;
+}
+
+.h-\[9\.375vw\] {
+  height: 9.375vw;
+}
+
+.h-\[0\.75em\] {
+  height: 0.75em;
 }
 
 .h-20 {
@@ -1382,6 +1415,14 @@ video {
 
 .\!w-3\/4 {
   width: 75% !important;
+}
+
+.w-\[9\.375vw\] {
+  width: 9.375vw;
+}
+
+.w-\[0\.75em\] {
+  width: 0.75em;
 }
 
 .w-20 {
@@ -1467,6 +1508,10 @@ video {
   resize: both;
 }
 
+.list-disc {
+  list-style-type: disc;
+}
+
 .list-decimal {
   list-style-type: decimal;
 }
@@ -1485,6 +1530,10 @@ video {
 
 .place-items-center {
   place-items: center;
+}
+
+.items-end {
+  align-items: flex-end;
 }
 
 .items-center {
@@ -1581,6 +1630,12 @@ video {
   margin-left: calc(0.25rem * calc(1 - var(--tw-space-x-reverse)));
 }
 
+.space-y-\[3\.125vw\] > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(3.125vw * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(3.125vw * var(--tw-space-y-reverse));
+}
+
 .space-y-24 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
   margin-top: calc(6rem * calc(1 - var(--tw-space-y-reverse)));
@@ -1649,6 +1704,10 @@ video {
   border-width: 1px;
 }
 
+.border-\[0\.3vw\] {
+  border-width: 0.3vw;
+}
+
 .border-l-4 {
   border-left-width: 4px;
 }
@@ -1656,6 +1715,11 @@ video {
 .border-primary-600 {
   --tw-border-opacity: 1;
   border-color: rgba(0, 102, 153, var(--tw-border-opacity));
+}
+
+.border-event-violet2 {
+  --tw-border-opacity: 1;
+  border-color: rgba(8, 112, 172, var(--tw-border-opacity));
 }
 
 .border-neutral-100 {
@@ -2042,6 +2106,10 @@ video {
   text-transform: capitalize;
 }
 
+.leading-relaxed {
+  line-height: 1.625;
+}
+
 .leading-snug {
   line-height: 1.375;
 }
@@ -2107,6 +2175,21 @@ video {
   color: rgba(115, 115, 115, var(--tw-text-opacity));
 }
 
+.text-event-violet1 {
+  --tw-text-opacity: 1;
+  color: rgba(30, 57, 108, var(--tw-text-opacity));
+}
+
+.text-event-orange {
+  --tw-text-opacity: 1;
+  color: rgba(237, 111, 89, var(--tw-text-opacity));
+}
+
+.text-event-violet2 {
+  --tw-text-opacity: 1;
+  color: rgba(8, 112, 172, var(--tw-text-opacity));
+}
+
 .text-\[\#1e396c\] {
   --tw-text-opacity: 1;
   color: rgba(30, 57, 108, var(--tw-text-opacity));
@@ -2115,6 +2198,11 @@ video {
 .text-\[\#00396C\] {
   --tw-text-opacity: 1;
   color: rgba(0, 57, 108, var(--tw-text-opacity));
+}
+
+.\!text-event-orange {
+  --tw-text-opacity: 1 !important;
+  color: rgba(237, 111, 89, var(--tw-text-opacity)) !important;
 }
 
 .\!text-white {
@@ -2199,12 +2287,6 @@ video {
   transition-duration: 150ms;
 }
 
-.transition-opacity {
-  transition-property: opacity;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-}
-
 .duration-\[400ms\] {
   transition-duration: 400ms;
 }
@@ -2258,6 +2340,11 @@ video {
   color: rgba(255, 255, 255, var(--tw-text-opacity));
 }
 
+.hover\:text-event-violet2:hover {
+  --tw-text-opacity: 1;
+  color: rgba(8, 112, 172, var(--tw-text-opacity));
+}
+
 .hover\:text-primary-700:hover {
   --tw-text-opacity: 1;
   color: rgba(0, 85, 128, var(--tw-text-opacity));
@@ -2294,9 +2381,17 @@ video {
   transition-duration: 150ms;
 }
 
+.focus\:opacity-100:focus {
+  opacity: 1;
+}
+
 .focus\:outline-none:focus {
   outline: 2px solid transparent;
   outline-offset: 2px;
+}
+
+.focus\:duration-150:focus {
+  transition-duration: 150ms;
 }
 
 .focus-visible\:bg-primary-700:focus-visible {
@@ -2328,6 +2423,10 @@ video {
 }
 
 @media (min-width: 768px) {
+  .md\:block {
+    display: block;
+  }
+
   .md\:flex {
     display: flex;
   }

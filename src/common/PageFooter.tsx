@@ -23,7 +23,7 @@ export function PageFooter(): JSX.Element {
                 <NavLink
                   href={link.href}
                   activeClassName="text-white"
-                  className="text-center p-2 rounded focus:outline-none focus-visible:ring focus-visible:ring-neutral-400"
+                  className="p-2 text-center transition rounded hover:text-white focus:outline-none focus-visible:ring focus-visible:ring-neutral-400"
                 >
                   {t(`common.page.${key}`)}
                 </NavLink>
@@ -40,7 +40,7 @@ export function PageFooter(): JSX.Element {
                 <a
                   href={link.href}
                   aria-label={link.label}
-                  className="inline-block p-2 rounded focus:outline-none focus-visible:ring focus-visible:ring-neutral-400"
+                  className="inline-block p-2 transition rounded hover:text-white focus:outline-none focus-visible:ring focus-visible:ring-neutral-400"
                 >
                   <Icon icon={link.icon} className="w-4 h-4" />
                 </a>
@@ -49,7 +49,7 @@ export function PageFooter(): JSX.Element {
           })}
         </ul>
       </div>
-      <div className="font-normal flex items-center justify-between space-x-8 text-xs max-w-screen-lg mx-auto">
+      <div className="flex items-center justify-between max-w-screen-lg mx-auto space-x-8 text-xs font-normal">
         <div className="flex items-center space-x-4">
           <EuLogo className="flex-shrink-0 h-6" />
           <span>
@@ -60,7 +60,16 @@ export function PageFooter(): JSX.Element {
         <div className="flex items-center justify-end space-x-4">
           <span className="text-right">
             Except where otherwise noted, content on this site is licensed under
-            a Creative Commons Attribution 4.0 International license.
+            a{' '}
+            <a
+              href="https://creativecommons.org/licenses/by/4.0/"
+              target="_blank"
+              rel="noopener noreferrer license"
+              className="transition rounded hover:text-white focus:outline-none focus-visible:ring focus-visible:ring-neutral-400"
+            >
+              Creative Commons Attribution 4.0 International license
+            </a>
+            .
           </span>
           <span className="flex items-center flex-shrink-0">
             <CcLogo className="w-6 h-6" />

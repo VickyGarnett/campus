@@ -128,7 +128,7 @@ export default function CategoriesPage(
           produced.
         </p>
         <section>
-          <ul className="grid lg:grid-cols-2 lg:gap-8">
+          <ul className="grid gap-8 lg:grid-cols-2">
             {categories.items.map((category) => {
               return (
                 <li key={category.id}>
@@ -143,7 +143,7 @@ export default function CategoriesPage(
                     ) : null}
                     <div className="flex-1 p-10 space-y-4">
                       <Link href={routes.source(category.id)}>
-                        <a className="transition block rounded hover:text-primary-600 focus:outline-none focus-visible:ring focus-visible:ring-primary-600">
+                        <a className="block transition rounded hover:text-primary-600 focus:outline-none focus-visible:ring focus-visible:ring-primary-600">
                           <h2 className="text-2xl font-bold">
                             {category.name}
                           </h2>
