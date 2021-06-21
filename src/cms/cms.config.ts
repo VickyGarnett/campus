@@ -923,7 +923,6 @@ export const config: CmsConfig = {
     auth_endpoint: 'api/auth/github',
     auth_scope: 'repo', // TODO: 'public_repo'
     open_authoring: true,
-    // @ts-expect-error Missing in upstream types.
     always_fork: true,
     squash_merges: true,
     commit_messages: {

@@ -568,9 +568,7 @@ function EventSession(props: EventSessionProps) {
                           >
                             <Icon
                               icon={OrcidIcon}
-                              height="0.75em"
-                              width="0.75em"
-                              className="mr-1"
+                              className="w-[0.75em] h-[0.75em] mr-1"
                             />
                             <span>ORCID</span>
                           </a>
