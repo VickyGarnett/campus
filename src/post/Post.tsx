@@ -3,17 +3,21 @@ import { createElement } from 'react'
 
 import type { Post as PostData } from '@/api/cms/post'
 import { Svg as AvatarIcon } from '@/assets/icons/avatar.svg'
+import { Svg as FacebookIcon } from '@/assets/icons/facebook.svg'
 import { Svg as PencilIcon } from '@/assets/icons/pencil.svg'
+import { Svg as TwitterIcon } from '@/assets/icons/twitter.svg'
 import { Icon } from '@/common/Icon'
 import { useI18n } from '@/i18n/useI18n'
 import { Mdx as PostContent } from '@/mdx/Mdx'
 import type { ComponentMap } from '@/mdx/components'
+import { useSiteMetadata } from '@/metadata/useSiteMetadata'
 import { routes } from '@/navigation/routes.config'
 import { EditLink } from '@/post/EditLink'
 import { ExternalResource } from '@/post/ExternalResource'
 import { SideNote } from '@/post/SideNote'
 import { VideoCard } from '@/post/VideoCard'
 import { Quiz } from '@/post/quiz/Quiz'
+import { createUrl } from '@/utils/createUrl'
 import { getDate } from '@/utils/getDate'
 import { getFullName } from '@/utils/getFullName'
 import type { ISODateString } from '@/utils/ts/aliases'
@@ -156,6 +160,7 @@ export function Post(props: PostProps): JSX.Element {
         <PostContent {...post} components={components} />
       </div>
       <footer>
+        <SocialShareLinks post={post} />
         {lastUpdatedAt != null ? (
           <p className="text-sm text-right text-neutral-500">
             <span>Last updated: </span>
@@ -236,5 +241,76 @@ export function Post(props: PostProps): JSX.Element {
         </div>
       </footer>
     </article>
+  )
+}
+
+interface SocialShareLinks {
+  post: PostProps['post']
+}
+
+function SocialShareLinks(props: SocialShareLinks) {
+  const { url: siteUrl, twitter } = useSiteMetadata()
+
+  const { post } = props
+  const { data, id } = post
+  const { metadata } = data
+
+  const url = String(
+    createUrl({
+      baseUrl: siteUrl,
+      path: routes.resource(id).pathname,
+    }),
+  )
+
+  return (
+    <div className="flex items-center justify-center my-8 space-x-4 text-neutral-500">
+      <Link
+        href={String(
+          createUrl({
+            baseUrl: 'https://www.twitter.com',
+            path: '/intent/tweet',
+            query: {
+              text: metadata.title,
+              url,
+              via: twitter,
+              related:
+                twitter != null
+                  ? String(
+                      createUrl({
+                        baseUrl: 'https://www.twitter.com',
+                        path: twitter,
+                      }),
+                    )
+                  : undefined,
+            },
+          }),
+        )}
+      >
+        <a className="transition rounded-full hover:text-primary-600 focus:outline-none focus-visible:ring focus-visible:ring-primary-600">
+          <Icon icon={TwitterIcon} />
+          <span className="sr-only">Share link on Twitter</span>
+        </a>
+      </Link>
+      <Link
+        href={String(
+          createUrl({
+            baseUrl: 'https://www.facebook.com',
+            path: '/sharer/sharer.php',
+            query: {
+              u: url,
+              title: metadata.title,
+            },
+          }),
+        )}
+      >
+        <a
+          a
+          className="transition rounded-full hover:text-primary-600 focus:outline-none focus-visible:ring focus-visible:ring-primary-600"
+        >
+          <Icon icon={FacebookIcon} />
+          <span className="sr-only">Share link on Facebook</span>
+        </a>
+      </Link>
+    </div>
   )
 }
