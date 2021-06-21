@@ -86,7 +86,12 @@ export function AlgoliaAutocomplete(
     }
   }, [props, router])
 
-  return <div ref={containerRef} />
+  return (
+    <div
+      ref={containerRef}
+      className="transition rounded hover:ring hover:ring-primary-600"
+    />
+  )
 }
 
 interface MatchProps {
