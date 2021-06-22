@@ -121,7 +121,7 @@ export default function DocsPage(props: DocsPageProps): JSX.Element {
         canonicalUrl={canonicalUrl}
         languageAlternates={languageAlternates}
       />
-      <PageContent className="grid w-full max-w-screen-lg px-6 py-24 mx-auto space-y-24 2xl:grid-cols-content 2xl:space-y-0 2xl:gap-x-10 2xl:max-w-none">
+      <PageContent className="grid w-full max-w-screen-lg px-6 py-16 mx-auto space-y-24 2xl:grid-cols-content 2xl:space-y-0 2xl:gap-x-10 2xl:max-w-none">
         <aside className="hidden w-full max-w-xs space-y-2 text-sm text-neutral-500 2xl:block 2xl:justify-self-end">
           <DocsNav nav={nav} />
         </aside>

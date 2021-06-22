@@ -21,7 +21,7 @@ export const eventSessionLinkEditorWidget: EditorComponentOptions = {
       required: false,
     },
   ],
-  pattern: /^<EventSessionLink([^]*?)\/>$/,
+  pattern: /^<Link([^]*?)\/>$/,
   fromBlock(match) {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const attrs = match[1]!

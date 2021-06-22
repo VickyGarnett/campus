@@ -12,8 +12,12 @@ export const eventSessionDownloadEditorWidget: EditorComponentOptions = {
       label: 'File',
       widget: 'file',
       // @ts-expect-error Missing in upstream type.
-      media_folder: '../../{{media_folder}}/../../documents/events/{{slug}}',
-      public_folder: '{{public_folder}}/../../documents/events/{{slug}}',
+      media_folder:
+        // '../../{{media_folder}}/../../documents/cms/events/{{slug}}',
+        '../../public/assets/documents/cms/events/{{slug}}',
+      public_folder:
+        // '{{public_folder}}/../../documents/cms/events/{{slug}}',
+        '/assets/documents/cms/events/{{slug}}',
     },
     {
       name: 'label',
@@ -23,7 +27,7 @@ export const eventSessionDownloadEditorWidget: EditorComponentOptions = {
       required: false,
     },
   ],
-  pattern: /^<EventSessionDownload([^]*?)\/>$/,
+  pattern: /^<Download([^]*?)\/>$/,
   fromBlock(match) {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const attrs = match[1]!

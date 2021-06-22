@@ -254,7 +254,7 @@ function PostPage(props: PostPageProps) {
                         <a className="flex items-center transition rounded hover:text-primary-600 focus:outline-none focus-visible:ring focus-visible:ring-primary-600">
                           <ContentTypeIcon
                             type={resource.type.id}
-                            className="w-3 h-3 mr-1.5 text-primary-600"
+                            className="w-3 h-3 mr-1.5 text-primary-600 flex-shrink-0"
                           />
                           <span>{resource.title}</span>
                         </a>

@@ -101,9 +101,20 @@ export function EventPreview(
                       }),
                     )
                   : []
-                // TODO:
-                const body = { code: '' }
-                return { ...session, speakers, body }
+
+                const body =
+                  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+                  session.body != null
+                    ? String(
+                        await compile(session.body, {
+                          outputFormat: 'function-body',
+                          useDynamicImport: false,
+                          // FIXME: plugins like syntax highlighter
+                        }),
+                      )
+                    : ''
+
+                return { ...session, speakers, body: { code: body } }
               }),
             )
           : []
@@ -127,7 +138,6 @@ export function EventPreview(
           await compile(body, {
             outputFormat: 'function-body',
             useDynamicImport: false,
-            // FIXME: plugins like syntax highlighter
           }),
         )
 

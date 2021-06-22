@@ -26,7 +26,10 @@ function withSpeakers() {
           )
           speakers.push({
             speaker: speaker != null ? speaker.value : undefined,
-            children: undefined,
+            children: processor.stringify({
+              type: 'root',
+              children: node.children,
+            }),
           })
           break
         }
@@ -72,7 +75,6 @@ export const eventSessionSpeakersEditorWidget: EditorComponentOptions = {
           label: 'Speaker',
           widget: 'relation',
           collection: 'people',
-          multiple: true,
           value_field: '{{slug}}',
           search_fields: ['firstName', 'lastName'],
           display_fields: ['{{firstName}} {{lastName}}'],
@@ -107,7 +109,41 @@ export const eventSessionSpeakersEditorWidget: EditorComponentOptions = {
 
     const ast = {
       type: 'root',
-      children: [],
+      children: [
+        {
+          type: 'mdxJsxFlowElement',
+          name: 'Speakers',
+          children: speakers.map((speaker: any) => {
+            const attributes: Array<any> = []
+
+            if (speaker.speaker != null) {
+              attributes.push({
+                type: 'mdxJsxAttribute',
+                name: 'speaker',
+                value: speaker.speaker,
+              })
+            }
+
+            const children: Array<any> = []
+
+            if (speaker.children != null) {
+              // TODO: in case this should be a markdown field
+              // children.push(processor.parse(speaker.children))
+              children.push({
+                type: 'text',
+                value: speaker.children.trim(),
+              })
+            }
+
+            return {
+              type: 'mdxJsxFlowElement',
+              name: 'Speaker',
+              attributes,
+              children,
+            }
+          }),
+        },
+      ],
     }
 
     return String(processor.stringify(ast))

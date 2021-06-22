@@ -1,6 +1,4 @@
 import type { EditorView } from '@codemirror/basic-setup'
-import { basicSetup, EditorState } from '@codemirror/basic-setup'
-import { xml } from '@codemirror/lang-xml'
 import type { RefObject } from 'react'
 import { useEffect, useState } from 'react'
 

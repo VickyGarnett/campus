@@ -444,9 +444,9 @@ function EventSession(props: EventSessionProps) {
           download
           target="_blank"
           rel="noopener noreferrer"
-          className="!flex items-center justify-center text-white link-download"
+          className="!flex items-center justify-center text-white link-download p-[1vw]"
         >
-          <FaFilePdf size="1.5em" />
+          <FaFilePdf size="1.5em" className="w-full h-full" />
           <span className="sr-only">Download the session synthesis</span>
         </a>
       </div>
@@ -499,7 +499,7 @@ function EventSession(props: EventSessionProps) {
                 <div className="session__speakers">
                   <h3 className="h2">
                     <strong>
-                      Speaker{props.children.length > 1 ? 's' : ''}
+                      Speaker{props.children?.length > 1 ? 's' : ''}
                     </strong>
                     <span>for this session</span>
                   </h3>
