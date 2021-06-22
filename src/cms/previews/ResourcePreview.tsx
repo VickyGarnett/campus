@@ -92,6 +92,8 @@ export function ResourcePreview(
             ? resolveRelation(['licence', 'licences'], frontmatter.licence)
             : null
 
+        // TODO: preview should take care of (i) stringify Date objects, (ii) ensure values for required fields
+
         const metadata = {
           ...frontmatter,
           authors,

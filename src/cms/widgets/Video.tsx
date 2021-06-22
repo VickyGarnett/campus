@@ -14,7 +14,9 @@ export const videoEditorWidget: EditorComponentOptions = {
       label: 'Provider',
       widget: 'select',
       // @ts-expect-error Missing in upstream type.
-      options: videoProviders,
+      options: Object.entries(videoProviders).map(([value, label]) => {
+        return { value, label }
+      }),
       default: 'youtube',
     },
     { name: 'id', label: 'Video ID', widget: 'string' },
@@ -24,21 +26,21 @@ export const videoEditorWidget: EditorComponentOptions = {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const attrs = match[1]!
 
-    const id = /id="([^"]*)"/.exec(attrs)
     const provider = /provider="([^"]*)"/.exec(attrs)
+    const id = /id="([^"]*)"/.exec(attrs)
 
     return {
-      id: id ? id[1] : undefined,
       provider: provider ? provider[1] : undefined,
+      id: id ? id[1] : undefined,
     }
   },
   toBlock(data) {
     let attrs = ''
 
     // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-    if (data.id) attrs += ` id="${data.id}"`
-    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
     if (data.provider) attrs += ` provider="${data.provider}"`
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+    if (data.id) attrs += ` id="${data.id}"`
 
     return `<Video${attrs} />`
   },

@@ -1,8 +1,12 @@
 import { createUrl } from '@/utils/createUrl'
 
-export const videoProviders = ['youtube', 'vimeo', 'nakala'] as const
+export const videoProviders = {
+  youtube: 'YouTube',
+  vimeo: 'Vimeo',
+  nakala: 'Nakala',
+} as const
 
-export type VideoProvider = typeof videoProviders[number]
+export type VideoProvider = keyof typeof videoProviders
 
 export interface VideoProps {
   id: string
