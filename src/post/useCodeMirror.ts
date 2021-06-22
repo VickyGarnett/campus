@@ -1,4 +1,5 @@
-import { basicSetup, EditorState, EditorView } from '@codemirror/basic-setup'
+import type { EditorView } from '@codemirror/basic-setup'
+import { basicSetup, EditorState } from '@codemirror/basic-setup'
 import { xml } from '@codemirror/lang-xml'
 import type { RefObject } from 'react'
 import { useEffect, useState } from 'react'
@@ -38,29 +39,40 @@ export function useCodeMirror(
   }
 
   useEffect(() => {
+    let view: EditorView | null = null
+
+    async function setup() {
+      const { basicSetup, EditorState, EditorView } = await import(
+        '@codemirror/basic-setup'
+      )
+      const { xml } = await import('@codemirror/lang-xml')
+
+      const styles = EditorView.theme({
+        '.cm-focused': { outline: 'none' },
+        '.cm-scroller': { overflow: 'auto' },
+        '.cm-content': {
+          fontFamily: '"Fira Code", "Source Code Pro", ui-monospace, monospace',
+          fontSize: '14px',
+        },
+      })
+
+      view = new EditorView({
+        state: EditorState.create({
+          extensions: [styles, basicSetup, xml()],
+          doc: initialValue,
+        }),
+        parent: ref.current ?? undefined,
+      })
+
+      setEditor(view)
+    }
+
     if (ref.current === null) return
 
-    const styles = EditorView.theme({
-      '.cm-focused': { outline: 'none' },
-      '.cm-scroller': { overflow: 'auto' },
-      '.cm-content': {
-        fontFamily: '"Fira Code", "Source Code Pro", ui-monospace, monospace',
-        fontSize: '14px',
-      },
-    })
-
-    const view = new EditorView({
-      state: EditorState.create({
-        extensions: [styles, basicSetup, xml()],
-        doc: initialValue,
-      }),
-      parent: ref.current,
-    })
-
-    setEditor(view)
+    setup()
 
     return () => {
-      view.destroy()
+      view?.destroy()
     }
   }, [ref, initialValue])
 
