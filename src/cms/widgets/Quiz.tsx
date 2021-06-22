@@ -179,7 +179,7 @@ export const quizEditorWidget: EditorComponentOptions = {
       ],
     },
   ],
-  pattern: /^<Quiz>\n([^]*?)\n<\/Quiz>/, // NOTE: Intentionally not ending with `$`
+  pattern: /^<Quiz>\n([^]*?)\n<\/Quiz>/,
   fromBlock(match) {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const children = match[1]!

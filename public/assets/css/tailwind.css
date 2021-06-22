@@ -1915,6 +1915,10 @@ video {
   padding: 0px !important;
 }
 
+.p-\[1vw\] {
+  padding: 1vw;
+}
+
 .p-12 {
   padding: 3rem;
 }

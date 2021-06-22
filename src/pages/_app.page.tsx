@@ -13,6 +13,7 @@ import { Favicons } from '@/assets/Favicons'
 import { WebManifest } from '@/assets/WebManifest'
 import { PageLayout } from '@/common/PageLayout'
 import { Providers } from '@/common/Providers'
+import { useNProgress } from '@/common/useNProgress'
 import { ClientError } from '@/error/ClientError'
 
 /**
@@ -26,6 +27,7 @@ export default function App(props: AppProps): JSX.Element {
   const Layout = Component.Layout ?? PageLayout
 
   useAnalytics()
+  useNProgress()
 
   return (
     <Fragment>

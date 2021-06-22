@@ -21,7 +21,7 @@ export const videoEditorWidget: EditorComponentOptions = {
     },
     { name: 'id', label: 'Video ID', widget: 'string' },
   ],
-  pattern: /^<Video([^]*?)\/>$/,
+  pattern: /^<Video([^]*?)\/>/,
   fromBlock(match) {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const attrs = match[1]!

@@ -27,7 +27,7 @@ export const eventSessionDownloadEditorWidget: EditorComponentOptions = {
       required: false,
     },
   ],
-  pattern: /^<Download([^]*?)\/>$/,
+  pattern: /^<Download([^]*?)\/>/,
   fromBlock(match) {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const attrs = match[1]!

@@ -28,7 +28,7 @@ export const sideNoteEditorWidget: EditorComponentOptions = {
       // modes: ['raw'],
     },
   ],
-  pattern: /^<SideNote(.*?)>\n([^]*?)\n<\/SideNote>$/,
+  pattern: /^<SideNote(.*?)>\n([^]*?)\n<\/SideNote>/,
   fromBlock(match) {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const attrs = match[1]!

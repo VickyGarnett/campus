@@ -89,7 +89,7 @@ export const eventSessionSpeakersEditorWidget: EditorComponentOptions = {
       ],
     },
   ],
-  pattern: /^<Speakers>\n([^]*?)\n<\/Speakers>/, // NOTE: Intentionally not ending with `$`
+  pattern: /^<Speakers>\n([^]*?)\n<\/Speakers>/,
   fromBlock(match) {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const children = match[1]!

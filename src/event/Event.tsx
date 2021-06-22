@@ -510,10 +510,10 @@ function EventSession(props: EventSessionProps) {
               )
             },
             Speaker: function EventSessionSpeaker(props) {
-              // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-              const speaker = session.speakers?.find(
-                (speaker) => speaker.id === props.speaker,
-              )
+              const speaker = session.speakers
+                // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+                ?.filter(Boolean)
+                .find((speaker) => speaker.id === props.speaker)
 
               if (speaker == null) return null
 
