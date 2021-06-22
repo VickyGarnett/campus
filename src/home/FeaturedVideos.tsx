@@ -4,7 +4,7 @@ import { Svg as PlayIcon } from '@/assets/icons/play.svg'
 import { Icon } from '@/common/Icon'
 import { LightBox } from '@/common/LightBox'
 import { Section } from '@/common/Section'
-import { YouTube } from '@/common/YouTube'
+import { Video } from '@/common/Video'
 import { useDialogState } from '@/common/useDialogState'
 import type { HomePageProps } from '@/pages/index.page'
 
@@ -41,8 +41,6 @@ type VideoCardProps = FeaturedVideosProps['videos'][number]
 function VideoCard(props: VideoCardProps) {
   const lightbox = useDialogState()
 
-  const VideoProvider = YouTube
-
   return (
     <Fragment>
       <button
@@ -57,7 +55,7 @@ function VideoCard(props: VideoCardProps) {
         </div>
       </button>
       <LightBox {...lightbox}>
-        <VideoProvider id={props.id} />
+        <Video id={props.id} />
       </LightBox>
     </Fragment>
   )

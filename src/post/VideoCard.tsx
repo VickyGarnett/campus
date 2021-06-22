@@ -3,16 +3,17 @@ import { Fragment } from 'react'
 import { Svg as PlayIcon } from '@/assets/icons/play.svg'
 import { Icon } from '@/common/Icon'
 import { LightBox } from '@/common/LightBox'
-import { YouTube } from '@/common/YouTube'
+import type { VideoProvider } from '@/common/Video'
+import { Video } from '@/common/Video'
 import { useDialogState } from '@/common/useDialogState'
 import type { FilePath } from '@/utils/ts/aliases'
 
 export interface VideoCardProps {
   id: string
+  provider?: VideoProvider
   title: string
   subtitle: string
   image: FilePath
-  provider?: 'youtube'
 }
 
 /**
@@ -20,8 +21,6 @@ export interface VideoCardProps {
  */
 export function VideoCard(props: VideoCardProps): JSX.Element {
   const lightbox = useDialogState()
-
-  const VideoProvider = YouTube
 
   return (
     <Fragment>
@@ -40,7 +39,7 @@ export function VideoCard(props: VideoCardProps): JSX.Element {
         <p className="text-neutral-500">{props.subtitle}</p>
       </button>
       <LightBox {...lightbox}>
-        <VideoProvider id={props.id} />
+        <Video id={props.id} provider={props.provider} />
       </LightBox>
     </Fragment>
   )

@@ -23,7 +23,7 @@ const NetlifyCms = dynamic(
     )
     const { EventPreview } = await import('@/cms/previews/EventPreview')
     const { sideNoteEditorWidget } = await import('@/cms/widgets/SideNote')
-    const { youTubeEditorWidget } = await import('@/cms/widgets/YouTube')
+    const { videoEditorWidget } = await import('@/cms/widgets/Video')
     const { videoCardEditorWidget } = await import('@/cms/widgets/VideoCard')
     const { externalResourceEditorWidget } = await import(
       '@/cms/widgets/ExternalResource'
@@ -75,7 +75,7 @@ const NetlifyCms = dynamic(
 
     /** Register richtext editor widgets. */
     Cms.registerEditorComponent(sideNoteEditorWidget)
-    Cms.registerEditorComponent(youTubeEditorWidget)
+    Cms.registerEditorComponent(videoEditorWidget)
     Cms.registerEditorComponent(videoCardEditorWidget)
     Cms.registerEditorComponent(externalResourceEditorWidget)
     Cms.registerEditorComponent(quizEditorWidget)
@@ -133,6 +133,7 @@ export default function AdminPage(): JSX.Element {
           #nc-root .cms-editor-visual div[data-slate-editor='true'] h4,
           #nc-root .cms-editor-visual div[data-slate-editor='true'] h5 {
             margin-bottom: 1rem;
+            line-height: 1.125;
           }
         `}
       </style>

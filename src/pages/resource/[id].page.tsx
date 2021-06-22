@@ -229,7 +229,7 @@ function PostPage(props: PostPageProps) {
         </aside>
         <div className="space-y-8">
           <Post post={post} lastUpdatedAt={lastUpdatedAt} />
-          <div className="2xl:hidden max-w-80ch w-full mx-auto space-y-8">
+          <div className="w-full mx-auto space-y-8 2xl:hidden max-w-80ch">
             <CiteAs
               id={post.id}
               metadata={metadata}
@@ -241,7 +241,7 @@ function PostPage(props: PostPageProps) {
             />
             <ReUseConditions className="text-sm text-neutral-500" />
           </div>
-          <div className="max-w-80ch w-full mx-auto space-y-8">
+          <div className="w-full mx-auto space-y-8 max-w-80ch">
             <div className="space-y-1.5 mt-8 text-sm text-neutral-500">
               <h2 className="text-xs font-bold tracking-wide uppercase text-neutral-600">
                 Related resources
@@ -251,7 +251,7 @@ function PostPage(props: PostPageProps) {
                   return (
                     <li key={resource.id}>
                       <Link href={routes.resource(resource.id)}>
-                        <a className="flex items-center transition hover:text-primary-600 focus:outline-none focus-visible:ring focus-visible:ring-primary-600 rounded">
+                        <a className="flex items-center transition rounded hover:text-primary-600 focus:outline-none focus-visible:ring focus-visible:ring-primary-600">
                           <ContentTypeIcon
                             type={resource.type.id}
                             className="w-3 h-3 mr-1.5 text-primary-600"
@@ -395,7 +395,7 @@ function ReUseConditions(props: ReUseConditionsProps) {
       <p>
         Resources hosted on DARIAH-Campus are subjects to the{' '}
         <Link href={routes.docs('reuse-charter')}>
-          <a className="transition text-primary-600 hover:text-primary-700 focus:outline-none focus-visible:ring focus-visible:ring-primary-600 rounded">
+          <a className="transition rounded text-primary-600 hover:text-primary-700 focus:outline-none focus-visible:ring focus-visible:ring-primary-600">
             DARIAH-Campus Training Materials Reuse Charter
           </a>
         </Link>
@@ -426,7 +426,7 @@ function Curricula(props: CurriculaProps) {
           return (
             <li key={curriculum.id}>
               <Link href={routes.collection(curriculum.id)}>
-                <a className="flex items-center transition hover:text-primary-600 focus:outline-none focus-visible:ring focus-visible:ring-primary-600 rounded">
+                <a className="flex items-center transition rounded hover:text-primary-600 focus:outline-none focus-visible:ring focus-visible:ring-primary-600">
                   <Icon
                     icon={CurriculumIcon}
                     className="w-4 h-4 text-primary-600 mr-1.5"

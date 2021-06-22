@@ -1,6 +1,6 @@
 import type { ComponentType } from 'react'
 
-import { YouTube } from '@/common/YouTube'
+import { Video } from '@/common/Video'
 import { Grid } from '@/post/Grid'
 
 // export type ComponentType =
@@ -48,7 +48,8 @@ export type ComponentMap = {
  */
 const legacyComponents: ComponentMap = {
   Flex: Grid,
-  Youtube: YouTube,
+  Youtube: Video,
+  YouTube: Video,
 }
 
 /**
@@ -57,5 +58,5 @@ const legacyComponents: ComponentMap = {
 export const components: ComponentMap = {
   ...legacyComponents,
   Grid,
-  YouTube,
+  Video,
 }

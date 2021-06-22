@@ -25,11 +25,11 @@ export function LightBox(props: LightBoxProps): JSX.Element {
         className="absolute !inset-0 flex flex-col justify-between !p-4 !m-0 !w-full space-y-4 text-white !bg-neutral-800"
       >
         <header className="flex justify-end">
-          <button onClick={props.close}>
-            <Icon
-              icon={CloseIcon}
-              className="w-10 h-10 p-2 transition rounded-full hover:bg-neutral-700"
-            />
+          <button
+            onClick={props.close}
+            className="transition rounded-full hover:bg-neutral-700 focus:outline-none focus-visible:ring focus-visible:ring-white"
+          >
+            <Icon icon={CloseIcon} className="w-10 h-10 p-2" />
             <span className="sr-only">Close</span>
           </button>
         </header>
