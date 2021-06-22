@@ -1547,12 +1547,12 @@
     left: 0;
   }
 }
-@media screen and (max-width: em(670)) {
+@media screen and (max-width: 41.875em) {
   #nav-anchors {
     display: none;
   }
 }
-@media screen and (max-width: em(1010)) {
+@media screen and (max-width: 63.125em) {
   #body:before {
     background-color: orange;
   }
@@ -1781,7 +1781,7 @@
     font-size: 1.6rem;
   }
 }
-@media screen and (max-width: em(880)) {
+@media screen and (max-width: 55em) {
   #body:before {
     background-color: orangered;
   }
@@ -2310,7 +2310,8 @@
     font-size: 1.4rem;
   }
 }
-@media screen and (min-width: em(1650)) {
+
+@media screen and (min-width: 103.125em) {
   #body:before {
     background-color: aqua;
   }

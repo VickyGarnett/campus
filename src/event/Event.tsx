@@ -123,7 +123,7 @@ function EventOverview(props: EventOverviewProps) {
                   },
                   h2: function EventSubtitle(props) {
                     return (
-                      <h2 className="h2">
+                      <h2 className="font-bold h2">
                         <span>{props.children}</span>
                       </h2>
                     )
@@ -153,11 +153,19 @@ function EventOverview(props: EventOverviewProps) {
       </div>
 
       {aboutDialog.isOpen ? (
-        <EventOverlay content={about.code} onDismiss={aboutDialog.close} />
+        <EventOverlay
+          content={about.code}
+          label="About the event"
+          onDismiss={aboutDialog.close}
+        />
       ) : null}
 
       {prepDialog.isOpen && prep != null ? (
-        <EventOverlay content={prep.code} onDismiss={prepDialog.close} />
+        <EventOverlay
+          content={prep.code}
+          label="Notes for preparation"
+          onDismiss={prepDialog.close}
+        />
       ) : null}
     </section>
   )
@@ -165,6 +173,7 @@ function EventOverview(props: EventOverviewProps) {
 
 interface EventOverlayProps {
   content: string
+  label: string
   onDismiss: () => void
 }
 
@@ -172,12 +181,13 @@ interface EventOverlayProps {
  * Event overlay.
  */
 function EventOverlay(props: EventOverlayProps) {
-  const { content, onDismiss } = props
+  const { content, label, onDismiss } = props
 
   return (
     <DialogOverlay onDismiss={onDismiss} className="z-30">
       <DialogContent
         id="eventoverlay"
+        aria-label={props.label}
         // !important to overwrite reach default styles
         className="mx-auto !w-3/4 !my-[3.125vw] !p-0"
       >
@@ -253,7 +263,7 @@ function EventToc(props: EventTocProps) {
     <ul className="home__index">
       {sessions.map((session, index) => (
         <li key={index}>
-          <a href={`#session-${index + 1}`}>
+          <a href={`#session-${index}`}>
             <small>
               <span>Session {index + 1}</span>
             </small>
@@ -275,7 +285,7 @@ interface EventSocialLinksProps {
 function EventSocialLinks(props: EventSocialLinksProps) {
   const { social } = props
 
-  if (social == null) return null
+  if (social == null) return <div />
 
   return (
     <ul className="home__share">
@@ -381,7 +391,13 @@ function EventNav(props: EventNavProps) {
         ) : null}
         {synthesis != null ? (
           <li className="download">
-            <a href={synthesis} download className="!flex items-center">
+            <a
+              href={synthesis}
+              download
+              className="!flex items-center"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <FaFilePdf size="0.75em" className="mr-2.5" />
               <span>Download the full synthesis</span>
             </a>
@@ -419,13 +435,15 @@ function EventSession(props: EventSessionProps) {
   return (
     <div id={`session-${index}`} className="session">
       <div className="session__heading">
-        <h1 className="h1">
+        <h1 className="font-bold h1">
           <span className="square" />
           <strong>{session.title}</strong>
         </h1>
         <a
           href={session.synthesis}
           download
+          target="_blank"
+          rel="noopener noreferrer"
           className="!flex items-center justify-center text-white link-download"
         >
           <FaFilePdf size="1.5em" />
@@ -443,13 +461,15 @@ function EventSession(props: EventSessionProps) {
                   <a
                     href={props.download}
                     download
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="link-download !flex"
                   >
                     <span className="mr-2.5 text-event-orange flex items-center">
                       <FaFilePdf size="1.8em" />
                     </span>
                     <strong>
-                      Download the slides
+                      {props.children ?? 'Download the slides'}
                       <br />
                       <span>(PDF)</span>
                     </strong>
@@ -463,11 +483,13 @@ function EventSession(props: EventSessionProps) {
                   <a
                     href={props.link}
                     className="link-download !flex items-center"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     <span className="mr-2.5 text-event-orange flex items-center">
                       <FaCloud size="1.8em" />
                     </span>
-                    <strong>{props.link}</strong>
+                    <strong>{props.children ?? props.link}</strong>
                   </a>
                 </div>
               )
@@ -610,6 +632,20 @@ function EventSession(props: EventSessionProps) {
                 </a>
               )
             },
+            ul: function List(props) {
+              return (
+                <ul {...props} className="list-standard text-event-violet1">
+                  {props.children}
+                </ul>
+              )
+            },
+            ol: function OrderedList(props) {
+              return (
+                <ol {...props} className="list-ordered text-event-violet1">
+                  {props.children}
+                </ol>
+              )
+            },
           }}
         />
         {session.synthesis != null ? (
@@ -617,6 +653,8 @@ function EventSession(props: EventSessionProps) {
             <a
               href={session.synthesis}
               className="link-download !flex items-center"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <span className="!text-event-orange">
                 <FaFilePdf size="1.8em" className="mr-2.5" />
@@ -702,21 +740,32 @@ function EventFooter(props: EventFooterProps) {
         <ul className="footer__links">
           {hasAboutOverlay ? (
             <li>
-              <button onClick={aboutDialog.open} className="link-popin">
+              <button
+                onClick={aboutDialog.open}
+                className="font-bold link-popin hover:text-event-orange transition ease-out duration-[400ms] hover:duration-150"
+              >
                 About
               </button>
             </li>
           ) : null}
           {hasPrepOverlay ? (
             <li>
-              <button onClick={prepDialog.open} className="link-popin">
+              <button
+                onClick={prepDialog.open}
+                className="font-bold link-popin hover:text-event-orange transition ease-out duration-[400ms] hover:duration-150"
+              >
                 Prep
               </button>
             </li>
           ) : null}
           {social?.flickr != null ? (
             <li>
-              <a href={social.flickr} target="_blank" rel="noopener noreferrer">
+              <a
+                href={social.flickr}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center"
+              >
                 <FaFlickr size="0.75em" className="mr-1" />
                 See the photos
               </a>
@@ -724,7 +773,13 @@ function EventFooter(props: EventFooterProps) {
           ) : null}
           {synthesis != null ? (
             <li className="download">
-              <a href={synthesis} download>
+              <a
+                href={synthesis}
+                download
+                className="flex items-center"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <FaFilePdf size="0.75em" className="mr-1" />
                 Download the full synthesis
               </a>
@@ -740,12 +795,12 @@ function EventFooter(props: EventFooterProps) {
                   href={partner.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex w-full h-full"
+                  className="flex items-center w-full h-full"
                 >
                   {partner.logo != null ? (
                     <img
                       alt={partner.name}
-                      className="text-white opacity-75 flex-1 transition duration-[400ms] ease-out hover:opacity-100 hover:duration-150"
+                      className="text-white opacity-75 flex-1 h-full transition duration-[400ms] ease-out hover:opacity-100 hover:duration-150 object-contain"
                       src={partner.logo}
                       loading="lazy"
                     />
