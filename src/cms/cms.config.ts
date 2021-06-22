@@ -633,7 +633,14 @@ export const collections: Record<string, CmsCollection> = {
             label: 'Content',
             hint: '',
             widget: 'markdown',
-            editor_components: ['image', 'code_block', 'Video'],
+            editor_components: [
+              'image',
+              'code_block',
+              'Video',
+              'EventSessionSpeakers',
+              'EventSessionDownload',
+              'EventSessionLink',
+            ],
           },
           {
             name: 'synthesis',

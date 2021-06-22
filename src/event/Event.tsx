@@ -80,7 +80,7 @@ function EventOverview(props: EventOverviewProps) {
     metadata
 
   return (
-    <section id="body" className="!h-screen !min-h-screen home">
+    <section id="body" className="!h-screen !min-h-screen w-full home">
       {featuredImage != null ? (
         <div className="absolute inset-0">
           <img
@@ -459,7 +459,7 @@ function EventSession(props: EventSessionProps) {
               return (
                 <div className="session__downloads">
                   <a
-                    href={props.download}
+                    href={props.href}
                     download
                     target="_blank"
                     rel="noopener noreferrer"
@@ -469,7 +469,7 @@ function EventSession(props: EventSessionProps) {
                       <FaFilePdf size="1.8em" />
                     </span>
                     <strong>
-                      {props.children ?? 'Download the slides'}
+                      {props.label ?? 'Download the slides'}
                       <br />
                       <span>(PDF)</span>
                     </strong>
@@ -481,7 +481,7 @@ function EventSession(props: EventSessionProps) {
               return (
                 <div className="session__downloads">
                   <a
-                    href={props.link}
+                    href={props.href}
                     className="link-download !flex items-center"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -489,7 +489,7 @@ function EventSession(props: EventSessionProps) {
                     <span className="mr-2.5 text-event-orange flex items-center">
                       <FaCloud size="1.8em" />
                     </span>
-                    <strong>{props.children ?? props.link}</strong>
+                    <strong>{props.label ?? props.href}</strong>
                   </a>
                 </div>
               )

@@ -17,11 +17,13 @@ const NetlifyCms = dynamic(
      */
     const { default: Cms } = await import('netlify-cms-app')
     const { nanoid } = await import('nanoid')
+
     const { ResourcePreview } = await import('@/cms/previews/ResourcePreview')
     const { ResourceCollectionPreview } = await import(
       '@/cms/previews/ResourceCollectionPreview'
     )
     const { EventPreview } = await import('@/cms/previews/EventPreview')
+
     const { sideNoteEditorWidget } = await import('@/cms/widgets/SideNote')
     const { videoEditorWidget } = await import('@/cms/widgets/Video')
     const { videoCardEditorWidget } = await import('@/cms/widgets/VideoCard')
@@ -29,6 +31,16 @@ const NetlifyCms = dynamic(
       '@/cms/widgets/ExternalResource'
     )
     const { quizEditorWidget } = await import('@/cms/widgets/Quiz')
+
+    const { eventSessionSpeakersEditorWidget } = await import(
+      '@/cms/widgets/EventSessionSpeakers'
+    )
+    const { eventSessionDownloadEditorWidget } = await import(
+      '@/cms/widgets/EventSessionDownload'
+    )
+    const { eventSessionLinkEditorWidget } = await import(
+      '@/cms/widgets/EventSessionLink'
+    )
 
     Cms.init({ config })
 
@@ -79,6 +91,9 @@ const NetlifyCms = dynamic(
     Cms.registerEditorComponent(videoCardEditorWidget)
     Cms.registerEditorComponent(externalResourceEditorWidget)
     Cms.registerEditorComponent(quizEditorWidget)
+    Cms.registerEditorComponent(eventSessionSpeakersEditorWidget)
+    Cms.registerEditorComponent(eventSessionDownloadEditorWidget)
+    Cms.registerEditorComponent(eventSessionLinkEditorWidget)
 
     return () => null
   },

@@ -7,6 +7,7 @@ import type {
   CollectionFrontmatter,
 } from '@/api/cms/collection'
 import { Preview } from '@/cms/Preview'
+import { Spinner } from '@/common/Spinner'
 import { useDebouncedState } from '@/common/useDebouncedState'
 import { Collection } from '@/post/Collection'
 
@@ -88,15 +89,20 @@ export function ResourceCollectionPreview(
     <Preview {...props}>
       {collection == null ? (
         collection === undefined ? (
-          <div>
-            <p>Trying to render preview...</p>
+          <div className="flex items-center justify-center flex-1">
+            <div className="flex flex-col items-center space-y-4">
+              <Spinner className="text-primary-600" />
+              <p>Trying to render preview...</p>
+            </div>
           </div>
         ) : (
-          <div>
-            <p>Failed to render preview.</p>
-            <p>
-              This usually indicates a syntax error in the Markdown content.
-            </p>
+          <div className="flex items-center justify-center flex-1">
+            <div className="flex flex-col items-center space-y-4">
+              <p>Failed to render preview.</p>
+              <p>
+                This usually indicates a syntax error in the Markdown content.
+              </p>
+            </div>
           </div>
         )
       ) : (
