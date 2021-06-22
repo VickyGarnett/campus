@@ -95,9 +95,10 @@ export function EventPreview(
                 const speakers = Array.isArray(session.speakers)
                   ? await Promise.all(
                       session.speakers.map((id) => {
-                        // TODO:
-                        const speaker = fieldsMetaData.getIn([]).toJS()
-                        return { id, ...speaker }
+                        return resolveRelation(
+                          ['sessions', 'speakers', 'people'],
+                          id,
+                        )
                       }),
                     )
                   : []
