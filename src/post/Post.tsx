@@ -207,7 +207,7 @@ export function Post(props: PostProps): JSX.Element {
             </div>
             <div className="flex space-x-1">
               <dt>Published:</dt>
-              <dd>{publishDate}</dd>
+              <dd>{publishDate == null ? null : formatDate(publishDate)}</dd>
             </div>
             <div className="flex space-x-1">
               <dt>Licence:</dt>
