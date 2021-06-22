@@ -342,7 +342,7 @@ export const collections: Record<string, CmsCollection> = {
         label: 'Content',
         hint: 'Description of the collection',
         widget: 'markdown',
-        editor_components: ['image', 'code-block', 'Video'],
+        editor_components: ['image', 'code-block', 'Grid', 'SideNote', 'Video'],
       },
     ],
   },
@@ -474,7 +474,7 @@ export const collections: Record<string, CmsCollection> = {
         name: 'body',
         label: 'Short description',
         widget: 'markdown',
-        editor_components: ['image', 'code-block', 'Video'],
+        editor_components: [],
         hint: '',
       },
       {
@@ -595,8 +595,12 @@ export const collections: Record<string, CmsCollection> = {
         hint: '',
         required: false,
         widget: 'file',
-        media_folder: '../../{{media_folder}}/../../documents/events/{{slug}}',
-        public_folder: '{{public_folder}}/../../documents/events/{{slug}}',
+        media_folder:
+          // '../../{{media_folder}}/../../documents/cms/events/{{slug}}',
+          '../../public/assets/documents/cms/events/{{slug}}',
+        public_folder:
+          // '{{public_folder}}/../../documents/cms/events/{{slug}}',
+          '/assets/documents/cms/events/{{slug}}',
       },
       {
         name: 'sessions',
@@ -649,8 +653,11 @@ export const collections: Record<string, CmsCollection> = {
             required: false,
             widget: 'file',
             media_folder:
-              '../../{{media_folder}}/../../documents/events/{{slug}}',
-            public_folder: '{{public_folder}}/../../documents/events/{{slug}}',
+              // '../../{{media_folder}}/../../documents/cms/events/{{slug}}',
+              '../../public/assets/documents/cms/events/{{slug}}',
+            public_folder:
+              // '{{public_folder}}/../../documents/cms/events/{{slug}}',
+              '/assets/documents/cms/events/{{slug}}',
           },
         ],
       },

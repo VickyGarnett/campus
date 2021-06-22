@@ -413,7 +413,7 @@ interface EventSessionsProps {
 }
 
 function EventSessions(props: EventSessionsProps) {
-  const { sessions } = props
+  const { sessions = [] } = props
 
   return (
     <div className="relative">
@@ -452,9 +452,16 @@ function EventSession(props: EventSessionProps) {
       </div>
 
       <div className="session__core">
+        <pre>{JSON.stringify(session.body.code)}</pre>
         <Mdx
           code={session.body.code}
           components={{
+            Download: () => null,
+            Link: () => null,
+            Speakers: () => null,
+            Speaker: () => null,
+          }}
+          _components={{
             Download: function EventSessionDownload(props) {
               return (
                 <div className="session__downloads">
@@ -510,7 +517,8 @@ function EventSession(props: EventSessionProps) {
               )
             },
             Speaker: function EventSessionSpeaker(props) {
-              const speaker = session.speakers.find(
+              // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+              const speaker = session.speakers?.find(
                 (speaker) => speaker.id === props.speaker,
               )
 
