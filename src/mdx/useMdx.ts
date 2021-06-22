@@ -6,10 +6,11 @@ import { runMdxSync } from '@/mdx/runMdxSync'
 /**
  * Hydrates pre-compiled mdx.
  */
-export function useMdx(code: string): Mdx {
-  const { MdxContent, metadata } = useMemo(() => {
+export function useMdx(code: string): Mdx | null {
+  const mdx = useMemo(() => {
+    if (code.length === 0) return null
     return runMdxSync(code)
   }, [code])
 
-  return { MdxContent, metadata }
+  return mdx
 }

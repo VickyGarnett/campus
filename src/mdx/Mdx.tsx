@@ -10,8 +10,12 @@ export interface MdxProps {
 /**
  * Renders pre-compiled mdx content.
  */
-export function Mdx(props: MdxProps): JSX.Element {
-  const { MdxContent, metadata } = useMdx(props.code)
+export function Mdx(props: MdxProps): JSX.Element | null {
+  const mdx = useMdx(props.code)
+
+  if (mdx === null) return null
+
+  const { MdxContent, metadata } = mdx
 
   return (
     <MdxContent
