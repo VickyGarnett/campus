@@ -1,4 +1,3 @@
-@charset "UTF-8";
 :root {
   --violet1: #1e396c;
   --violet1-darkened: #0d1930;
@@ -67,7 +66,7 @@
 .link-download strong span {
   color: var(--violet2);
   font-weight: normal;
-  font-size: 2rem;
+  font-size: 1.25rem;
   font-size: 1.25vw;
 }
 
@@ -150,7 +149,7 @@
 #footer .footer__partners li img {
   width: auto;
   max-width: 100%;
-  max-height: 7.5rem;
+  max-height: 4.688rem;
 }
 #footer .footer__partners li svg,
 #footer .footer__partners li img {
@@ -189,9 +188,9 @@
 
 .h1 {
   position: relative;
-  margin: 0 0 5rem;
+  margin: 0 0 3.125rem;
   text-transform: uppercase;
-  font-size: 6rem;
+  font-size: 3.75rem;
   font-size: 3.5vw;
   line-height: 1;
 }
@@ -243,7 +242,7 @@
   color: #fff;
   text-transform: uppercase;
   line-height: 0.95;
-  font-size: 1.6rem;
+  font-size: 1rem;
   font-size: 0.95vw;
   font-size: 1.05vw;
 }
@@ -270,7 +269,7 @@
   padding-bottom: 1.5vw;
   border-bottom: 2px solid var(--violet2);
   color: #000;
-  font-size: 3.4rem;
+  font-size: 2.125rem;
   font-size: 2.05vw;
   line-height: 1.15;
 }
@@ -283,13 +282,13 @@
 }
 
 .session__speakers + .h2 {
-  margin-top: 6rem;
+  margin-top: 3.75rem;
 }
 
 .h3 {
-  margin: 2.5rem 0 1.875rem;
+  margin: 1.563rem 0 1.172rem;
   color: #000;
-  font-size: 2.4rem;
+  font-size: 1.5rem;
   font-size: 1.65vw;
   line-height: 1.15;
 }
@@ -427,7 +426,7 @@
   background: var(--violet1);
   color: #fff;
   text-transform: uppercase;
-  font-size: 2.4rem;
+  font-size: 1.5rem;
   font-size: 1.5vw;
   padding: 0.5vw 0.75vw;
 }
@@ -442,7 +441,7 @@
   background: rgba(0, 0, 0, 0.75);
   padding: 0.5em 0.75em;
   color: #fff;
-  font-size: 1.6rem;
+  font-size: 1rem;
   font-size: 0.95vw;
 }
 .home
@@ -526,7 +525,7 @@
   background: var(--violet1);
   text-transform: uppercase;
   text-align: center;
-  font-size: 1.6rem;
+  font-size: 1rem;
   font-size: 0.95vw;
   font-weight: bold;
 }
@@ -585,7 +584,7 @@
   strong {
   display: block;
   padding-left: 7vw;
-  font-size: 2.4rem;
+  font-size: 1.5rem;
   font-size: 1.5vw;
   font-weight: normal;
   transition: color 400ms ease-out;
@@ -801,7 +800,7 @@
   .home__links {
   list-style: none;
   text-align: right;
-  font-size: 2.4rem;
+  font-size: 1.5rem;
   font-size: 1.5vw;
 }
 .home
@@ -967,7 +966,7 @@
 }
 .session .session__core .floated {
   width: 50%;
-  margin-bottom: 2rem;
+  margin-bottom: 1.25rem;
 }
 .session .session__core .floated .floated__caption {
   margin-top: 0.25em;
@@ -1123,7 +1122,7 @@
   > li
   .list-speakers__bio
   li {
-  font-size: 1.8rem;
+  font-size: 1.125rem;
   font-size: 1.3vw;
 }
 .session
@@ -1457,7 +1456,7 @@
   margin-left: 1.5em;
 }
 .popin-content .popin-core ul li {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.313rem;
 }
 .popin-content .popin-core ul.one-line {
   flex-wrap: wrap;
@@ -1479,7 +1478,7 @@
 .popin-content .popin-core ul img {
   height: auto;
   width: auto;
-  max-height: 7.5rem;
+  max-height: 4.688rem;
   max-width: 90%;
   margin: 2.5em auto 0;
   opacity: 0.75;
@@ -1595,7 +1594,7 @@
     li
     a
     small {
-    width: 7.5rem;
+    width: 4.688rem;
   }
   .home
     .home__wrapper-1
@@ -1607,7 +1606,7 @@
     a
     small
     span {
-    font-size: 1rem;
+    font-size: 0.625rem;
   }
   .home
     .home__wrapper-1
@@ -1618,8 +1617,8 @@
     li
     a
     strong {
-    padding-left: 8.5rem;
-    padding-top: 0.35rem;
+    padding-left: 5.313rem;
+    padding-top: 0.219rem;
   }
 
   .session
@@ -1633,29 +1632,29 @@
   }
 
   .session .session__core .floated.floated--left {
-    margin-right: 1rem;
-    padding-right: 1rem;
+    margin-right: 0.625rem;
+    padding-right: 0.625rem;
   }
   .session .session__core .floated.floated--right {
-    margin-left: 1rem;
-    padding-left: 1rem;
+    margin-left: 0.625rem;
+    padding-left: 0.625rem;
   }
 
   .link-download {
-    font-size: 1.8rem;
+    font-size: 1.125rem;
   }
 
   .link-download strong span {
-    font-size: 1.6rem;
+    font-size: 1rem;
   }
 
   #footer p,
   #footer li {
-    font-size: 1.4rem;
+    font-size: 0.875rem;
   }
 
   .h1 {
-    font-size: 2.2rem;
+    font-size: 1.375rem;
   }
 
   .h1 strong {
@@ -1667,11 +1666,11 @@
   }
 
   .h2 {
-    font-size: 2rem;
+    font-size: 1.25rem;
   }
 
   .h3 {
-    font-size: 1.8rem;
+    font-size: 1.125rem;
   }
 
   .home
@@ -1681,7 +1680,7 @@
     .home__main
     .h2
     span {
-    font-size: 2rem;
+    font-size: 1.25rem;
   }
 
   .home
@@ -1690,7 +1689,7 @@
     .home__wrapper-3
     .home__main
     .home__intro {
-    font-size: 1.8rem;
+    font-size: 1.125rem;
   }
 
   .home
@@ -1702,7 +1701,7 @@
     li
     a
     small {
-    font-size: 1.6rem;
+    font-size: 1rem;
   }
 
   .home
@@ -1714,8 +1713,8 @@
     li
     a
     strong {
-    font-size: 1.8rem;
-    padding-top: 0.5rem;
+    font-size: 1.125rem;
+    padding-top: 0.313rem;
   }
 
   .home
@@ -1724,32 +1723,32 @@
     .home__wrapper-3
     .home__aside
     .home__links {
-    font-size: 1.8rem;
+    font-size: 1.125rem;
   }
 
   .home .home__wrapper-1 .home__wrapper-2 .home__wrapper-3 .home__aside {
-    font-size: 1.6rem;
+    font-size: 1rem;
   }
 
   #nav-anchors ol li a {
-    font-size: 1.5rem;
+    font-size: 0.938rem;
   }
 
   #nav-anchors ol li a strong {
-    font-size: 1.3rem;
+    font-size: 0.813rem;
   }
 
   .session .session__core p {
-    font-size: 1.8rem;
+    font-size: 1.125rem;
   }
 
   .session .session__core .list-standard li,
   .session .session__core .list-ordered li {
-    font-size: 1.8rem;
+    font-size: 1.125rem;
   }
 
   .session .session__core .floated .floated__caption {
-    font-size: 1.4rem;
+    font-size: 0.875rem;
   }
 
   .session
@@ -1759,7 +1758,7 @@
     > li
     .list-speakers__bio
     p {
-    font-size: 1.6rem;
+    font-size: 1rem;
   }
 
   .session
@@ -1770,15 +1769,15 @@
     .list-speakers__bio
     .list-speakers__links
     > li {
-    font-size: 1.6rem;
+    font-size: 1rem;
   }
 
   .popin-content .popin-core p {
-    font-size: 1.6rem;
+    font-size: 1rem;
   }
 
   .popin-content .popin-core li {
-    font-size: 1.6rem;
+    font-size: 1rem;
   }
 }
 @media screen and (max-width: 55em) {
@@ -1826,22 +1825,22 @@
     font-size: 5vw;
   }
   #footer .footer__links {
-    margin-top: 0.5rem;
-    padding: 0.5rem 1rem;
+    margin-top: 0.313rem;
+    padding: 0.313rem 0.625rem;
   }
   #footer .footer__links li {
     display: block;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.313rem;
   }
   #footer .footer__partners {
     flex-wrap: wrap;
     align-items: flex-end;
-    margin-top: 1.5rem;
+    margin-top: 0.938rem;
   }
   #footer .footer__partners li {
     width: 33.3333%;
     margin: 0;
-    padding-bottom: 1.5rem;
+    padding-bottom: 0.938rem;
   }
   #footer .footer__partners li img {
     max-width: 80%;
@@ -1856,7 +1855,7 @@
   }
   .home .home__wrapper-1 .home__wrapper-2 .home__wrapper-3 {
     display: block;
-    padding: 2rem 0 5rem;
+    padding: 1.25rem 0 3.125rem;
   }
   .home .home__wrapper-1 .home__wrapper-2 .home__wrapper-3 .home__main,
   .home .home__wrapper-1 .home__wrapper-2 .home__wrapper-3 .home__aside,
@@ -1864,10 +1863,10 @@
     width: 100%;
   }
   .home .home__wrapper-1 .home__wrapper-2 .home__wrapper-3 .home__main .h1 {
-    margin-bottom: 5rem;
+    margin-bottom: 3.125rem;
   }
   .home .home__wrapper-1 .home__wrapper-2 .home__wrapper-3 .home__main .h1 img {
-    width: 20rem;
+    width: 12.5rem;
   }
   .home
     .home__wrapper-1
@@ -1876,8 +1875,8 @@
     .home__main
     .h1
     span {
-    margin-left: 3rem;
-    font-size: 3rem;
+    margin-left: 1.875rem;
+    font-size: 1.875rem;
   }
   .home .home__wrapper-1 .home__wrapper-2 .home__wrapper-3 .home__main .h2 span,
   .home
@@ -1886,7 +1885,7 @@
     .home__wrapper-3
     .home__main
     .home__intro {
-    padding: 0.5rem 1rem;
+    padding: 0.313rem 0.625rem;
   }
   .home
     .home__wrapper-1
@@ -1897,7 +1896,7 @@
     li
     a
     small {
-    width: 7rem;
+    width: 4.375rem;
   }
   .home
     .home__wrapper-1
@@ -1921,8 +1920,8 @@
     li
     a
     strong {
-    padding-left: 7.5rem;
-    padding-top: 0.25rem;
+    padding-left: 4.688rem;
+    padding-top: 0.156rem;
   }
   .home
     .home__wrapper-1
@@ -1946,7 +1945,7 @@
     .home__aside
     .home__share {
     position: static;
-    padding: 2rem 0;
+    padding: 1.25rem 0;
   }
   .home
     .home__wrapper-1
@@ -1956,10 +1955,10 @@
     .home__share
     li
     a {
-    width: 3rem;
-    height: 3rem;
-    line-height: 3rem;
-    font-size: 2rem;
+    width: 1.875rem;
+    height: 1.875rem;
+    line-height: 1.875rem;
+    font-size: 1.25rem;
   }
   .home
     .home__wrapper-1
@@ -1982,7 +1981,7 @@
   }
 
   .h1 {
-    margin-bottom: 2rem;
+    margin-bottom: 1.25rem;
   }
   .h1 .square::after {
     display: none;
@@ -1996,17 +1995,17 @@
   }
 
   .h2 {
-    padding-bottom: 1rem;
-    margin-top: 3.5rem;
-    margin-bottom: 1rem;
+    padding-bottom: 0.625rem;
+    margin-top: 2.188rem;
+    margin-bottom: 0.625rem;
   }
 
   .session__speakers + .h2 {
-    margin-top: 4rem;
+    margin-top: 2.5rem;
   }
 
   .h3 {
-    margin-bottom: 2rem;
+    margin-bottom: 1.25rem;
   }
 
   .h2 + .h3 {
@@ -2027,10 +2026,10 @@
   .session .session__core .clearfix > .h3,
   .session .session__core .clearfix > p,
   .session .session__core .clearfix > ul li {
-    padding-right: 1.5rem;
+    padding-right: 0.938rem;
   }
   .session .session__core {
-    padding-bottom: 5rem;
+    padding-bottom: 3.125rem;
   }
   .session .session__core p {
     word-wrap: break-word;
@@ -2049,7 +2048,7 @@
     padding-left: 0;
   }
   .session .session__core .session__speakers {
-    padding-top: 2.5rem;
+    padding-top: 1.563rem;
   }
   .session .session__core .session__speakers .h2 {
     white-space: nowrap;
@@ -2057,15 +2056,15 @@
   .session .session__core .session__speakers .list-speakers > li {
     margin-left: 6.25vw;
     margin-bottom: 0;
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
+    padding-top: 0.938rem;
+    padding-bottom: 0.938rem;
   }
   .session .session__core .session__speakers .list-speakers > li img {
     position: relative;
     float: left;
-    width: 7.5rem;
-    height: 7.5rem;
-    margin: 0 1rem 1rem -1rem;
+    width: 4.688rem;
+    height: 4.688rem;
+    margin: 0 0.625rem 0.625rem -0.625rem;
   }
   .session
     .session__core
@@ -2100,9 +2099,9 @@
     > li
     .list-speakers__bio
     .list-speakers__links {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    padding-top: 0.5rem;
+    margin-top: 0.625rem;
+    margin-bottom: 0.625rem;
+    padding-top: 0.313rem;
   }
   .session
     .session__core
@@ -2136,8 +2135,8 @@
   }
   .session .session__core .session__downloads .link-download .svg-icon,
   .session .session__core .session__downloads .link-download .uk-icon svg {
-    font-size: 3rem;
-    margin-right: 0.5rem;
+    font-size: 1.875rem;
+    margin-right: 0.313rem;
   }
   .session
     .session__core
@@ -2159,7 +2158,7 @@
     .link-download
     .uk-icon
     svg {
-    font-size: 3rem;
+    font-size: 1.875rem;
   }
 
   #nav-anchors {
@@ -2168,7 +2167,7 @@
 
   .popin-closer {
     background: var(--violet1);
-    font-size: 2.5rem;
+    font-size: 1.563rem;
     opacity: 1;
   }
 
@@ -2184,28 +2183,28 @@
   }
 
   .link-download {
-    font-size: 1.4rem;
+    font-size: 0.875rem;
   }
 
   .link-download strong span {
-    font-size: 1.3rem;
+    font-size: 0.813rem;
   }
 
   #footer p,
   #footer li {
-    font-size: 1.4rem;
+    font-size: 0.875rem;
   }
 
   .h1 {
-    font-size: 2.2rem;
+    font-size: 1.375rem;
   }
 
   .h2 {
-    font-size: 1.8rem;
+    font-size: 1.125rem;
   }
 
   .h3 {
-    font-size: 1.6rem;
+    font-size: 1rem;
   }
 
   .home
@@ -2215,7 +2214,7 @@
     .home__main
     .h2
     span {
-    font-size: 1.5rem;
+    font-size: 0.938rem;
   }
 
   .home
@@ -2224,7 +2223,7 @@
     .home__wrapper-3
     .home__main
     .home__intro {
-    font-size: 1.4rem;
+    font-size: 0.875rem;
   }
 
   .home
@@ -2236,7 +2235,7 @@
     li
     a
     small {
-    font-size: 1.3rem;
+    font-size: 0.813rem;
   }
 
   .home
@@ -2248,7 +2247,7 @@
     li
     a
     strong {
-    font-size: 1.5rem;
+    font-size: 0.938rem;
   }
 
   .home
@@ -2257,28 +2256,28 @@
     .home__wrapper-3
     .home__aside
     .home__links {
-    font-size: 1.5rem;
+    font-size: 0.938rem;
   }
 
   .home .home__wrapper-1 .home__wrapper-2 .home__wrapper-3 .home__aside {
-    font-size: 1.3rem;
+    font-size: 0.813rem;
   }
 
   #nav-anchors ol li a {
-    font-size: 1.5rem;
+    font-size: 0.938rem;
   }
 
   #nav-anchors ol li a strong {
-    font-size: 1.3rem;
+    font-size: 0.813rem;
   }
 
   .session .session__core p {
-    font-size: 1.6rem;
+    font-size: 1rem;
   }
 
   .session .session__core .list-standard li,
   .session .session__core .list-ordered li {
-    font-size: 1.6rem;
+    font-size: 1rem;
   }
 
   .session
@@ -2288,7 +2287,7 @@
     > li
     .list-speakers__bio
     p {
-    font-size: 1.4rem;
+    font-size: 0.875rem;
   }
 
   .session
@@ -2299,15 +2298,15 @@
     .list-speakers__bio
     .list-speakers__links
     > li {
-    font-size: 1.4rem;
+    font-size: 0.875rem;
   }
 
   .popin-content .popin-core p {
-    font-size: 1.4rem;
+    font-size: 0.875rem;
   }
 
   .popin-content .popin-core li {
-    font-size: 1.4rem;
+    font-size: 0.875rem;
   }
 }
 
@@ -2340,36 +2339,36 @@
   }
 
   .link-download {
-    font-size: 2.4rem;
+    font-size: 1.5rem;
   }
 
   .link-download strong span {
-    font-size: 2rem;
+    font-size: 1.25rem;
   }
 
   #footer p,
   #footer li {
-    font-size: 1.6rem;
+    font-size: 1rem;
   }
 
   .h1 {
-    font-size: 6rem;
+    font-size: 3.75rem;
   }
 
   .h2 {
-    font-size: 3.4rem;
+    font-size: 2.125rem;
   }
 
   .h3 {
-    font-size: 3rem;
+    font-size: 1.875rem;
   }
 
   .home .home__wrapper-1 .home__wrapper-2 .home__wrapper-3 .home__main .h1 {
-    margin-left: -5.5rem;
+    margin-left: -3.438rem;
   }
 
   .home .home__wrapper-1 .home__wrapper-2 .home__wrapper-3 .home__main .h1 img {
-    width: 35rem;
+    width: 21.875rem;
   }
 
   .home
@@ -2379,8 +2378,8 @@
     .home__main
     .h1
     span {
-    font-size: 5.15rem;
-    margin-left: 5.5rem;
+    font-size: 3.219rem;
+    margin-left: 3.438rem;
   }
 
   .home
@@ -2390,7 +2389,7 @@
     .home__main
     .h2
     span {
-    font-size: 2.4rem;
+    font-size: 1.5rem;
   }
 
   .home
@@ -2399,7 +2398,7 @@
     .home__wrapper-3
     .home__main
     .home__intro {
-    font-size: 1.6rem;
+    font-size: 1rem;
   }
 
   .home
@@ -2411,7 +2410,7 @@
     li
     a
     small {
-    font-size: 1.6rem;
+    font-size: 1rem;
   }
 
   .home
@@ -2423,7 +2422,7 @@
     li
     a
     strong {
-    font-size: 2.5rem;
+    font-size: 1.563rem;
   }
 
   .home
@@ -2432,7 +2431,7 @@
     .home__wrapper-3
     .home__aside
     .home__links {
-    font-size: 2.5rem;
+    font-size: 1.563rem;
   }
 
   .home
@@ -2443,32 +2442,32 @@
     .home__share
     li
     a {
-    font-size: 2.6rem;
+    font-size: 1.625rem;
   }
 
   .home .home__wrapper-1 .home__wrapper-2 .home__wrapper-3 .home__aside {
-    font-size: 1.6rem;
+    font-size: 1rem;
   }
 
   #nav-anchors ol li a {
-    font-size: 3.3rem;
+    font-size: 2.062rem;
   }
 
   #nav-anchors ol li a strong {
-    font-size: 2rem;
+    font-size: 1.25rem;
   }
 
   .session .session__core p {
-    font-size: 3rem;
+    font-size: 1.875rem;
   }
 
   .session .session__core .list-standard li,
   .session .session__core .list-ordered li {
-    font-size: 3rem;
+    font-size: 1.875rem;
   }
 
   .session .session__core .floated .floated__caption {
-    font-size: 2.8rem;
+    font-size: 1.75rem;
   }
 
   .session
@@ -2485,15 +2484,15 @@
     li
     .list-speakers__bio
     li {
-    font-size: 2.8rem;
+    font-size: 1.75rem;
   }
 
   .popin-content .popin-core p {
-    font-size: 2.8rem;
+    font-size: 1.75rem;
   }
 
   .popin-content .popin-core li {
-    font-size: 2.8rem;
+    font-size: 1.75rem;
   }
 }
 
