@@ -187,7 +187,7 @@ function EventOverlay(props: EventOverlayProps) {
     <DialogOverlay onDismiss={onDismiss} className="z-30">
       <DialogContent
         id="eventoverlay"
-        aria-label={props.label}
+        aria-label={label}
         // !important to overwrite reach default styles
         className="mx-auto !w-3/4 !my-[3.125vw] !p-0"
       >

@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { Fragment } from 'react'
+import { Fragment, memo } from 'react'
 
 import { config } from '@/cms/cms.config'
 import { Metadata } from '@/metadata/Metadata'
@@ -78,12 +78,12 @@ const NetlifyCms = dynamic(
     Cms.registerPreviewStyle('/assets/css/index.css')
 
     /** Register preview templates. */
-    Cms.registerPreviewTemplate('resources', ResourcePreview)
+    Cms.registerPreviewTemplate('resources', memo(ResourcePreview))
     Cms.registerPreviewTemplate(
       'resourceCollections',
-      ResourceCollectionPreview,
+      memo(ResourceCollectionPreview),
     )
-    Cms.registerPreviewTemplate('events', EventPreview)
+    Cms.registerPreviewTemplate('events', memo(EventPreview))
 
     /** Register richtext editor widgets. */
     Cms.registerEditorComponent(sideNoteEditorWidget)
