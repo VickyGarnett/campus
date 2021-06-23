@@ -1,7 +1,8 @@
 import type { GetStaticPropsContext, GetStaticPropsResult } from 'next'
-import { Fragment } from 'react'
+import { Fragment, useState } from 'react'
 
 import { PageContent } from '@/common/PageContent'
+import { Spinner } from '@/common/Spinner'
 import { getLocale } from '@/i18n/getLocale'
 import type { Dictionary } from '@/i18n/loadDictionary'
 import { loadDictionary } from '@/i18n/loadDictionary'
@@ -41,6 +42,12 @@ export default function CourseRegistryPage(
   const canonicalUrl = useCanonicalUrl()
   const languageAlternates = useAlternateUrls()
 
+  const [isLoadingIframe, setIsLoadingIframe] = useState(true)
+
+  function onLoadIframe() {
+    setIsLoadingIframe(false)
+  }
+
   return (
     <Fragment>
       <Metadata
@@ -51,11 +58,15 @@ export default function CourseRegistryPage(
       <PageContent className="grid">
         <h1 className="sr-only">DH Course Registry</h1>
         <div className="relative flex flex-col h-full min-h-[calc(100vh-var(--page-header-height))]">
+          <div className="absolute text-primary-600 top-1/2 left-1/2">
+            <Spinner className={isLoadingIframe ? undefined : 'hidden'} />
+          </div>
           <iframe
             src="https://dhcr.clarin-dariah.eu?parent_domain=dariah.eu"
             title="DH Course Registry"
             loading="lazy"
-            className="w-full h-full"
+            className="relative w-full h-full"
+            onLoad={onLoadIframe}
           />
         </div>
       </PageContent>

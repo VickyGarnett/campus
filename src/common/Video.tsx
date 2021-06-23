@@ -1,3 +1,6 @@
+import { useState } from 'react'
+
+import { Spinner } from '@/common/Spinner'
 import { createUrl } from '@/utils/createUrl'
 
 export const videoProviders = {
@@ -30,15 +33,26 @@ export function Video(props: VideoProps): JSX.Element {
     props.startTime,
   )
 
+  const [isLoadingIframe, setIsLoadingIframe] = useState(true)
+
+  function onLoadIframe() {
+    setIsLoadingIframe(false)
+  }
+
   return (
     <figure className="flex flex-col items-center justify-center">
       <div className="w-full aspect-w-16 aspect-h-9">
+        <div className="absolute text-primary-600 top-1/2 left-1/2">
+          <Spinner className={isLoadingIframe ? undefined : 'hidden'} />
+        </div>
         <iframe
           src={String(url)}
           title="Video player"
           allowFullScreen
           allow="autoplay; fullscreen; picture-in-picture"
           loading="lazy"
+          onLoad={onLoadIframe}
+          className=""
         />
       </div>
       {props.caption !== undefined ? (
