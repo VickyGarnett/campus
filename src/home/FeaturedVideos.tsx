@@ -55,7 +55,10 @@ function VideoCard(props: VideoCardProps) {
         </div>
       </button>
       <LightBox {...lightbox}>
-        <Video id={props.id} />
+        <Video
+          id={props.id}
+          caption={[props.title, props.subtitle].join(' - ')}
+        />
       </LightBox>
     </Fragment>
   )

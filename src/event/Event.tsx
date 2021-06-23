@@ -530,7 +530,7 @@ function EventSession(props: EventSessionProps) {
                     ) : (
                       <Icon
                         icon={AvatarIcon}
-                        className="absolute left-0 right-0 w-[9.375vw] h-[9.375vw] rounded-full border-[0.3vw] border-event-violet2 text-event-violet2"
+                        className="absolute left-0 right-0 w-[9.375vw] h-[9.375vw] rounded-full border-[0.3vw] border-event-violet2 text-event-violet2 bg-event-pink1"
                       />
                     )}
                   </div>

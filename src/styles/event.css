@@ -2059,7 +2059,8 @@
     padding-top: 0.938rem;
     padding-bottom: 0.938rem;
   }
-  .session .session__core .session__speakers .list-speakers > li img {
+  .session .session__core .session__speakers .list-speakers > li img,
+  .session .session__core .session__speakers .list-speakers > li > div > svg {
     position: relative;
     float: left;
     width: 4.688rem;
@@ -2160,9 +2161,8 @@
     svg {
     font-size: 1.875rem;
   }
-
-  #nav-anchors {
-    right: 4.6875vw;
+  .session .session__core .session__downloads .link-download strong span {
+    margin-left: 0.5em;
   }
 
   .popin-closer {
@@ -2171,10 +2171,6 @@
     opacity: 1;
   }
 
-  .popin-content {
-    width: 90%;
-    margin-right: 5%;
-  }
   .popin-content .popin-core ul {
     flex-direction: column;
   }

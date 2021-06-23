@@ -130,19 +130,28 @@ export default function CategoriesPage(
         <section>
           <ul className="grid gap-8 lg:grid-cols-2">
             {categories.items.map((category) => {
+              const href = routes.source(category.id)
+
               return (
                 <li key={category.id}>
                   <article className="flex flex-col h-full overflow-hidden rounded-xl shadow-card-md">
                     {category.image !== undefined ? (
-                      <img
-                        src={category.image}
-                        alt=""
-                        loading="lazy"
-                        className="object-cover w-full h-96"
-                      />
+                      <Link href={href}>
+                        <a
+                          tabIndex={-1}
+                          className="transition rounded hover:text-primary-600 focus:outline-none focus-visible:ring focus-visible:ring-primary-600"
+                        >
+                          <img
+                            src={category.image}
+                            alt=""
+                            loading="lazy"
+                            className="object-cover w-full h-96"
+                          />
+                        </a>
+                      </Link>
                     ) : null}
                     <div className="flex-1 p-10 space-y-4">
-                      <Link href={routes.source(category.id)}>
+                      <Link href={href}>
                         <a className="block transition rounded hover:text-primary-600 focus:outline-none focus-visible:ring focus-visible:ring-primary-600">
                           <h2 className="text-2xl font-bold">
                             {category.name}
@@ -153,7 +162,7 @@ export default function CategoriesPage(
                     </div>
                     <footer className="flex items-center justify-between px-10 py-8 bg-neutral-100">
                       <span>{category.posts} Resources</span>
-                      <Link href={routes.source(category.id)}>
+                      <Link href={href}>
                         <a
                           tabIndex={-1}
                           className="transition rounded hover:text-primary-600 focus:outline-none focus-visible:ring focus-visible:ring-primary-600"
