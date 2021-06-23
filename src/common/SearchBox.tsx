@@ -30,11 +30,7 @@ interface SearchResult {
   tags: Array<{ id: string; name: string }>
 }
 
-export interface SearchBoxProps {
-  onClick?: () => void
-}
-
-export function SearchBox(props: SearchBoxProps): JSX.Element {
+export function SearchBox(): JSX.Element {
   const dialog = useDialogState()
   const router = useRouter()
 
@@ -83,10 +79,7 @@ export function SearchBox(props: SearchBoxProps): JSX.Element {
     <Fragment>
       <button
         className="text-sm inline-flex space-x-1 border border-current items-center py-1.5 px-3 transition rounded-full hover:text-primary-600 focus:text-primary-600 focus:outline-none focus-visible:ring focus-visible:ring-primary-600"
-        onClick={() => {
-          props.onClick?.()
-          dialog.toggle()
-        }}
+        onClick={dialog.toggle}
       >
         <Icon icon={SearchIcon} className="" />
         <span>Search</span>
@@ -98,7 +91,7 @@ export function SearchBox(props: SearchBoxProps): JSX.Element {
       >
         <DialogContent
           aria-label="Search resources"
-          className="flex flex-col !p-4 rounded space-y-4"
+          className="flex flex-col !p-4 rounded space-y-4 !w-full md:!w-3/4 lg:!w-1/2"
         >
           <button
             onClick={dialog.close}
@@ -109,13 +102,13 @@ export function SearchBox(props: SearchBoxProps): JSX.Element {
           </button>
           <form noValidate onSubmit={onSubmit}>
             <div className="flex space-x-4">
-              <label className="flex flex-1">
+              <label className="flex flex-1 min-w-0">
                 <span className="sr-only">Search term</span>
                 <input
                   defaultValue={searchTerm}
                   name="searchTerm"
                   type="text"
-                  className="flex-1 px-6 py-3 transition border rounded hover:bg-neutral-50 border-primary-600 focus:outline-none focus-visible:ring focus-visible:ring-primary-600"
+                  className="flex-1 min-w-0 px-6 py-3 transition border rounded hover:bg-neutral-50 border-primary-600 focus:outline-none focus-visible:ring focus-visible:ring-primary-600"
                   // eslint-disable-next-line jsx-a11y/no-autofocus
                   autoFocus
                   autoComplete="off"
@@ -125,7 +118,7 @@ export function SearchBox(props: SearchBoxProps): JSX.Element {
               </label>
               <button className="hover:bg-neutral-50 text-primary-600 px-3 py-1.5 text-sm space-x-1 flex items-center transition border rounded border-primary-600 focus:outline-none focus-visible:ring focus-visible:ring-primary-600">
                 <Icon icon={SearchIcon} className="" />
-                <span>Search</span>
+                <span className="sr-only sm:not-sr-only">Search</span>
               </button>
             </div>
           </form>

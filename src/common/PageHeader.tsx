@@ -110,6 +110,9 @@ function NavigationMenu() {
 
   return (
     <Fragment>
+      <div className="mr-4">
+        <SearchBox />
+      </div>
       <button
         onClick={state.toggle}
         className="flex items-center space-x-2 text-sm transition rounded hover:text-primary-600 focus:outline-none focus-visible:ring focus-visible:ring-primary-600"
@@ -151,7 +154,6 @@ function NavigationMenu() {
             })}
           </ul>
           <div>
-            <SearchBox onClick={state.close} />
             <div>
               <a
                 href={contact.href}
