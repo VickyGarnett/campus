@@ -8,11 +8,13 @@ export function createUrl({
   locale,
   path,
   query,
+  hash,
 }: {
   baseUrl?: string
   locale?: string
   path: string
   query?: Record<string, unknown>
+  hash?: string
 }): URL {
   const pathname =
     locale !== undefined
@@ -23,6 +25,10 @@ export function createUrl({
 
   if (query !== undefined) {
     addQueryParams(url, query)
+  }
+
+  if (hash !== undefined) {
+    url.hash = hash
   }
 
   return url

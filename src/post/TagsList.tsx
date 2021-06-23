@@ -14,7 +14,7 @@ export function TagsList(props: TagsListProps): JSX.Element {
   const { tags } = props
 
   return (
-    <ul className="flex flex-wrap justify-center px-4 py-6 text-sm">
+    <ul className="flex flex-wrap justify-center px-4 py-4 text-sm md:py-6">
       {tags.map((tag) => {
         return (
           <li key={tag.id}>
@@ -23,7 +23,7 @@ export function TagsList(props: TagsListProps): JSX.Element {
                 <span>{tag.name}</span>
                 <span className="-mt-px text-xs">
                   {tag.posts}
-                  <span className="sr-only">Resources</span>
+                  <span className="sr-only"> Resources</span>
                 </span>
               </a>
             </Link>

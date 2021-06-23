@@ -93,7 +93,7 @@ export function FAQ(): JSX.Element {
             education for building sustainable RIs, DARIAH-CAMPUS is a
             <Anchor href="https://www.nextjs.org">Next.js</Anchor>
             -powered website hosted on{' '}
-            <Anchor href="https://www.netlify.com/">Netlify</Anchor>.
+            <Anchor href="https://www.vercel.com/">Vercel</Anchor>.
           </p>
         </Fragment>
       ),

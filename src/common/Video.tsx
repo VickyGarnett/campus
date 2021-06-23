@@ -81,14 +81,14 @@ function useVideo(
 function getYouTubeUrl(id: string, autoPlay = false, startTime?: number) {
   const BASE_URL = 'https://www.youtube-nocookie.com/embed/'
 
-  const embedUrl = createUrl({ path: id, baseUrl: BASE_URL })
-
-  if (autoPlay === true) {
-    embedUrl.searchParams.set('autoplay', String(1))
-  }
-  if (startTime !== undefined) {
-    embedUrl.searchParams.set('start', String(startTime))
-  }
+  const embedUrl = createUrl({
+    path: id,
+    baseUrl: BASE_URL,
+    query: {
+      autoplay: autoPlay ? '1' : undefined,
+      start: startTime != null ? String(startTime) : undefined,
+    },
+  })
 
   return embedUrl
 }
@@ -99,7 +99,10 @@ function getVimeoUrl(id: string, autoPlay = false, startTime?: number) {
   const embedUrl = createUrl({
     path: id,
     baseUrl: BASE_URL,
-    query: { autoplay: autoPlay ? '1' : undefined },
+    query: {
+      autoplay: autoPlay ? '1' : undefined,
+    },
+    hash: startTime != null ? `t=${startTime}s` : undefined,
   })
 
   return embedUrl

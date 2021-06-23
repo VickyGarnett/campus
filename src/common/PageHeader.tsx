@@ -7,10 +7,10 @@ import { Fragment, useEffect, useState } from 'react'
 
 import { Svg as CloseIcon } from '@/assets/icons/close.svg'
 import { Svg as MenuIcon } from '@/assets/icons/menu.svg'
-import { AlgoliaAutocomplete } from '@/common/AlgoliaAutocomplete'
 import { Icon } from '@/common/Icon'
 import { Logo } from '@/common/Logo'
 import { NavLink } from '@/common/NavLink'
+import { SearchBox } from '@/common/SearchBox'
 import { useDialogState } from '@/common/useDialogState'
 import { useI18n } from '@/i18n/useI18n'
 import { navigation } from '@/navigation/navigation.config'
@@ -30,7 +30,7 @@ export function PageHeader(): JSX.Element {
       )}
       style={{ minHeight: 'var(--page-header-height)' }}
     >
-      <nav className="flex flex-1 items-center justify-between px-4 py-4 space-x-4 text-neutral-800">
+      <nav className="flex items-center justify-between flex-1 px-4 py-4 space-x-4 text-neutral-800">
         <div>
           <NavLink
             href={navigation.home.href}
@@ -76,7 +76,7 @@ function NavigationBar() {
         })}
       </ul>
       <div className="flex items-center space-x-4">
-        <SearchButton />
+        <SearchBox />
         <a
           href={contact.href}
           target="_blank"
@@ -112,7 +112,7 @@ function NavigationMenu() {
     <Fragment>
       <button
         onClick={state.toggle}
-        className="rounded flex items-center space-x-2 text-sm transition hover:text-primary-600 focus:outline-none focus-visible:ring focus-visible:ring-primary-600"
+        className="flex items-center space-x-2 text-sm transition rounded hover:text-primary-600 focus:outline-none focus-visible:ring focus-visible:ring-primary-600"
       >
         <span>Menu</span>
         <Icon icon={MenuIcon} className="w-5 h-5" />
@@ -151,11 +151,7 @@ function NavigationMenu() {
             })}
           </ul>
           <div>
-            {/* Close nav menu before opening search overlay (otherwise search input does not receive key events). */}
-            {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
-            <div onClick={state.close}>
-              <AlgoliaAutocomplete />
-            </div>
+            <SearchBox onClick={state.close} />
             <div>
               <a
                 href={contact.href}
@@ -170,19 +166,6 @@ function NavigationMenu() {
         </DialogContent>
       </DialogOverlay>
     </Fragment>
-  )
-}
-
-/**
- * Button for Algolia search dialog.
- */
-function SearchButton() {
-  return (
-    // <button className="flex items-center p-4 space-x-1 text-sm font-medium transition rounded hover:text-primary-600 focus:outline-none focus-visible:ring focus-visible:ring-primary-600">
-    //   <Icon icon={SearchIcon} className="w-5 h-5" />
-    //   <span>Search</span>
-    // </button>
-    <AlgoliaAutocomplete />
   )
 }
 

@@ -3,14 +3,12 @@ import { Fragment } from 'react'
 import { Svg as PlayIcon } from '@/assets/icons/play.svg'
 import { Icon } from '@/common/Icon'
 import { LightBox } from '@/common/LightBox'
-import type { VideoProvider } from '@/common/Video'
+import type { VideoProps } from '@/common/Video'
 import { Video } from '@/common/Video'
 import { useDialogState } from '@/common/useDialogState'
 import type { FilePath } from '@/utils/ts/aliases'
 
-export interface VideoCardProps {
-  id: string
-  provider?: VideoProvider
+export interface VideoCardProps extends Omit<VideoProps, 'caption'> {
   title: string
   subtitle: string
   image: FilePath
@@ -39,7 +37,13 @@ export function VideoCard(props: VideoCardProps): JSX.Element {
         <p className="text-neutral-500">{props.subtitle}</p>
       </button>
       <LightBox {...lightbox}>
-        <Video id={props.id} provider={props.provider} />
+        <Video
+          id={props.id}
+          provider={props.provider}
+          caption={[props.title, props.subtitle].filter(Boolean).join(' - ')}
+          autoPlay={props.autoPlay}
+          startTime={props.startTime}
+        />
       </LightBox>
     </Fragment>
   )

@@ -5,7 +5,6 @@ import algoliasearch from 'algoliasearch'
 import { getCollectionPreviews } from '@/api/cms/collection'
 import { getEventPreviews } from '@/api/cms/event'
 import { getPostPreviews } from '@/api/cms/post'
-import { getFullName } from '@/utils/getFullName'
 import { log } from '@/utils/log'
 import {
   writeApiKey as _apiKey,
@@ -57,8 +56,9 @@ async function main() {
         abstract,
         authors: authors.map((author) => {
           return {
-            name: getFullName(author),
             id: author.id,
+            lastName: author.lastName,
+            firstName: author.firstName,
           }
         }),
         tags: tags.map((tag) => {
@@ -103,8 +103,9 @@ async function main() {
         abstract,
         authors: authors.map((author) => {
           return {
-            name: getFullName(author),
             id: author.id,
+            lastName: author.lastName,
+            firstName: author.firstName,
           }
         }),
         tags: tags.map((tag) => {

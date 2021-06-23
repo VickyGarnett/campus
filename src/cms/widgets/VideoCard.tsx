@@ -23,6 +23,21 @@ export const videoCardEditorWidget: EditorComponentOptions = {
     { name: 'title', label: 'Title', widget: 'string' },
     { name: 'subtitle', label: 'Subtitle', widget: 'string' },
     { name: 'image', label: 'Image', widget: 'image' },
+    {
+      name: 'autoPlay',
+      label: 'Autoplay',
+      widget: 'boolean',
+      // @ts-expect-error Missing in upstream type.
+      required: false,
+    },
+    {
+      name: 'startTime',
+      label: 'Start time',
+      // @ts-expect-error Missing in upstream type.
+      hint: 'In seconds',
+      widget: 'number',
+      required: false,
+    },
   ],
   pattern: /^<VideoCard([^]*?)\/>/,
   fromBlock(match) {
@@ -35,12 +50,17 @@ export const videoCardEditorWidget: EditorComponentOptions = {
     const subtitle = /subtitle="([^"]*)"/.exec(attrs)
     const image = /image="([^"]*)"/.exec(attrs)
 
+    const autoPlay = / autoPlay /.exec(attrs)
+    const startTime = /startTime="([^"]*)"/.exec(attrs)
+
     return {
       provider: provider ? provider[1] : undefined,
       id: id ? id[1] : undefined,
       title: title ? title[1] : undefined,
       subtitle: subtitle ? subtitle[1] : undefined,
       image: image ? image[1] : undefined,
+      autoPlay: autoPlay ? true : undefined,
+      startTime: startTime ? startTime[1] : undefined,
     }
   },
   toBlock(data) {
@@ -56,6 +76,11 @@ export const videoCardEditorWidget: EditorComponentOptions = {
     if (data.subtitle) attrs += ` subtitle="${data.subtitle}"`
     // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
     if (data.image) attrs += ` image="${data.image}"`
+
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+    if (data.autoPlay) attrs += ` autoPlay`
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+    if (data.startTime) attrs += ` startTime="${data.startTime}"`
 
     return `<VideoCard${attrs} />`
   },

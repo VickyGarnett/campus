@@ -20,6 +20,28 @@ export const videoEditorWidget: EditorComponentOptions = {
       default: 'youtube',
     },
     { name: 'id', label: 'Video ID', widget: 'string' },
+    {
+      name: 'caption',
+      label: 'Caption',
+      widget: 'string',
+      // @ts-expect-error Missing in upstream type.
+      required: false,
+    },
+    {
+      name: 'autoPlay',
+      label: 'Autoplay',
+      widget: 'boolean',
+      // @ts-expect-error Missing in upstream type.
+      required: false,
+    },
+    {
+      name: 'startTime',
+      label: 'Start time',
+      // @ts-expect-error Missing in upstream type.
+      hint: 'In seconds',
+      widget: 'number',
+      required: false,
+    },
   ],
   pattern: /^<Video([^]*?)\/>/,
   fromBlock(match) {
@@ -29,9 +51,16 @@ export const videoEditorWidget: EditorComponentOptions = {
     const provider = /provider="([^"]*)"/.exec(attrs)
     const id = /id="([^"]*)"/.exec(attrs)
 
+    const caption = /caption="([^"]*)"/.exec(attrs)
+    const autoPlay = / autoPlay /.exec(attrs)
+    const startTime = /startTime="([^"]*)"/.exec(attrs)
+
     return {
       provider: provider ? provider[1] : undefined,
       id: id ? id[1] : undefined,
+      caption: caption ? caption[1] : undefined,
+      autoPlay: autoPlay ? true : undefined,
+      startTime: startTime ? startTime[1] : undefined,
     }
   },
   toBlock(data) {
@@ -41,6 +70,13 @@ export const videoEditorWidget: EditorComponentOptions = {
     if (data.provider) attrs += ` provider="${data.provider}"`
     // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
     if (data.id) attrs += ` id="${data.id}"`
+
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+    if (data.caption) attrs += ` caption="${data.caption}"`
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+    if (data.autoPlay) attrs += ` autoPlay`
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+    if (data.startTime) attrs += ` startTime="${data.startTime}"`
 
     return `<Video${attrs} />`
   },

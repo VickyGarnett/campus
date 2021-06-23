@@ -8,6 +8,7 @@ import type {
 } from 'next'
 import { Fragment } from 'react'
 
+import { getEventPreviewsByTagId } from '@/api/cms/queries/event'
 import { getPostPreviewsByTagId } from '@/api/cms/queries/post'
 import type { Tag } from '@/api/cms/tag'
 import { getTagIds, getTags } from '@/api/cms/tag'
@@ -82,9 +83,12 @@ export async function getStaticProps(
     await Promise.all(
       tags.items.map(async (tag) => {
         const postsWithTag = await getPostPreviewsByTagId(tag.id, locale)
+        const eventsWithTag = await getEventPreviewsByTagId(tag.id, locale)
+        const resourcesWithTag = [...postsWithTag, ...eventsWithTag]
+
         return {
           ...tag,
-          posts: postsWithTag.length,
+          posts: resourcesWithTag.length,
         }
       }),
     )
@@ -115,7 +119,7 @@ export default function TagsPage(props: TagsPageProps): JSX.Element {
         canonicalUrl={canonicalUrl}
         languageAlternates={languageAlternates}
       />
-      <PageContent className="flex flex-col max-w-screen-xl px-10 py-16 mx-auto space-y-10 w-full">
+      <PageContent className="flex flex-col w-full max-w-screen-xl px-10 py-16 mx-auto space-y-10">
         <HeroImage className="h-56 text-primary-600" />
         <h1 className="text-4.5xl font-bold text-center">
           Interested in particular topics?
