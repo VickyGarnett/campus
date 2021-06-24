@@ -1535,16 +1535,6 @@
     li {
     display: inline-block;
   }
-  .home
-    .home__wrapper-1
-    .home__wrapper-2
-    .home__wrapper-3
-    .home__aside
-    .home__links
-    li.download::before {
-    right: inherit;
-    left: 0;
-  }
 }
 @media screen and (max-width: 41.875em) {
   #nav-anchors {

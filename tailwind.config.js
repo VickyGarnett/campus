@@ -50,6 +50,9 @@ const config = {
       maxWidth: {
         '80ch': '80ch',
       },
+      minHeight: {
+        available: '-webkit-fill-available',
+      },
       ringOffsetWidth: {
         DEFAULT: '2px',
       },

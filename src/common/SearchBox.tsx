@@ -91,7 +91,7 @@ export function SearchBox(): JSX.Element {
       >
         <DialogContent
           aria-label="Search resources"
-          className="flex flex-col !p-4 rounded space-y-4 !w-full md:!w-3/4 lg:!w-1/2"
+          className="flex flex-col !p-4 rounded space-y-4 !my-0 md:!my-[10vh] !w-full md:!w-3/4 lg:!w-1/2"
         >
           <button
             onClick={dialog.close}
