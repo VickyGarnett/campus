@@ -123,7 +123,7 @@ function NavigationMenu() {
       <DialogOverlay
         isOpen={state.isOpen}
         onDismiss={state.close}
-        className="fixed inset-0 z-30 transition bg-opacity-25 bg-neutral-900"
+        className="fixed inset-0 z-40 transition bg-opacity-25 bg-neutral-900"
       >
         <DialogContent
           aria-label="Navigation menu"

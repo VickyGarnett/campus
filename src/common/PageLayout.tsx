@@ -12,7 +12,7 @@ export interface PageLayoutProps {
  */
 export function PageLayout(props: PageLayoutProps): JSX.Element {
   return (
-    <div className="flex flex-col min-h-screen min-h-available">
+    <div className="flex flex-col min-h-screen">
       <PageHeader />
       {props.children}
       <PageFooter />

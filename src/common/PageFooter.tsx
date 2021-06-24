@@ -14,7 +14,7 @@ export function PageFooter(): JSX.Element {
   const { t } = useI18n()
 
   return (
-    <footer className="flex flex-col px-8 py-8 space-y-6 text-sm font-medium bg-secondary-800 text-neutral-400">
+    <footer className="flex flex-col px-8 py-16 space-y-6 text-sm font-medium bg-secondary-800 text-neutral-400">
       <nav>
         <ul className="flex flex-col items-center justify-center space-y-3 md:space-y-0 md:space-x-6 md:flex-row">
           {Object.entries(navigation).map(([key, link]) => {
@@ -49,7 +49,7 @@ export function PageFooter(): JSX.Element {
           })}
         </ul>
       </div>
-      <div className="flex items-center justify-between max-w-screen-lg mx-auto space-x-8 text-xs font-normal">
+      <div className="flex flex-col items-center justify-between max-w-screen-lg mx-auto space-y-8 text-xs font-normal xs:space-x-8 xs:space-y-0 xs:flex-row">
         <div className="flex items-center space-x-4">
           <EuLogo className="flex-shrink-0 h-6" />
           <span>

@@ -227,7 +227,7 @@ function PostPage(props: PostPageProps) {
           <Curricula curricula={curricula} />
           <ReUseConditions />
         </aside>
-        <div className="space-y-8">
+        <div className="min-w-0 space-y-8">
           <Post post={post} lastUpdatedAt={lastUpdatedAt} />
           <div className="w-full mx-auto space-y-8 2xl:hidden max-w-80ch">
             <CiteAs

@@ -56,7 +56,7 @@ export function Post(props: PostProps): JSX.Element {
     <article className="w-full mx-auto space-y-16 max-w-80ch">
       <header className="space-y-10">
         <h1 className="font-bold text-4.5xl text-center">{title}</h1>
-        <dl className="grid grid-cols-2 text-sm text-neutral-500">
+        <dl className="grid gap-4 text-sm xs:grid-cols-2 text-neutral-500">
           <div className="space-y-1">
             {authors.length > 0 ? (
               <div>
