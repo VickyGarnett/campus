@@ -33,7 +33,7 @@ export function LightBox(props: LightBoxProps): JSX.Element {
             <span className="sr-only">Close</span>
           </button>
         </header>
-        <div className="relative flex-1 p-4 overflow-hidden">
+        <div className="relative flex-1 p-4 overflow-hidden max-w-[calc((16/9*100vh)-264px)] mx-auto w-full">
           {props.children}
         </div>
         <footer>{props.caption}</footer>
