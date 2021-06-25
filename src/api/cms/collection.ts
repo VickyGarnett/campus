@@ -81,8 +81,7 @@ export async function getCollectionById(
   id: ID,
   locale: Locale,
 ): Promise<Collection> {
-  const file = await getCollectionFile(id, locale)
-  const metadata = await getCollectionMetadata(file, locale)
+  const [file, metadata] = await readFileAndGetCollectionMetadata(id, locale)
   const code = String(await compileMdx(file))
 
   const data = {
@@ -129,8 +128,7 @@ export async function getCollectionPreviewById(
   id: ID,
   locale: Locale,
 ): Promise<CollectionPreview> {
-  const file = await getCollectionFile(id, locale)
-  const metadata = await getCollectionMetadata(file, locale)
+  const [, metadata] = await readFileAndGetCollectionMetadata(id, locale)
 
   return { id, ...metadata }
 }
@@ -238,4 +236,36 @@ async function compileMdx(file: VFile): Promise<VFile> {
     ],
     // recmaPlugins: [minify], // FIXME:
   })
+}
+
+/**
+ * Cache for collection metadata.
+ */
+const collectionCache: Record<
+  Locale,
+  Map<string, Promise<[VFile, CollectionMetadata]>>
+> = {
+  en: new Map(),
+}
+
+/**
+ * Caches collection metadata and vfile.
+ *
+ * VFile must be cached as well because collection body is stripped of frontmatter.
+ */
+async function readFileAndGetCollectionMetadata(id: ID, locale: Locale) {
+  const cache = collectionCache[locale]
+
+  if (!cache.has(id)) {
+    cache.set(
+      id,
+      getCollectionFile(id, locale).then(async (file) => {
+        const metadata = await getCollectionMetadata(file, locale)
+        return [file, metadata]
+      }),
+    )
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  return cache.get(id)!
 }

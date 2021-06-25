@@ -140,8 +140,8 @@ export async function getEventIds(_locale: Locale): Promise<Array<string>> {
  * Returns post content, table of contents, and metadata.
  */
 export async function getEventById(id: ID, locale: Locale): Promise<Event> {
-  const file = await getEventFile(id, locale)
-  const matter = await getEventMetadata(file, locale)
+  const [file, matter] = await readFileAndGetEventMetadata(id, locale)
+
   const code = String(await compileMdx(file))
 
   const metadata = {
@@ -215,8 +215,7 @@ export async function getEventPreviewById(
   id: ID,
   locale: Locale,
 ): Promise<EventPreview> {
-  const file = await getEventFile(id, locale)
-  const metadata = await getEventMetadata(file, locale)
+  const [, metadata] = await readFileAndGetEventMetadata(id, locale)
 
   return { id, ...metadata }
 }
@@ -347,4 +346,36 @@ async function compileMdx(file: VFile): Promise<VFile> {
     ],
     // recmaPlugins: [minify], // FIXME:
   })
+}
+
+/**
+ * Cache for event metadata.
+ */
+const eventCache: Record<
+  Locale,
+  Map<string, Promise<[VFile, EventPreviewMetadata]>>
+> = {
+  en: new Map(),
+}
+
+/**
+ * Caches event metadata and vfile.
+ *
+ * VFile must be cached as well because event body is stripped of frontmatter.
+ */
+async function readFileAndGetEventMetadata(id: ID, locale: Locale) {
+  const cache = eventCache[locale]
+
+  if (!cache.has(id)) {
+    cache.set(
+      id,
+      getEventFile(id, locale).then(async (file) => {
+        const metadata = await getEventMetadata(file, locale)
+        return [file, metadata]
+      }),
+    )
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  return cache.get(id)!
 }
