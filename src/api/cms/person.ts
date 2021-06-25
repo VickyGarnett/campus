@@ -18,7 +18,7 @@ export interface PersonId {
 type ID = PersonId['id']
 
 export interface PersonData {
-  firstName: string
+  firstName: string | undefined
   lastName: string
   title?: string
   description?: string

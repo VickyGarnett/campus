@@ -1,0 +1,85 @@
+import type { CmsCollection } from 'netlify-cms-core'
+
+export const people: CmsCollection = {
+  name: 'people',
+  label: 'People',
+  label_singular: 'Person',
+  description: 'Authors, contributors, and editors',
+  identifier_field: 'lastName',
+  format: 'yml',
+  create: true,
+  delete: false,
+  folder: 'content/people',
+  media_folder: '../../{{media_folder}}/people',
+  public_folder: '{{public_folder}}/people',
+  slug: '{{lastName}}-{{firstName}}',
+  preview_path: 'author/{{slug}}',
+  summary: '{{firstName}} {{lastName}}',
+  sortable_fields: ['commit_date', 'lastName'],
+  fields: [
+    {
+      name: 'firstName',
+      label: 'First name',
+      hint: '',
+    },
+    {
+      name: 'lastName',
+      label: 'Last name',
+      hint: '',
+    },
+    {
+      name: 'title',
+      label: 'Title',
+      hint: '',
+      required: false,
+    },
+    {
+      name: 'description',
+      label: 'Description',
+      hint: '',
+      required: false,
+      widget: 'text',
+    },
+    {
+      name: 'avatar',
+      label: 'Image',
+      hint: '',
+      required: false,
+      widget: 'image',
+    },
+    {
+      name: 'email',
+      label: 'Email',
+      hint: '',
+      required: false,
+      pattern: [
+        '^[^\\.\\s@:](?:[^\\s@:]*[^\\s@:\\.])?@[^\\.\\s@]+(?:\\.[^\\.\\s@]+)*$',
+        'Must be a valid Email address',
+      ],
+    },
+    {
+      name: 'twitter',
+      label: 'Twitter handle',
+      hint: '',
+      required: false,
+    },
+    {
+      name: 'website',
+      label: 'Website',
+      hint: '',
+      required: false,
+    },
+    {
+      name: 'orcid',
+      label: 'ORCID',
+      hint: '',
+      required: false,
+    },
+    {
+      name: 'linkedin',
+      label: 'LinkedIn',
+      hint: '',
+      required: false,
+    },
+  ],
+}

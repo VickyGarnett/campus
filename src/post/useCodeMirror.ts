@@ -2,6 +2,8 @@ import type { EditorView } from '@codemirror/basic-setup'
 import type { RefObject } from 'react'
 import { useEffect, useState } from 'react'
 
+import { usePreview as useCmsPreview } from '@/cms/Preview'
+
 /**
  * Creates code mirror editor view.
  */
@@ -13,6 +15,8 @@ export function useCodeMirror(
   getDocument: () => string
   getSelection: () => string
 } {
+  /** We need to provide root `document` when in preview iframe, so styles are injected correctly. */
+  const { document: root } = useCmsPreview()
   const [editor, setEditor] = useState<EditorView | null>(null)
 
   function getDocument(): string {
@@ -59,6 +63,7 @@ export function useCodeMirror(
           extensions: [styles, basicSetup, xml()],
           doc: initialValue,
         }),
+        root: root ?? document,
         parent: ref.current ?? undefined,
       })
 
@@ -72,7 +77,7 @@ export function useCodeMirror(
     return () => {
       view?.destroy()
     }
-  }, [ref, initialValue])
+  }, [ref, root, initialValue])
 
   return {
     editor,

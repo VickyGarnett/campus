@@ -24,7 +24,13 @@
       "~/*": ["*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "*.config.js"],
+  "include": [
+    "next-env.d.ts",
+    "custom-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "*.config.js"
+  ],
   "exclude": ["node_modules"],
   "ts-node": {
     "compilerOptions": {

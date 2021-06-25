@@ -40,9 +40,11 @@ export function XmlCodeEditor(props: XmlCodeEditorProps): JSX.Element {
      * However, `createDocumentFragment` does not seem to handle xml declarations.
      */
     try {
-      const isCorrect = createDocumentFragment(
-        normalizeWhitespace(input),
-      ).isEqualNode(solution)
+      const inputDoc = createDocumentFragment(normalizeWhitespace(input))
+      const isCorrect =
+        solution === null || inputDoc === null
+          ? false
+          : inputDoc.isEqualNode(solution)
 
       quiz.setStatus(
         isCorrect ? QuizCardStatus.CORRECT : QuizCardStatus.INCORRECT,
@@ -67,6 +69,8 @@ XmlCodeEditor.isQuizCard = true
  * Parses html string into document fragment.
  */
 function createDocumentFragment(html: string) {
+  if (typeof window === 'undefined') return null
+
   /** Creates a XMLDocument. */
   const doc = new Document()
   const template = doc.createElement('template')

@@ -50,13 +50,12 @@ const config = {
       maxWidth: {
         '80ch': '80ch',
       },
-      minHeight: {
-        available: '-webkit-fill-available',
-      },
       ringOffsetWidth: {
         DEFAULT: '2px',
       },
       screens: {
+        xs: '480px',
+        md: '815px',
         '2xl': '1440px',
       },
       typography(/** @type {(key: string) => string} */ theme) {

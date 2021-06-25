@@ -7,8 +7,8 @@ export const externalResourceEditorWidget: EditorComponentOptions = {
   id: 'ExternalResource',
   label: 'ExternalResource',
   fields: [
-    { name: 'title', label: 'Title', widget: 'string' },
-    { name: 'subtitle', label: 'Subtitle', widget: 'string' },
+    { name: 'title', label: 'Title', widget: 'hidden' },
+    { name: 'subtitle', label: 'Call to action', widget: 'string' },
     {
       name: 'url',
       label: 'URL',

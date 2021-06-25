@@ -3,15 +3,10 @@
  * @typedef {import('next/dist/next-server/server/config-shared').NextConfig & {i18n?: {locales: Array<Locale>; defaultLocale: Locale}}} Config
  */
 
-/** @type {Config} */
+/** @type {Partial<Config>} */
 const config = {
-  experimental: {
-    enableBlurryPlaceholder: true,
-    eslint: true,
-  },
   future: {
     strictPostcssConfiguration: true,
-    webpack5: true,
   },
   i18n: {
     locales: ['en'],
@@ -52,7 +47,7 @@ const config = {
   },
 }
 
-/** @type {Array<(config: Config) => Config>} */
+/** @type {Array<(config: Partial<Config>) => Partial<Config>>} */
 const plugins = [
   /** @ts-expect-error Missing module declaration. */
   require('@stefanprobst/next-svg')({

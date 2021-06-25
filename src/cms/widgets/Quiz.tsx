@@ -57,8 +57,20 @@ function withQuizCards() {
         }
         case 'Quiz.XmlCodeEditor': {
           const last = cards[cards.length - 1]
-          last.code = ''
-          last.solution = ''
+
+          const code =
+            // @ts-expect-error Attributes exist.
+            node.attributes.find(
+              (attribute: any) => attribute.name === 'code',
+            ) ?? ''
+          const solution =
+            // @ts-expect-error Attributes exist.
+            node.attributes.find(
+              (attribute: any) => attribute.name === 'solution',
+            ) ?? ''
+
+          last.code = code
+          last.solution = solution
           last.validate = 'input'
           break
         }
@@ -156,6 +168,7 @@ export const quizEditorWidget: EditorComponentOptions = {
               default_language: 'xml',
               allow_language_selection: false,
               output_code_only: true,
+              default: '<xml></xml>',
             },
             {
               name: 'solution',
@@ -164,14 +177,15 @@ export const quizEditorWidget: EditorComponentOptions = {
               default_language: 'xml',
               allow_language_selection: false,
               output_code_only: true,
+              default: '<xml></xml>',
             },
             {
               name: 'validate',
               label: 'Validate',
               widget: 'select',
               options: [
-                { name: 'input', label: 'Input' },
-                { name: 'selection', label: 'Selection' },
+                { value: 'input', label: 'Input' },
+                { value: 'selection', label: 'Selection' },
               ],
             },
           ],
