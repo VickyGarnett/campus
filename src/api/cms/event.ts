@@ -260,39 +260,9 @@ export function getEventFilePath(id: ID, _locale: Locale): FilePath {
 }
 
 /**
- * Cache for event metadata.
- */
-const eventMetadataCache: Record<
-  Locale,
-  Map<string, Promise<EventPreviewMetadata>>
-> = {
-  en: new Map(),
-}
-
-/**
- * Caches event metadata.
- */
-async function getEventMetadata(
-  file: VFile,
-  locale: Locale,
-): Promise<EventPreviewMetadata> {
-  const cache = eventMetadataCache[locale]
-
-  const id = file.path
-  if (id == null) throw new Error('Event vfile must have a file path.')
-
-  if (!cache.has(id)) {
-    cache.set(id, _getEventMetadata(file, locale))
-  }
-
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  return cache.get(id)!
-}
-
-/**
  * Extracts post metadata and resolves foreign-key relations.
  */
-async function _getEventMetadata(
+async function getEventMetadata(
   file: VFile,
   locale: Locale,
 ): Promise<EventPreviewMetadata> {
