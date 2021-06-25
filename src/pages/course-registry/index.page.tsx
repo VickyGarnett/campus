@@ -58,7 +58,7 @@ export default function CourseRegistryPage(
       <PageContent className="grid">
         <h1 className="sr-only">DH Course Registry</h1>
         <div className="relative flex flex-col h-full min-h-[calc(100vh-var(--page-header-height))]">
-          <div className="absolute text-primary-600 top-1/2 left-1/2">
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-primary-600">
             <Spinner className={isLoadingIframe ? undefined : 'hidden'} />
           </div>
           <iframe
