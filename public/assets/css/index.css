@@ -1550,16 +1550,6 @@
     li {
     display: inline-block;
   }
-  .home
-    .home__wrapper-1
-    .home__wrapper-2
-    .home__wrapper-3
-    .home__aside
-    .home__links
-    li.download::before {
-    right: inherit;
-    left: 0;
-  }
 }
 @media screen and (max-width: 41.875em) {
   #nav-anchors {
@@ -2512,6 +2502,7 @@
 html {
   scroll-snap-type: y mandatory;
   scroll-padding-top: var(--page-header-height);
+  height: -webkit-fill-available;
 }
 body {
   --tw-bg-opacity: 1;

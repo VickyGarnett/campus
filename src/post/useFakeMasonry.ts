@@ -1,23 +1,22 @@
 import { useState, useEffect, useMemo } from 'react'
 
-import { useDebouncedState } from '@/common/useDebouncedState'
-
 /**
  * Sorts items into columns (buckets).
  */
 export function useFakeMasonry<T>(items: Array<T>): Array<Array<T>> | null {
   const [columnCount, setColumnCount] = useState<number | null>(null)
-  const debouncedColumnCount = useDebouncedState(columnCount, 150)
 
   useEffect(() => {
     function onWindowResize() {
-      if (window.innerWidth >= 1280) {
-        setColumnCount(3)
-      } else if (window.innerWidth >= 768) {
-        setColumnCount(2)
-      } else {
-        setColumnCount(1)
-      }
+      requestAnimationFrame(() => {
+        if (window.innerWidth >= 1280) {
+          setColumnCount(3)
+        } else if (window.innerWidth >= 768) {
+          setColumnCount(2)
+        } else {
+          setColumnCount(1)
+        }
+      })
     }
 
     window.addEventListener('resize', onWindowResize, { passive: true })
@@ -30,15 +29,15 @@ export function useFakeMasonry<T>(items: Array<T>): Array<Array<T>> | null {
   }, [])
 
   return useMemo(() => {
-    if (debouncedColumnCount === null) return null
+    if (columnCount === null) return null
 
-    const columns = Array(debouncedColumnCount).fill([])
+    const columns = Array(columnCount).fill([])
 
     items.forEach((item, index) => {
-      const column = index % debouncedColumnCount
+      const column = index % columnCount
       columns[column] = columns[column].concat(item)
     })
 
     return columns
-  }, [debouncedColumnCount, items])
+  }, [columnCount, items])
 }
