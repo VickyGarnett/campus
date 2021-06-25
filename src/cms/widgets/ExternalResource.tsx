@@ -8,7 +8,13 @@ export const externalResourceEditorWidget: EditorComponentOptions = {
   label: 'ExternalResource',
   fields: [
     { name: 'title', label: 'Title', widget: 'hidden' },
-    { name: 'subtitle', label: 'Call to action', widget: 'string' },
+    {
+      name: 'subtitle',
+      label: 'Call to action',
+      widget: 'string',
+      // @ts-expect-error Missing in upstream type.
+      default: 'Check out <PLEASE ENTER NAME OF RESOURCE>',
+    },
     {
       name: 'url',
       label: 'URL',
