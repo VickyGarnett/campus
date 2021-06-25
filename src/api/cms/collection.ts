@@ -174,9 +174,39 @@ export function getCollectionFilePath(id: ID, _locale: Locale): FilePath {
 }
 
 /**
- * Extracts collection metadata and resolves foreign-key relations.
+ * Cache for collection metadata.
+ */
+const collectionMetadataCache: Record<
+  Locale,
+  Map<string, Promise<CollectionMetadata>>
+> = {
+  en: new Map(),
+}
+
+/**
+ * Caches collection metadata.
  */
 async function getCollectionMetadata(
+  file: VFile,
+  locale: Locale,
+): Promise<CollectionMetadata> {
+  const cache = collectionMetadataCache[locale]
+
+  const id = file.path
+  if (id == null) throw new Error('Collection vfile must have a file path.')
+
+  if (!cache.has(id)) {
+    cache.set(id, _getCollectionMetadata(file, locale))
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  return cache.get(id)!
+}
+
+/**
+ * Extracts collection metadata and resolves foreign-key relations.
+ */
+async function _getCollectionMetadata(
   file: VFile,
   locale: Locale,
 ): Promise<CollectionMetadata> {

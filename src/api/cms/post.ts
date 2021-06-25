@@ -218,9 +218,36 @@ export function getPostFilePath(id: ID, _locale: Locale): FilePath {
 }
 
 /**
- * Extracts post metadata and resolves foreign-key relations.
+ * Cache for post metadata.
+ */
+const postMetadataCache: Record<Locale, Map<string, Promise<PostMetadata>>> = {
+  en: new Map(),
+}
+
+/**
+ * Caches post metadata.
  */
 async function getPostMetadata(
+  file: VFile,
+  locale: Locale,
+): Promise<PostMetadata> {
+  const cache = postMetadataCache[locale]
+
+  const id = file.path
+  if (id == null) throw new Error('Post vfile must have a file path.')
+
+  if (!cache.has(id)) {
+    cache.set(id, _getPostMetadata(file, locale))
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  return cache.get(id)!
+}
+
+/**
+ * Extracts post metadata and resolves foreign-key relations.
+ */
+async function _getPostMetadata(
   file: VFile,
   locale: Locale,
 ): Promise<PostMetadata> {
