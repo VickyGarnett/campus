@@ -17,7 +17,8 @@ export function EventPreview(
   props: PreviewTemplateComponentProps,
 ): JSX.Element {
   const entry = useDebouncedState(props.entry, 250)
-  const fieldsMetaData = useDebouncedState(props.fieldsMetaData, 250)
+  // const fieldsMetaData = useDebouncedState(props.fieldsMetaData, 250)
+  const fieldsMetaData = props.fieldsMetaData
   const [event, setEvent] = useState<EventData | null | undefined>(undefined)
 
   useEffect(() => {

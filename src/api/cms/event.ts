@@ -1,12 +1,7 @@
 import { join } from 'path'
 
-import type { Toc } from '@stefanprobst/rehype-extract-toc'
-import withExtractedTableOfContents from '@stefanprobst/rehype-extract-toc'
-import withSyntaxHighlighting from '@stefanprobst/rehype-shiki'
-import withHeadingIds from 'rehype-slug'
 import withFootnotes from 'remark-footnotes'
 import withGitHubMarkdown from 'remark-gfm'
-import { getHighlighter } from 'shiki'
 import type { VFile } from 'vfile'
 import vfile from 'vfile'
 
@@ -25,10 +20,6 @@ import type { Tag, TagId } from '@/api/cms/tag'
 import { getTagById } from '@/api/cms/tag'
 import type { Locale } from '@/i18n/i18n.config'
 import { extractFrontmatter } from '@/mdx/extractFrontmatter'
-import minify from '@/mdx/plugins/recma-minify'
-import withHeadingLinks from '@/mdx/plugins/rehype-heading-links'
-import withImageCaptions from '@/mdx/plugins/rehype-image-captions'
-import withLazyLoadingImages from '@/mdx/plugins/rehype-lazy-loading-images'
 import withNoReferrerLinks from '@/mdx/plugins/rehype-no-referrer-links'
 import { readFile } from '@/mdx/readFile'
 import { readFolder } from '@/mdx/readFolder'
@@ -114,8 +105,6 @@ export interface EventSessionMetadata {
 export interface EventData {
   /** Metadata. */
   metadata: EventMetadata
-  /** Table of contents. */
-  // toc: Toc
 }
 
 export interface Event extends EventId {
@@ -175,7 +164,6 @@ export async function getEventById(id: ID, locale: Locale): Promise<Event> {
 
   const data = {
     metadata,
-    // toc: (file.data as { toc: Toc }).toc ?? [],
   }
 
   return {
@@ -337,14 +325,9 @@ async function compileMdx(file: VFile): Promise<VFile> {
     remarkPlugins: [withGitHubMarkdown, withFootnotes],
     rehypePlugins: [
       // [withSyntaxHighlighting, { highlighter }],
-      // withHeadingIds,
-      // withExtractedTableOfContents,
-      // withHeadingLinks,
       withNoReferrerLinks,
       // withLazyLoadingImages,
-      // withImageCaptions,
     ],
-    // recmaPlugins: [minify], // FIXME:
   })
 }
 

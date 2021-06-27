@@ -1,5 +1,6 @@
 import type { PreviewTemplateComponentProps } from 'netlify-cms-core'
 import { useState, useEffect } from 'react'
+import withGitHubMarkdown from 'remark-gfm'
 import { compile } from 'xdm'
 
 import type {
@@ -9,6 +10,7 @@ import type {
 import { Preview } from '@/cms/Preview'
 import { Spinner } from '@/common/Spinner'
 import { useDebouncedState } from '@/common/useDebouncedState'
+import withCmsPreviewAssets from '@/mdx/plugins/remark-cms-preview-assets'
 import { Collection } from '@/post/Collection'
 
 /**
@@ -20,10 +22,12 @@ export function ResourceCollectionPreview(
   props: PreviewTemplateComponentProps,
 ): JSX.Element {
   const entry = useDebouncedState(props.entry, 250)
-  const fieldsMetaData = useDebouncedState(props.fieldsMetaData, 250)
+  // const fieldsMetaData = useDebouncedState(props.fieldsMetaData, 250)
+  const fieldsMetaData = props.fieldsMetaData
   const [collection, setCollection] = useState<
     CollectionData | null | undefined
   >(undefined)
+  const { getAsset } = props
 
   useEffect(() => {
     function resolveRelation(path: Array<string>, id: string) {
@@ -60,6 +64,10 @@ export function ResourceCollectionPreview(
           await compile(body, {
             outputFormat: 'function-body',
             useDynamicImport: false,
+            remarkPlugins: [
+              withGitHubMarkdown,
+              [withCmsPreviewAssets, getAsset],
+            ],
           }),
         )
 
@@ -85,7 +93,7 @@ export function ResourceCollectionPreview(
     }
 
     compileMdx()
-  }, [entry, fieldsMetaData])
+  }, [entry, fieldsMetaData, getAsset])
 
   return (
     <Preview {...props}>

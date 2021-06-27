@@ -14,6 +14,7 @@ import withHeadingLinks from '@/mdx/plugins/rehype-heading-links'
 import withImageCaptions from '@/mdx/plugins/rehype-image-captions'
 import withLazyLoadingImages from '@/mdx/plugins/rehype-lazy-loading-images'
 import withNoReferrerLinks from '@/mdx/plugins/rehype-no-referrer-links'
+import withCmsPreviewAssets from '@/mdx/plugins/remark-cms-preview-assets'
 import { Post } from '@/post/Post'
 
 /**
@@ -25,8 +26,10 @@ export function ResourcePreview(
   props: PreviewTemplateComponentProps,
 ): JSX.Element {
   const entry = useDebouncedState(props.entry, 250)
-  const fieldsMetaData = useDebouncedState(props.fieldsMetaData, 250)
+  // const fieldsMetaData = useDebouncedState(props.fieldsMetaData, 250)
+  const fieldsMetaData = props.fieldsMetaData
   const [post, setPost] = useState<PostData | null | undefined>(undefined)
+  const { getAsset } = props
 
   useEffect(() => {
     function resolveRelation(path: Array<string>, id: string) {
@@ -158,7 +161,11 @@ export function ResourcePreview(
           await compile(body, {
             outputFormat: 'function-body',
             useDynamicImport: false,
-            remarkPlugins: [withGitHubMarkdown, withFootnotes],
+            remarkPlugins: [
+              withGitHubMarkdown,
+              withFootnotes,
+              [withCmsPreviewAssets, getAsset],
+            ],
             rehypePlugins: [
               [withSyntaxHighlighting, { highlighter }],
               withHeadingIds,
@@ -194,7 +201,7 @@ export function ResourcePreview(
     }
 
     compileMdx()
-  }, [entry, fieldsMetaData])
+  }, [entry, fieldsMetaData, getAsset])
 
   return (
     <Preview {...props}>
