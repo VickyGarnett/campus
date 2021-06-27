@@ -73,6 +73,7 @@ export const eventSessionSpeakersEditorWidget: EditorComponentOptions = {
         {
           name: 'speaker',
           label: 'Speaker',
+          hint: 'Speakers added here must also be present in the Speakers dropdown above',
           widget: 'relation',
           collection: 'people',
           value_field: '{{slug}}',
