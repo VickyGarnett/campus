@@ -7,7 +7,13 @@ export const externalResourceEditorWidget: EditorComponentOptions = {
   id: 'ExternalResource',
   label: 'ExternalResource',
   fields: [
-    { name: 'title', label: 'Title', widget: 'hidden' },
+    {
+      name: 'title',
+      label: 'Title',
+      widget: 'hidden',
+      // @ts-expect-error Missing in upstream type.
+      default: 'Interested in learning more?',
+    },
     {
       name: 'subtitle',
       label: 'Call to action',
