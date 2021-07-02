@@ -132,7 +132,7 @@ export default function AuthorPage(props: AuthorPageProps): JSX.Element {
       <PageContent className="w-full max-w-screen-xl px-10 py-16 mx-auto space-y-10">
         <div className="flex items-center justify-center space-x-4">
           {author.avatar != null ? (
-            <div className="w-16 h-16 border-2 rounded-full border-primary-600">
+            <div className="flex border-2 rounded-full border-primary-600">
               <Image
                 src={author.avatar}
                 alt=""
