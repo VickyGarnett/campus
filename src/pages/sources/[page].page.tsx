@@ -6,6 +6,7 @@ import type {
   GetStaticPropsContext,
   GetStaticPropsResult,
 } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { Fragment } from 'react'
 
@@ -141,11 +142,14 @@ export default function CategoriesPage(
                           tabIndex={-1}
                           className="transition rounded hover:text-primary-600 focus:outline-none focus-visible:ring focus-visible:ring-primary-600"
                         >
-                          <img
+                          <Image
                             src={category.image}
                             alt=""
-                            loading="lazy"
-                            className="object-cover w-full h-96"
+                            width={16}
+                            height={9}
+                            layout="responsive"
+                            objectFit="cover"
+                            sizes="(max-width: 640px) 584px, (max-width: 1024px) 943px, 584px"
                           />
                         </a>
                       </Link>

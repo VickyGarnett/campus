@@ -176,7 +176,7 @@ export function Post(props: PostProps): JSX.Element {
                 src={metadata.featuredImage}
                 alt=""
                 layout="fill"
-                sizes=""
+                sizes="720px"
                 objectFit="cover"
               />
             )}

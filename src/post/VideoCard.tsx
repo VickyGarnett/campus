@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { Fragment } from 'react'
 
 import { Svg as PlayIcon } from '@/assets/icons/play.svg'
@@ -26,12 +27,18 @@ export function VideoCard(props: VideoCardProps): JSX.Element {
         onClick={lightbox.open}
         className="flex flex-col items-center w-full p-12 space-y-4 transition rounded shadow-lg text-neutral-800 hover:shadow-xl focus:outline-none focus-visible:ring focus-visible:ring-primary-600"
       >
-        <img
-          src={props.image}
-          alt=""
-          loading="lazy"
-          className="object-cover w-full !my-0"
-        />
+        <div className="w-full">
+          <Image
+            src={props.image}
+            alt=""
+            className="!my-0"
+            layout="responsive"
+            width="16"
+            height="9"
+            objectFit="cover"
+            sizes="640px"
+          />
+        </div>
         <Icon icon={PlayIcon} className="w-16 h-16 text-primary-600" />
         <strong className="text-2xl font-bold">{props.title}</strong>
         <p className="text-neutral-500">{props.subtitle}</p>

@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { Fragment } from 'react'
 
 import { Svg as PlayIcon } from '@/assets/icons/play.svg'
@@ -45,9 +46,16 @@ function VideoCard(props: VideoCardProps) {
     <Fragment>
       <button
         onClick={lightbox.open}
-        className="flex flex-col items-center h-full p-6 space-y-4 transition rounded-xl shadow-card-md text-neutral-800 hover:shadow-card-lg focus-visible:ring focus-visible:ring-primary-600 focus:outline-none"
+        className="flex flex-col items-center w-full h-full p-6 space-y-4 transition rounded-xl shadow-card-md text-neutral-800 hover:shadow-card-lg focus-visible:ring focus-visible:ring-primary-600 focus:outline-none"
       >
-        <img src={props.image} alt="" loading="lazy" className="w-full" />
+        <div className="w-full aspect-w-16 aspect-h-9">
+          <Image
+            src={props.image}
+            alt=""
+            layout="fill"
+            sizes="(max-width: 640px) 544px, (max-width: 814px) 718px, 256px"
+          />
+        </div>
         <Icon icon={PlayIcon} className="w-12 h-12 text-primary-600" />
         <div className="flex flex-col space-y-1">
           <strong className="text-xl font-bold">{props.title}</strong>
