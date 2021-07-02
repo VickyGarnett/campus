@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { createElement } from 'react'
 
@@ -68,11 +69,14 @@ export function Post(props: PostProps): JSX.Element {
                         <li key={author.id}>
                           <div className="flex items-center space-x-2">
                             {author.avatar !== undefined ? (
-                              <img
+                              <Image
                                 src={author.avatar}
                                 alt=""
-                                loading="lazy"
-                                className="object-cover w-8 h-8 rounded-full"
+                                className="w-8 h-8 rounded-full"
+                                width={32}
+                                height={32}
+                                objectFit="cover"
+                                layout="fixed"
                               />
                             ) : (
                               <Icon
@@ -157,6 +161,27 @@ export function Post(props: PostProps): JSX.Element {
         </dl>
       </header>
       <div className="prose max-w-none">
+        {metadata.featuredImage != null ? (
+          <div className="mb-8 aspect-w-16 aspect-h-9">
+            {/* FIXME: next/image does not support blob */}
+            {metadata.featuredImage.startsWith('blob:') ? (
+              <img
+                src={metadata.featuredImage}
+                alt=""
+                loading="lazy"
+                className="object-cover"
+              />
+            ) : (
+              <Image
+                src={metadata.featuredImage}
+                alt=""
+                layout="fill"
+                sizes=""
+                objectFit="cover"
+              />
+            )}
+          </div>
+        ) : null}
         <PostContent {...post} components={components} />
       </div>
       <footer>

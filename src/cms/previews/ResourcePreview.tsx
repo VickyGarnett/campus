@@ -95,6 +95,11 @@ export function ResourcePreview(
             ? resolveRelation(['licence', 'licences'], frontmatter.licence)
             : null
 
+        const featuredImage =
+          frontmatter.featuredImage != null
+            ? String(getAsset(frontmatter.featuredImage))
+            : undefined
+
         // TODO: preview should take care of (i) stringify Date objects, (ii) ensure values for required fields
 
         const metadata = {
@@ -106,6 +111,7 @@ export function ResourcePreview(
           tags,
           type,
           licence,
+          featuredImage,
         }
 
         const { getHighlighter, setCDN, setOnigasmWASM } = await import(
@@ -190,8 +196,7 @@ export function ResourcePreview(
         if (!wasCanceled) {
           setPost(post)
         }
-      } catch (error) {
-        console.error(error)
+      } catch {
         setPost(null)
       }
 

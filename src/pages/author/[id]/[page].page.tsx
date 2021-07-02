@@ -6,6 +6,7 @@ import type {
   GetStaticPropsContext,
   GetStaticPropsResult,
 } from 'next'
+import Image from 'next/image'
 import { Fragment } from 'react'
 
 import type { Person as PersonData } from '@/api/cms/person'
@@ -131,14 +132,17 @@ export default function AuthorPage(props: AuthorPageProps): JSX.Element {
       <PageContent className="w-full max-w-screen-xl px-10 py-16 mx-auto space-y-10">
         <div className="flex items-center justify-center space-x-4">
           {author.avatar != null ? (
-            <img
-              src={author.avatar}
-              alt=""
-              loading="lazy"
-              className="object-cover w-16 h-16 border-2 rounded-full border-primary-600"
-              width={64}
-              height={64}
-            />
+            <div className="w-16 h-16 border-2 rounded-full border-primary-600">
+              <Image
+                src={author.avatar}
+                alt=""
+                className="w-16 h-16 rounded-full"
+                width={64}
+                height={64}
+                objectFit="cover"
+                layout="fixed"
+              />
+            </div>
           ) : null}
           <h1 className="text-4.5xl font-bold text-center">{fullName}</h1>
         </div>

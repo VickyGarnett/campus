@@ -1,5 +1,6 @@
 import type { PreviewTemplateComponentProps } from 'netlify-cms-core'
 import { useState, useEffect } from 'react'
+import withGitHubMarkdown from 'remark-gfm'
 import { compile } from 'xdm'
 
 import type { Event as EventData, EventFrontmatter } from '@/api/cms/event'
@@ -7,6 +8,7 @@ import { Preview } from '@/cms/Preview'
 import { Spinner } from '@/common/Spinner'
 import { useDebouncedState } from '@/common/useDebouncedState'
 import { Event } from '@/event/Event'
+import withCmsPreviewAssets from '@/mdx/plugins/remark-cms-preview-assets'
 
 /**
  * CMS preview for event resource.
@@ -20,6 +22,7 @@ export function EventPreview(
   // const fieldsMetaData = useDebouncedState(props.fieldsMetaData, 250)
   const fieldsMetaData = props.fieldsMetaData
   const [event, setEvent] = useState<EventData | null | undefined>(undefined)
+  const { getAsset } = props
 
   useEffect(() => {
     function resolveRelation(path: Array<string>, id: string) {
@@ -90,6 +93,15 @@ export function EventPreview(
               )
             : ''
 
+        const logo =
+          frontmatter.logo != null
+            ? String(getAsset(frontmatter.logo))
+            : undefined
+        const featuredImage =
+          frontmatter.featuredImage != null
+            ? String(getAsset(frontmatter.featuredImage))
+            : undefined
+
         const sessions = Array.isArray(frontmatter.sessions)
           ? await Promise.all(
               frontmatter.sessions.map(async (session) => {
@@ -112,6 +124,10 @@ export function EventPreview(
                           outputFormat: 'function-body',
                           useDynamicImport: false,
                           // FIXME: plugins like syntax highlighter
+                          remarkPlugins: [
+                            withGitHubMarkdown,
+                            [withCmsPreviewAssets, getAsset],
+                          ],
                         }),
                       )
                     : ''
@@ -132,6 +148,8 @@ export function EventPreview(
           licence,
           partners,
           sessions,
+          logo,
+          featuredImage,
           about: { code: about },
           prep: null, // TODO:
         }
@@ -165,7 +183,7 @@ export function EventPreview(
     }
 
     compileMdx()
-  }, [entry, fieldsMetaData])
+  }, [entry, fieldsMetaData, getAsset])
 
   return (
     <Preview {...props}>

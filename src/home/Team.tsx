@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 import { Section } from '@/common/Section'
 import type { HomePageProps } from '@/pages/index.page'
 import { getFullName } from '@/utils/getFullName'
@@ -21,12 +23,17 @@ export function Team(props: TeamProps): JSX.Element {
         {props.team.map((person, index) => {
           return (
             <li key={index} className="flex flex-col items-center">
-              <img
-                src={person.avatar}
-                alt=""
-                loading="lazy"
-                className="w-24 h-24 mb-2 rounded-full object-cover"
-              />
+              {person.avatar != null ? (
+                <Image
+                  src={person.avatar}
+                  alt=""
+                  className="w-24 h-24 mb-2 rounded-full"
+                  width={96}
+                  height={96}
+                  objectFit="cover"
+                  layout="fixed"
+                />
+              ) : null}
               <h3 className="font-bold">{getFullName(person)}</h3>
               <p className="text-sm text-neutral-500">{person.title}</p>
             </li>

@@ -1,6 +1,7 @@
 import '@reach/dialog/styles.css'
 
 import { DialogContent, DialogOverlay } from '@reach/dialog'
+import Image from 'next/image'
 import Link from 'next/link'
 import {
   FaEnvelope,
@@ -82,15 +83,20 @@ function EventOverview(props: EventOverviewProps) {
   return (
     <section id="body" className="!h-screen !min-h-screen w-full home">
       {featuredImage != null ? (
-        <div className="absolute inset-0">
-          <img
-            src={featuredImage}
-            alt=""
-            className="object-cover w-full h-full"
-            loading="lazy"
-          />
+        <>
+          {/* FIXME: next/image does not support blob */}
+          {featuredImage.startsWith('blob:') ? (
+            <img
+              src={featuredImage}
+              alt=""
+              loading="lazy"
+              className="absolute inset-0 object-cover h-full"
+            />
+          ) : (
+            <Image src={featuredImage} alt="" layout="fill" objectFit="cover" />
+          )}
           <div className="bg-gradient-to-b from-transparent via-transparent to-[rgba(0,0,0,0.65)] absolute inset-0" />
-        </div>
+        </>
       ) : null}
 
       <div className="home__wrapper-1">

@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 
 import { useFakeMasonry } from './useFakeMasonry'
@@ -26,10 +27,10 @@ export function PostsList(props: PostsListProps): JSX.Element {
 
   if (columns != null) {
     return (
-      <ul className="space-x-6 flex">
+      <ul className="flex space-x-6">
         {columns.map((posts, index) => {
           return (
-            <div key={index} className="space-y-6 flex-1">
+            <div key={index} className="flex-1 space-y-6">
               {posts.map((post) => {
                 return (
                   <li key={post.id}>
@@ -75,7 +76,7 @@ function PostPreviewCard(props: PostPreviewCardProps): JSX.Element {
       <div className="flex flex-col px-10 py-10 space-y-5">
         <h2 className="text-2xl font-semibold">
           <Link href={href}>
-            <a className="block transition hover:text-primary-600 focus:outline-none focus-visible:ring rounded focus-visible:ring-primary-600">
+            <a className="block transition rounded hover:text-primary-600 focus:outline-none focus-visible:ring focus-visible:ring-primary-600">
               <span className="inline-flex mr-2 text-primary-600">
                 <ContentTypeIcon type={post.type.id} className="w-5 h-5" />
               </span>
@@ -97,16 +98,19 @@ function PostPreviewCard(props: PostPreviewCardProps): JSX.Element {
                       <li key={author.id}>
                         <span className="sr-only">{getFullName(author)}</span>
                         {author.avatar !== undefined ? (
-                          <img
+                          <Image
                             src={author.avatar}
                             alt=""
-                            loading="lazy"
-                            className="w-8 h-8 rounded-full object-cover"
+                            className="w-8 h-8 rounded-full"
+                            width={32}
+                            height={32}
+                            objectFit="cover"
+                            layout="fixed"
                           />
                         ) : (
                           <Icon
                             icon={DefaultAvatar}
-                            className="w-8 h-8 rounded-full text-primary-600 object-cover"
+                            className="object-cover w-8 h-8 rounded-full text-primary-600"
                           />
                         )}
                       </li>
