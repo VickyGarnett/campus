@@ -211,9 +211,37 @@ function PostPage(props: PostPageProps) {
         languageAlternates={languageAlternates}
       />
       <JsonLd
-        // TODO:
         schema={{
           '@type': 'Article',
+          headline: metadata.title,
+          datePublished: metadata.date,
+          abstract: metadata.abstract,
+          inLanguage: metadata.lang,
+          author: metadata.authors.map((author) => {
+            return {
+              '@type': 'Person',
+              familyName: author.lastName,
+              givenName: author.firstName,
+            }
+          }),
+          editor: metadata.editors?.map((editor) => {
+            return {
+              '@type': 'Person',
+              familyName: editor.lastName,
+              givenName: editor.firstName,
+            }
+          }),
+          contributor: metadata.contributors?.map((contributor) => {
+            return {
+              '@type': 'Person',
+              familyName: contributor.lastName,
+              givenName: contributor.firstName,
+            }
+          }),
+          version: metadata.version,
+          license: metadata.licence.url,
+          image: metadata.featuredImage,
+          keywords: metadata.tags.map((tag) => tag.name),
         }}
       />
       <PageContent className="grid w-full max-w-screen-lg px-10 py-16 mx-auto space-y-10 2xl:space-y-0 2xl:grid-cols-content 2xl:gap-x-10 2xl:max-w-none">
