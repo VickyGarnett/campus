@@ -21,7 +21,13 @@ export const videoCardEditorWidget: EditorComponentOptions = {
     },
     { name: 'id', label: 'Video ID', widget: 'string' },
     { name: 'title', label: 'Title', widget: 'string' },
-    { name: 'subtitle', label: 'Subtitle', widget: 'string' },
+    {
+      name: 'subtitle',
+      label: 'Subtitle',
+      widget: 'hidden',
+      // @ts-expect-error Missing in upstream type.
+      default: 'Click here to view',
+    },
     { name: 'image', label: 'Image', widget: 'image' },
     {
       name: 'autoPlay',
