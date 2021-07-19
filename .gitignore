@@ -55,3 +55,6 @@ public/sitemap.xml
 
 # TODO
 TODO.md
+
+# resources dumped at build time
+public/resources/*.json
